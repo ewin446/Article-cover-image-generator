@@ -903,85 +903,87 @@
   </div>
 
   <script>
-    // ========== 核心权限控制功能（不用改） ==========
-    // 1. 绑定设备：识别你的手机/电脑（别人转发链接用不了）
+    // ========== 修复后的核心权限控制功能 ==========
+    // 1. 生成设备ID（简化版，更稳定）
     function getDeviceId() {
-      // 用手机/电脑的特征生成唯一标识
-      const info = navigator.userAgent + screen.width + screen.height + navigator.language;
-      let id = 0;
-      for (let i = 0; i < info.length; i++) {
-        id = ((id << 5) - id) + info.charCodeAt(i);
-      }
-      return Math.abs(id).toString(16);
+      return localStorage.getItem('device_id') || Math.random().toString(36).substr(2, 10);
     }
 
-    // 2. 生成加密签名（防止别人改链接）
+    // 2. 生成签名（简化，避免加密错误）
     function getSign(expire, deviceId) {
-      const secret = "baby-name-2025"; // 加密密钥，可随便改几个字符
-      return btoa(expire + deviceId + secret).slice(0, 20);
+      const secret = "baby-name-2025";
+      return btoa(expire + "-" + deviceId + "-" + secret).substring(0, 20);
     }
 
-    // 3. 生成带过期+绑定设备的链接
+    // 3. 生成带权限的链接（修复baseUrl和参数拼接）
     function createAccessLink() {
       const hours = document.getElementById('expireHours').value || 24;
-      const expireTime = new Date().getTime() + hours * 60 * 60 * 1000; // 过期时间
-      const deviceId = getDeviceId(); // 绑定当前设备（也可以留空，让对方首次打开绑定）
-      const sign = getSign(expireTime, deviceId); // 生成签名
-
-      // 替换成你的GitHub Pages地址（先部署后改！）
+      const expireTime = new Date().getTime() + hours * 60 * 60 * 1000;
+      const deviceId = getDeviceId();
+      localStorage.setItem('device_id', deviceId); // 保存设备ID
+      const sign = getSign(expireTime, deviceId);
+      
+      // 你的正确baseUrl（已改好，不用动）
       const baseUrl = "https://ewin446.github.io/ewin446/index.html";
       const finalLink = `${baseUrl}?expire=${expireTime}&device=${deviceId}&sign=${sign}`;
-
-      // 显示并复制链接
+      
       document.getElementById('linkResult').textContent = finalLink;
       navigator.clipboard.writeText(finalLink).then(() => {
-        alert("链接已复制！发给别人后，只能在他打开的第一个设备用，超时就失效");
+        alert("链接已复制！用同一设备打开即可");
       });
     }
 
-    // 4. 验证链接是否有效（过期/转发/篡改都不行）
+    // 4. 验证链接（简化逻辑，减少报错）
     function checkLink() {
       const params = new URLSearchParams(window.location.search);
       const expire = params.get('expire');
       const device = params.get('device');
       const sign = params.get('sign');
 
-      // 没参数 = 无效链接
+      // 无参数 → 提示用专属链接
       if (!expire || !device || !sign) {
-        alert("请用专属链接访问！");
+        alert("请用生成的专属链接访问！");
         document.getElementById('mainFunction').style.display = 'none';
         return false;
       }
 
-      // 链接过期了
-      if (new Date().getTime() > expire) {
-        alert("链接已过期！");
+      // 检查过期
+      if (new Date().getTime() > Number(expire)) {
+        alert("链接已过期！重新生成即可");
         document.getElementById('mainFunction').style.display = 'none';
         return false;
       }
 
-      // 链接被篡改了
+      // 检查签名
       if (getSign(expire, device) !== sign) {
-        alert("链接被修改过，无效！");
+        alert("链接被篡改！");
         document.getElementById('mainFunction').style.display = 'none';
         return false;
       }
 
-      // 不是绑定的设备（首次打开会自动绑定）
+      // 检查设备（绑定当前设备）
       const currentDevice = getDeviceId();
-      const boundDevice = localStorage.getItem('bound_device');
-      if (boundDevice) {
-        if (boundDevice !== device) {
-          alert("这个链接只能在绑定的设备用，禁止转发！");
-          document.getElementById('mainFunction').style.display = 'none';
-          return false;
-        }
-      } else {
-        localStorage.setItem('bound_device', device); // 首次打开绑定设备
+      if (device !== currentDevice) {
+        alert("禁止转发！只能在生成链接的设备使用");
+        document.getElementById('mainFunction').style.display = 'none';
+        return false;
       }
 
+      // 验证通过，显示功能
+      document.getElementById('mainFunction').style.display = 'block';
       return true;
     }
+
+    // ========== 恢复页面加载逻辑 ==========
+    window.onload = function() {
+      // 先初始化设备ID
+      if (!localStorage.getItem('device_id')) {
+        localStorage.setItem('device_id', Math.random().toString(36).substr(2, 10));
+      }
+      checkLink(); 
+      updateStyleDescription();
+      updateWeightDisplay();
+    };
 
     // ========== 原有功能（不用改） ==========
     function updateStyleDescription() {
@@ -1081,14 +1083,6 @@
       btn.classList.toggle('collected');
       alert(btn.classList.contains('collected') ? '收藏成功' : '取消收藏');
     }
-
-    // ========== 页面加载时验证链接 ==========
-    window.onload = function() {
-  // checkLink(); // 临时关掉验证
-  document.getElementById('mainFunction').style.display = 'block'; // 强制显示功能
-  updateStyleDescription();
-  updateWeightDisplay();
-};
   </script>
 </body>
 </html>
