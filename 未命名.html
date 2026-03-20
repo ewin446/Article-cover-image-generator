@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宝宝取名智能定制系统 | 500套高分好名</title>
+  <style>
+    /* 全局样式：小红书母婴风（粉色主调+柔和圆角） */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+    body {
+      background-color: #fef7f9; /* 小红书浅粉背景 */
+      color: #333;
+      padding: 15px;
+      line-height: 1.5;
+    }
+
+    /* 主容器：模拟小红书笔记卡片 */
+    .container {
+      max-width: 550px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px; /* 小红书同款大圆角 */
+      padding: 25px;
+      box-shadow: 0 2px 12px rgba(255, 105, 135, 0.1);
+    }
+
+    /* 标题区域：还原原商品的温馨标题 */
+    .title-area {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #fee;
+    }
+
+    .main-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ff2442; /* 小红书品牌红 */
+      margin-bottom: 8px;
+    }
+
+    .sub-title {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* 激活码验证区（核心权限控制） */
+    .auth-area {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #fcf0f3;
+      border-radius: 12px;
+    }
+
+    .auth-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #ff2442;
+    }
+
+    /* 输入框样式：还原小红书表单风格 */
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 12px;
+      border: 1px solid #ffd1dc;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff2442;
+      box-shadow: 0 0 0 2px rgba(255, 36, 66, 0.1);
+    }
+
+    /* 按钮样式：小红书同款红色按钮 */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: #ff2442;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #e61f3d;
+    }
+
+    .btn-secondary {
+      background: #f8f8f8;
+      color: #666;
+    }
+
+    .btn-secondary:hover {
+      background: #f0f0f0;
+    }
+
+    /* 名字结果区 */
+    .result-area {
+      margin-top: 30px;
+      display: none;
+    }
+
+    .result-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ff2442;
+    }
+
+    /* 名字列表：卡片式双列布局 */
+    .name-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    /* 名字卡片样式 */
+    .name-card {
+      background: #fff;
+      border: 1px solid #fee;
+      border-radius: 10px;
+      padding: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .name-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 105, 135, 0.15);
+      border-color: #ff2442;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .name-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .score-tag {
+      background: #ffeff3;
+      color: #ff2442;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* 来源标签 */
+    .source-tag {
+      display: inline-block;
+      background: #f8f8f8;
+      color: #999;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    /* 寓意解析区 */
+    .meaning-area {
+      border-top: 1px dashed #ffd1dc;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    .meaning-text {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* 收藏按钮 */
+    .collect-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      transition: all 0.2s;
+      z-index: 1;
+    }
+
+    .collect-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .collected {
+      color: #ff2442;
+    }
+
+    /* 名字解析模块：还原原商品的多维度解析 */
+    .analysis-area {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fcf0f3;
+      border-radius: 8px;
+    }
+
+    .analysis-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #ff2442;
+    }
+
+    .analysis-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    /* 收藏展示区 */
+    .favorites-area {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .favorites-area.show {
+      display: block;
+    }
+
+    .favorites-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ff2442;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .favorites-count {
+      font-size: 12px;
+      color: #999;
+      font-weight: 400;
+    }
+
+    .favorites-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .empty-favorites {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 14px;
+    }
+
+    .empty-favorites::before {
+      content: "♡";
+      display: block;
+      font-size: 48px;
+      margin-bottom: 10px;
+      opacity: 0.3;
+    }
+
+    /* 删除按钮 */
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid #ffd1dc;
+      color: #ff2442;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: #ff2442;
+      color: #fff;
+    }
+
+    /* 收藏按钮（列表视图用） */
+    .collect-btn {
+      font-size: 12px;
+      color: #ff2442;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .collect-btn::before {
+      content: "♡";
+      margin-right: 4px;
+    }
+
+    .collected::before {
+      content: "♥";
+    }
+
+    /* 售后提示区：还原原商品的版权/售后 */
+    .footer-tips {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #fee;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .tips-item {
+      margin-bottom: 5px;
+    }
+
+    /* 隐藏模块 */
+    .hidden {
+      display: none;
+    }
+
+    /* 加载提示动画 */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #ffd1dc;
+      border-top: 4px solid #ff2442;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      color: #ff2442;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* 筛选区样式 */
+    .filter-area {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #fcf0f3;
+      border-radius: 12px;
+    }
+
+    .filter-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #ff2442;
+    }
+
+    .filter-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: 1px solid #ff2442;
+      background: #fff;
+      color: #ff2442;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover {
+      background: #ff2442;
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: #ff2442;
+      color: #fff;
+    }
+
+    /* 生成数量选择 */
+    .count-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .count-btn {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #ffd1dc;
+      background: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .count-btn:hover {
+      border-color: #ff2442;
+    }
+
+    .count-btn.active {
+      background: #ff2442;
+      color: #fff;
+      border-color: #ff2442;
+    }
+
+    /* 风格说明区域 */
+    .style-description {
+      font-size: 12px;
+      color: #999;
+      margin-top: 8px;
+      padding: 8px;
+      background: #f8f8f8;
+      border-radius: 6px;
+    }
+
+    /* 评分体系说明 */
+    .score-system {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fcf0f3;
+      border-radius: 12px;
+    }
+
+    .score-system-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #ff2442;
+    }
+
+    .score-item {
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .score-item-label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .score-item-desc {
+      color: #666;
+      margin-left: 10px;
+    }
+
+    /* 信任背书区 */
+    .trust-area {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fcf0f3;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .trust-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ff2442;
+    }
+
+    .trust-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+    }
+
+    .trust-stat-item {
+      text-align: center;
+    }
+
+    .trust-stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ff2442;
+    }
+
+    .trust-stat-label {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* 底部信息区 */
+    .footer-info {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #fee;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+    }
+
+    .footer-info-item {
+      margin-bottom: 8px;
+    }
+
+    .footer-link {
+      color: #ff2442;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 模态框样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+      background: none;
+      border: none;
+    }
+
+    .modal-close:hover {
+      color: #ff2442;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #ff2442;
+      padding-right: 30px;
+    }
+
+    .modal-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    .modal-section {
+      margin-bottom: 15px;
+    }
+
+    .modal-section-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    /* 高级设置样式 */
+    .advanced-toggle {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .advanced-toggle:hover {
+      color: #ff2442;
+    }
+
+    #advancedIcon {
+      transition: transform 0.3s ease;
+    }
+
+    #advancedSettings {
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .weight-config {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .weight-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .weight-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .weight-item span:first-child {
+      width: 100px;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .weight-slider {
+      flex: 1;
+      margin: 0 15px;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: linear-gradient(to right, #ff2442, #ffd1dc);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .weight-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #ff2442;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 36, 66, 0.3);
+    }
+
+    .weight-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #ff2442;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 36, 66, 0.3);
+    }
+
+    .weight-item span:last-child {
+      width: 50px;
+      text-align: right;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff2442;
+    }
+
+    /* 新增：链接生成区样式 */
+    .link-generator {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fcf0f3;
+      border-radius: 12px;
+    }
+    .link-generator-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #ff2442;
+    }
+    .link-result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #fff;
+      border-radius: 8px;
+      word-break: break-all;
+      font-size: 12px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 标题区域 -->
+    <div class="title-area">
+      <div class="main-title">宝宝取名定制工具 | 500套高分好名</div>
+      <div class="sub-title">按姓氏/生日定制 · 男女各50个 · 含详细解析</div>
+    </div>
+
+    <!-- 主功能区（会被权限验证控制显示/隐藏） -->
+    <div id="mainFunction">
+      <!-- 宝宝信息输入区 -->
+      <div class="input-group">
+        <label>宝宝姓氏</label>
+        <input type="text" id="surname" placeholder="请输入姓氏">
+      </div>
+
+      <div class="input-group">
+        <label>出生日期</label>
+        <input type="date" id="birthDate">
+      </div>
+
+      <div class="input-group">
+        <label>宝宝性别</label>
+        <select id="gender">
+          <option value="girl">女宝</option>
+          <option value="boy">男宝</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>名字风格</label>
+        <select id="style" onchange="updateStyleDescription()">
+          <option value="classical">古典文雅</option>
+          <option value="modern">简约现代</option>
+          <option value="poetic">诗意文艺</option>
+        </select>
+        <div class="style-description" id="styleDescription">
+          古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第
+        </div>
+      </div>
+
+      <!-- 高级设置（可折叠） -->
+      <div class="input-group">
+        <label class="advanced-toggle" onclick="toggleAdvancedSettings()">
+          <span>⚙️ 高级设置</span>
+          <span id="advancedIcon">▼</span>
+        </label>
+        <div id="advancedSettings" style="display: none; margin-top: 15px; padding: 15px; background: #fef7f9; border-radius: 8px;">
+          <div class="input-group" style="margin-bottom: 12px;">
+            <label style="font-size: 13px; color: #666;">匹配权重配置</label>
+            <div class="weight-config">
+              <div class="weight-item">
+                <span>生肖匹配</span>
+                <input type="range" id="zodiacWeight" min="0" max="100" value="70" class="weight-slider" onchange="updateWeightDisplay()">
+                <span id="zodiacWeightValue">70%</span>
+              </div>
+              <div class="weight-item">
+                <span>季节匹配</span>
+                <input type="range" id="seasonWeight" min="0" max="100" value="50" class="weight-slider" onchange="updateWeightDisplay()">
+                <span id="seasonWeightValue">50%</span>
+              </div>
+              <div class="weight-item">
+                <span>五行平衡</span>
+                <input type="range" id="elementWeight" min="0" max="100" value="80" class="weight-slider" onchange="updateWeightDisplay()">
+                <span id="elementWeightValue">80%</span>
+              </div>
+              <div class="weight-item">
+                <span>姓氏相似度</span>
+                <input type="range" id="surnameWeight" min="0" max="100" value="60" class="weight-slider" onchange="updateWeightDisplay()">
+                <span id="surnameWeightValue">60%</span>
+              </div>
+              <div class="weight-item">
+                <span>文化内涵</span>
+                <input type="range" id="cultureWeight" min="0" max="100" value="65" class="weight-slider" onchange="updateWeightDisplay()">
+                <span id="cultureWeightValue">65%</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="resetWeights()" style="padding: 10px; font-size: 14px;">重置为默认权重</button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>生成数量</label>
+        <div class="count-selector">
+          <button class="count-btn active" onclick="selectCount(10, this)">10个</button>
+          <button class="count-btn" onclick="selectCount(30, this)">30个</button>
+          <button class="count-btn" onclick="selectCount(50, this)">50个</button>
+          <button class="count-btn" onclick="selectCount(100, this)">100个</button>
+        </div>
+      </div>
+
+      <button class="btn" onclick="generateNames()">生成高分名字推荐</button>
+
+      <!-- 名字结果区 -->
+      <div class="result-area" id="resultArea">
+        <div class="result-title">定制名字推荐（综合评分90+）</div>
+        
+        <!-- 筛选区 -->
+        <div class="filter-area">
+          <div class="filter-title">筛选条件</div>
+          <div class="filter-options">
+            <button class="filter-btn active" onclick="filterByScore('all', this)">全部</button>
+            <button class="filter-btn" onclick="filterByScore('95-98', this)">95分以上</button>
+            <button class="filter-btn" onclick="filterByScore('92-94', this)">92-94分</button>
+            <button class="filter-btn" onclick="filterByScore('90-91', this)">90-91分</button>
+          </div>
+        </div>
+        
+        <div class="name-list" id="nameList"></div>
+
+        <!-- 评分体系说明 -->
+        <div class="score-system">
+          <div class="score-system-title">评分体系说明</div>
+          <div class="score-item">
+            <span class="score-item-label">读音韵律：</span>
+            <span class="score-item-desc">声调搭配是否优美，读音是否朗朗上口</span>
+          </div>
+          <div class="score-item">
+            <span class="score-item-label">字形结构：</span>
+            <span class="score-item-desc">汉字笔画搭配是否协调，字形是否美观</span>
+          </div>
+          <div class="score-item">
+            <span class="score-item-label">文化内涵：</span>
+            <span class="score-item-desc">是否源自经典典籍，文化底蕴是否深厚</span>
+          </div>
+          <div class="score-item">
+            <span class="score-item-label">整体平衡：</span>
+            <span class="score-item-desc">五行是否平衡，是否符合生辰八字命理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新增：链接生成区（用来生成带权限的访问链接） -->
+    <div class="link-generator">
+      <div class="link-generator-title">🔑 生成访问链接（仅管理员可见）</div>
+      <div class="input-group" style="margin-bottom: 10px;">
+        <label style="font-size: 13px;">链接有效时长（小时）</label>
+        <input type="number" id="expireHours" value="24" min="1" max="720" style="padding: 10px; font-size: 14px;">
+      </div>
+      <button class="btn btn-secondary" onclick="createAccessLink()" style="padding: 10px; font-size: 14px;">生成专属访问链接</button>
+      <div class="link-result" id="linkResult">生成的链接会显示在这里，复制后发给别人即可</div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="footer-info">
+      <div class="footer-info-item">© 2025 宝宝取名智能定制系统 - 仅供个人使用</div>
+      <div class="footer-info-item">本工具基于传统起名文化+现代审美定制</div>
+    </div>
+  </div>
+
+  <!-- 加载动画 -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">正在生成专属名字...</div>
+  </div>
+
+  <script>
+    // ========== 核心权限控制功能（不用改） ==========
+    // 1. 绑定设备：识别你的手机/电脑（别人转发链接用不了）
+    function getDeviceId() {
+      // 用手机/电脑的特征生成唯一标识
+      const info = navigator.userAgent + screen.width + screen.height + navigator.language;
+      let id = 0;
+      for (let i = 0; i < info.length; i++) {
+        id = ((id << 5) - id) + info.charCodeAt(i);
+      }
+      return Math.abs(id).toString(16);
+    }
+
+    // 2. 生成加密签名（防止别人改链接）
+    function getSign(expire, deviceId) {
+      const secret = "baby-name-2025"; // 加密密钥，可随便改几个字符
+      return btoa(expire + deviceId + secret).slice(0, 20);
+    }
+
+    // 3. 生成带过期+绑定设备的链接
+    function createAccessLink() {
+      const hours = document.getElementById('expireHours').value || 24;
+      const expireTime = new Date().getTime() + hours * 60 * 60 * 1000; // 过期时间
+      const deviceId = getDeviceId(); // 绑定当前设备（也可以留空，让对方首次打开绑定）
+      const sign = getSign(expireTime, deviceId); // 生成签名
+
+      // 替换成你的GitHub Pages地址（先部署后改！）
+      const baseUrl = "https://你的GitHub用户名.github.io/你的仓库名/宝宝取名智能定制系统-dfed663eb7.html";
+      const finalLink = `${baseUrl}?expire=${expireTime}&device=${deviceId}&sign=${sign}`;
+
+      // 显示并复制链接
+      document.getElementById('linkResult').textContent = finalLink;
+      navigator.clipboard.writeText(finalLink).then(() => {
+        alert("链接已复制！发给别人后，只能在他打开的第一个设备用，超时就失效");
+      });
+    }
+
+    // 4. 验证链接是否有效（过期/转发/篡改都不行）
+    function checkLink() {
+      const params = new URLSearchParams(window.location.search);
+      const expire = params.get('expire');
+      const device = params.get('device');
+      const sign = params.get('sign');
+
+      // 没参数 = 无效链接
+      if (!expire || !device || !sign) {
+        alert("请用专属链接访问！");
+        document.getElementById('mainFunction').style.display = 'none';
+        return false;
+      }
+
+      // 链接过期了
+      if (new Date().getTime() > expire) {
+        alert("链接已过期！");
+        document.getElementById('mainFunction').style.display = 'none';
+        return false;
+      }
+
+      // 链接被篡改了
+      if (getSign(expire, device) !== sign) {
+        alert("链接被修改过，无效！");
+        document.getElementById('mainFunction').style.display = 'none';
+        return false;
+      }
+
+      // 不是绑定的设备（首次打开会自动绑定）
+      const currentDevice = getDeviceId();
+      const boundDevice = localStorage.getItem('bound_device');
+      if (boundDevice) {
+        if (boundDevice !== device) {
+          alert("这个链接只能在绑定的设备用，禁止转发！");
+          document.getElementById('mainFunction').style.display = 'none';
+          return false;
+        }
+      } else {
+        localStorage.setItem('bound_device', device); // 首次打开绑定设备
+      }
+
+      return true;
+    }
+
+    // ========== 原有功能（不用改） ==========
+    function updateStyleDescription() {
+      const style = document.getElementById('style').value;
+      const desc = {
+        classical: "古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第",
+        modern: "简约现代：笔画简单，读音顺口，符合现代审美，易记易写",
+        poetic: "诗意文艺：取自经典诗词，意境优美，自带书卷气"
+      };
+      document.getElementById('styleDescription').textContent = desc[style];
+    }
+
+    function toggleAdvancedSettings() {
+      const settings = document.getElementById('advancedSettings');
+      const icon = document.getElementById('advancedIcon');
+      if (settings.style.display === 'none') {
+        settings.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        settings.style.display = 'none';
+        icon.style.transform = 'rotate(0)';
+      }
+    }
+
+    function updateWeightDisplay() {
+      document.getElementById('zodiacWeightValue').textContent = `${document.getElementById('zodiacWeight').value}%`;
+      document.getElementById('seasonWeightValue').textContent = `${document.getElementById('seasonWeight').value}%`;
+      document.getElementById('elementWeightValue').textContent = `${document.getElementById('elementWeight').value}%`;
+      document.getElementById('surnameWeightValue').textContent = `${document.getElementById('surnameWeight').value}%`;
+      document.getElementById('cultureWeightValue').textContent = `${document.getElementById('cultureWeight').value}%`;
+    }
+
+    function resetWeights() {
+      document.getElementById('zodiacWeight').value = 70;
+      document.getElementById('seasonWeight').value = 50;
+      document.getElementById('elementWeight').value = 80;
+      document.getElementById('surnameWeight').value = 60;
+      document.getElementById('cultureWeight').value = 65;
+      updateWeightDisplay();
+    }
+
+    function selectCount(count, btn) {
+      document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function filterByScore(score, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // 实际筛选逻辑（示例）
+      const cards = document.querySelectorAll('.name-card');
+      cards.forEach(card => {
+        if (score === 'all') {
+          card.style.display = 'block';
+        } else {
+          const cardScore = card.querySelector('.score-tag').textContent;
+          if (score === '95-98' && cardScore >= 95) card.style.display = 'block';
+          else if (score === '92-94' && cardScore >=92 && cardScore <=94) card.style.display = 'block';
+          else if (score === '90-91' && cardScore >=90 && cardScore <=91) card.style.display = 'block';
+          else card.style.display = 'none';
+        }
+      });
+    }
+
+    function generateNames() {
+      // 模拟生成名字（实际可对接接口，这里仅示例）
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('loadingOverlay').style.display = 'none';
+        document.getElementById('resultArea').style.display = 'block';
+        
+        const nameList = document.getElementById('nameList');
+        nameList.innerHTML = '';
+        // 模拟生成10个名字
+        const names = ['语桐', '沐宸', '若瑶', '景铄', '知予', '昱辰', '书瑶', '泽宇', '欣怡', '俊熙'];
+        names.forEach(name => {
+          const score = 90 + Math.floor(Math.random() * 8);
+          const card = `
+            <div class="name-card">
+              <div class="card-header">
+                <div class="name-text">${name}</div>
+                <div class="score-tag">${score}分</div>
+              </div>
+              <div class="source-tag">源自《诗经》</div>
+              <div class="meaning-area">
+                <div class="meaning-text">寓意：温文尔雅，前程似锦，有文化底蕴，读音朗朗上口</div>
+              </div>
+              <button class="collect-btn" onclick="collectName(this)"></button>
+            </div>
+          `;
+          nameList.innerHTML += card;
+        });
+      }, 1500);
+    }
+
+    function collectName(btn) {
+      btn.classList.toggle('collected');
+      alert(btn.classList.contains('collected') ? '收藏成功' : '取消收藏');
+    }
+
+    // ========== 页面加载时验证链接 ==========
+    window.onload = function() {
+      checkLink(); // 先验证链接，再显示功能
+      updateStyleDescription();
+      updateWeightDisplay();
+    };
+  </script>
+</body>
+</html>
