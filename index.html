@@ -1194,6 +1194,19 @@
     };
 
     // ============================================
+    // 工具函数
+    // ============================================
+    // 数组随机打乱（Fisher-Yates 洗牌算法）
+    function shuffleArray(array) {
+      const newArray = [...array]; // 复制原数组，避免修改原数据
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+
+    // ============================================
     // 用户交互函数
     // ============================================
     
@@ -1453,15 +1466,17 @@
           }));
         }
         
+        // 关键修改：先打乱名字库，再选取指定数量
+        const shuffledPool = shuffleArray(namePool);
+        const maxCount = Math.min(selectedCount, shuffledPool.length);
+        
         // 生成指定数量的名字（带评分）
         allGeneratedNames = [];
-        const maxCount = Math.min(selectedCount, namePool.length);
-        
         for (let i = 0; i < maxCount; i++) {
           const nameItem = {
-            fullname: namePool[i].fullname || (surname + namePool[i].name),
-            source: namePool[i].source,
-            meaning: namePool[i].meaning,
+            fullname: shuffledPool[i].fullname || (surname + shuffledPool[i].name),
+            source: shuffledPool[i].source,
+            meaning: shuffledPool[i].meaning,
             score: generateRandomScore()
           };
           allGeneratedNames.push(nameItem);
