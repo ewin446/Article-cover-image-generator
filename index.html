@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宝宝取名智能定制系统</title>
-  <!-- 彻底移除所有preload标签，消除配置冲突 -->
+  <title>宝宝取名系统</title>
   <style>
-    /* 内置核心样式，避免依赖外部CSS（可选，确保样式正常） */
     * {
       margin: 0;
       padding: 0;
@@ -14,107 +12,41 @@
       font-family: "Microsoft Yahei", sans-serif;
     }
     body {
-      background-color: #f5f7fa;
+      background: #f5f7fa;
       padding: 20px;
     }
     .container {
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
       background: white;
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .header {
+    h1 {
       text-align: center;
+      color: #333;
       margin-bottom: 30px;
     }
-    .main-title {
-      color: #333;
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    .sub-title {
-      color: #666;
-      font-size: 16px;
-    }
-    .form-group {
+    .form-item {
       margin-bottom: 20px;
     }
-    .form-label {
+    label {
       display: block;
       margin-bottom: 8px;
-      color: #333;
+      color: #555;
       font-weight: 500;
     }
-    .form-input, .form-select {
+    input, select {
       width: 100%;
-      padding: 10px 15px;
+      padding: 10px;
       border: 1px solid #ddd;
       border-radius: 6px;
       font-size: 16px;
-    }
-    .style-desc {
-      margin-top: 8px;
-      color: #666;
-      font-size: 14px;
-    }
-    .advanced-toggle {
-      margin: 15px 0;
-      padding: 10px;
-      background: #f8f9fa;
-      border-radius: 6px;
-      cursor: pointer;
-      color: #333;
-      font-weight: 500;
-    }
-    .advanced-settings {
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-    .weight-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .weight-item input {
-      width: 60%;
-    }
-    .reset-btn {
-      padding: 8px 15px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .count-selector {
-      margin: 20px 0;
-    }
-    .count-label, .filter-label {
-      margin-right: 10px;
-      color: #333;
-    }
-    .count-btn, .filter-btn {
-      padding: 8px 15px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin-right: 10px;
-      cursor: pointer;
-      background: white;
-    }
-    .count-btn.active, .filter-btn.active {
-      background: #007bff;
-      color: white;
-      border-color: #007bff;
     }
     .generate-btn {
       width: 100%;
-      padding: 15px;
+      padding: 12px;
       background: #28a745;
       color: white;
       border: none;
@@ -123,598 +55,134 @@
       cursor: pointer;
       margin: 20px 0;
     }
-    .result-area, .favorites-area {
+    .result-area {
       margin-top: 30px;
-      display: none;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
     }
-    .result-title, .favorites-title {
+    .result-area h2 {
       color: #333;
-      margin-bottom: 20px;
-      font-size: 22px;
+      margin-bottom: 15px;
+      font-size: 20px;
     }
-    .filter-area {
-      margin-bottom: 20px;
-    }
-    .name-list, .favorites-list {
+    .name-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 15px;
-      max-height: 400px;
-      overflow-y: auto;
+      gap: 10px;
     }
     .name-card {
-      border: 1px solid #eee;
-      border-radius: 8px;
       padding: 15px;
-      background: white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
+      border: 1px solid #eee;
+      border-radius: 6px;
     }
     .name-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       color: #333;
-    }
-    .score-tag {
-      background: #ffc107;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-    .source-tag {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .meaning-text {
       color: #666;
       font-size: 14px;
-      line-height: 1.5;
-    }
-    .collect-btn {
-      margin-top: 10px;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      background: #eee;
-      font-size: 16px;
-    }
-    .collect-btn.collected {
-      background: #dc3545;
-      color: white;
-    }
-    .delete-btn {
-      margin-top: 10px;
-      padding: 5px 10px;
-      background: #dc3545;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 999;
-    }
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #fff;
-      border-top: 5px solid #007bff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loading-text {
-      color: white;
-      font-size: 18px;
-    }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      max-width: 500px;
-      width: 90%;
-    }
-    .close-btn {
-      float: right;
-      font-size: 24px;
-      cursor: pointer;
-      color: #666;
-    }
-    .footer {
-      margin-top: 30px;
-      text-align: center;
-    }
-    .footer-link {
-      margin: 0 10px;
-      color: #007bff;
-      text-decoration: none;
-    }
-    .empty-favorites {
-      text-align: center;
-      color: #666;
-      padding: 20px;
-      grid-column: 1 / -1;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- 标题区域 -->
-    <div class="header">
-      <h1 class="main-title">宝宝取名智能定制系统</h1>
-      <p class="sub-title">结合传统文化与现代审美，生成90+分优质好名</p>
+    <h1>宝宝取名智能定制系统</h1>
+
+    <!-- 核心输入项 -->
+    <div class="form-item">
+      <label for="surname">宝宝姓氏：</label>
+      <input type="text" id="surname" placeholder="请输入姓氏（如：李、王）" maxlength="2">
     </div>
 
-    <!-- 输入区域 -->
-    <div class="input-area">
-      <div class="form-group">
-        <label for="surname" class="form-label">宝宝姓氏：</label>
-        <input type="text" id="surname" class="form-input" placeholder="请输入姓氏（如：李、王）" maxlength="2">
-      </div>
-
-      <div class="form-group">
-        <label for="birthDate" class="form-label">出生日期：</label>
-        <input type="date" id="birthDate" class="form-input">
-      </div>
-
-      <div class="form-group">
-        <label for="gender" class="form-label">宝宝性别：</label>
-        <select id="gender" class="form-select">
-          <option value="girl">女宝</option>
-          <option value="boy">男宝</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="style" class="form-label">名字风格：</label>
-        <select id="style" class="form-select" onchange="updateStyleDescription()">
-          <option value="classical">古典文雅</option>
-          <option value="modern">简约现代</option>
-          <option value="poetic">诗意文艺</option>
-        </select>
-        <p id="styleDescription" class="style-desc">古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第</p>
-      </div>
-
-      <!-- 高级设置 -->
-      <div class="advanced-toggle" onclick="toggleAdvancedSettings()">
-        <span>高级权重配置 ▼</span>
-        <span id="advancedIcon" class="toggle-icon">▼</span>
-      </div>
-      <div id="advancedSettings" class="advanced-settings" style="display: none;">
-        <div class="weight-item">
-          <label>生肖适配权重：</label>
-          <input type="range" id="zodiacWeight" min="0" max="100" value="70" oninput="updateWeightDisplay()">
-          <span id="zodiacWeightValue">70%</span>
-        </div>
-        <div class="weight-item">
-          <label>季节适配权重：</label>
-          <input type="range" id="seasonWeight" min="0" max="100" value="50" oninput="updateWeightDisplay()">
-          <span id="seasonWeightValue">50%</span>
-        </div>
-        <div class="weight-item">
-          <label>五行适配权重：</label>
-          <input type="range" id="elementWeight" min="0" max="100" value="80" oninput="updateWeightDisplay()">
-          <span id="elementWeightValue">80%</span>
-        </div>
-        <div class="weight-item">
-          <label>姓氏搭配权重：</label>
-          <input type="range" id="surnameWeight" min="0" max="100" value="60" oninput="updateWeightDisplay()">
-          <span id="surnameWeightValue">60%</span>
-        </div>
-        <div class="weight-item">
-          <label>文化内涵权重：</label>
-          <input type="range" id="cultureWeight" min="0" max="100" value="65" oninput="updateWeightDisplay()">
-          <span id="cultureWeightValue">65%</span>
-        </div>
-        <button class="reset-btn" onclick="resetWeights()">重置权重</button>
-      </div>
-
-      <!-- 生成数量选择 -->
-      <div class="count-selector">
-        <span class="count-label">生成数量：</span>
-        <button class="count-btn active" onclick="selectCount(10, this)">10个</button>
-        <button class="count-btn" onclick="selectCount(20, this)">20个</button>
-        <button class="count-btn" onclick="selectCount(30, this)">30个</button>
-      </div>
-
-      <!-- 生成按钮 -->
-      <button class="generate-btn" onclick="generateNames()">生成定制好名</button>
+    <div class="form-item">
+      <label for="gender">宝宝性别：</label>
+      <select id="gender">
+        <option value="girl">女宝</option>
+        <option value="boy">男宝</option>
+      </select>
     </div>
 
-    <!-- 结果区域 -->
-    <div id="resultArea" class="result-area" style="display: none;">
-      <h2 class="result-title">为您生成的高分好名</h2>
-      
-      <!-- 评分筛选 -->
-      <div class="filter-area">
-        <span class="filter-label">评分筛选：</span>
-        <button class="filter-btn active" onclick="filterByScore('all', this)">全部</button>
-        <button class="filter-btn" onclick="filterByScore('95-98', this)">95-98分</button>
-        <button class="filter-btn" onclick="filterByScore('90-94', this)">90-94分</button>
-      </div>
-      
-      <!-- 名字列表 -->
-      <div id="nameList" class="name-list"></div>
-    </div>
+    <!-- 生成按钮 -->
+    <button class="generate-btn" onclick="generateNames()">生成定制好名</button>
 
-    <!-- 收藏区域 -->
-    <div id="favoritesArea" class="favorites-area" style="display: none;">
-      <h2 class="favorites-title">
-        <span id="favoritesCount">已收藏 0 个名字</span>
-        <span class="tip-text">（点击❤可取消收藏）</span>
-      </h2>
-      <div id="favoritesList" class="favorites-list"></div>
-    </div>
-
-    <!-- 底部链接 -->
-    <div class="footer">
-      <a href="javascript:showModal('privacyModal')" class="footer-link">隐私政策</a>
-      <a href="javascript:showModal('termsModal')" class="footer-link">使用条款</a>
-      <a href="javascript:showModal('aboutModal')" class="footer-link">关于我们</a>
-    </div>
-  </div>
-
-  <!-- 加载动画 -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">正在为您生成个性化好名字...</div>
-  </div>
-
-  <!-- 模态框 -->
-  <div class="modal" id="privacyModal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="hideModal('privacyModal')">&times;</span>
-      <h3>隐私政策</h3>
-      <p>1. 本系统仅在本地存储您的收藏数据，不会上传任何个人信息。</p>
-      <p>2. 出生日期等信息仅用于名字适配，不会收集或分享。</p>
-      <p>3. 您可以随时清除本地存储的收藏数据。</p>
-    </div>
-  </div>
-
-  <div class="modal" id="termsModal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="hideModal('termsModal')">&times;</span>
-      <h3>使用条款</h3>
-      <p>1. 本系统仅提供取名参考，不构成法律或专业命名建议。</p>
-      <p>2. 禁止将本系统用于商业用途，仅供个人非商业使用。</p>
-      <p>3. 本系统保留随时调整功能和数据的权利。</p>
-    </div>
-  </div>
-
-  <div class="modal" id="aboutModal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="hideModal('aboutModal')">&times;</span>
-      <h3>关于我们</h3>
-      <p>宝宝取名智能定制系统，结合中华传统文化、诗词典籍和现代起名美学，为您的宝宝生成高分优质好名。</p>
-      <p>所有名字均经过音律、寓意、五行等多维度筛选，确保朗朗上口且富有内涵。</p>
+    <!-- 结果展示 -->
+    <div class="result-area" id="resultArea" style="display: none;">
+      <h2>为您生成的高分好名</h2>
+      <div class="name-list" id="nameList"></div>
     </div>
   </div>
 
   <script>
-    // 1. 内置核心工具类（彻底移除外部JS依赖）
-    const lazyUtils = {
-      // 加载动画
-      showLoading: function() {
-        document.getElementById('loadingOverlay').style.display = 'flex';
-      },
-      hideLoading: function() {
-        document.getElementById('loadingOverlay').style.display = 'none';
-      },
-      // 渲染名字卡片
-      renderNameCard: function(nameObj, container) {
-        const fullname = `${window.selectedSurname}${nameObj.name}`;
-        const score = nameObj.score;
-        const isCollected = window.favorites.some(f => f.fullname === fullname);
-        
-        const nameCard = document.createElement('div');
-        nameCard.className = 'name-card';
-        nameCard.innerHTML = `
-          <div class="card-header">
-            <span class="name-text">${fullname}</span>
-            <span class="score-tag">${score}分</span>
-          </div>
-          <div class="source-tag">${nameObj.source}</div>
-          <div class="meaning-area">
-            <div class="meaning-text">${nameObj.meaning}</div>
-          </div>
-          <button class="collect-btn ${isCollected ? 'collected' : ''}" 
-                  onclick="collectName(this, '${fullname}', '${nameObj.source}', '${nameObj.meaning}', ${score})">
-            ${isCollected ? '❤' : '♡'}
-          </button>
-        `;
-        container.appendChild(nameCard);
-      },
-      // 渲染名字列表
-      renderVirtualList: function(container, names) {
-        container.innerHTML = '';
-        names.forEach(name => this.renderNameCard(name, container));
-      }
+    // 最简单的名字数据库（无复杂嵌套，避免访问错误）
+    const nameData = {
+      girl: [
+        { name: "婉清", meaning: "温婉清丽，如清风拂面，寓意女子温柔贤淑" },
+        { name: "静姝", meaning: "静女其姝，寓意女子安静美好，品德端庄" },
+        { name: "采薇", meaning: "寓意女子坚韧不拔，品性高洁" },
+        { name: "思悠", meaning: "寓意女子心思细腻，温婉悠长" },
+        { name: "清芷", meaning: "寓意女子品性高洁，气质如兰" },
+        { name: "一诺", meaning: "一诺千金，寓意女子诚实守信" },
+        { name: "语桐", meaning: "寓意女子活泼开朗，生命力旺盛" },
+        { name: "梓萱", meaning: "寓意女子茁壮成长，快乐无忧" },
+        { name: "欣怡", meaning: "寓意女子生活幸福，心情舒畅" },
+        { name: "若溪", meaning: "寓意女子纯净自然，活泼灵动" }
+      ],
+      boy: [
+        { name: "子谦", meaning: "君子谦谦，寓意男子谦逊有礼，品德高尚" },
+        { name: "修远", meaning: "路漫漫其修远兮，寓意男子追求远大，坚持不懈" },
+        { name: "景行", meaning: "寓意男子品行高尚，令人敬仰" },
+        { name: "博文", meaning: "寓意男子学识渊博，知书达理" },
+        { name: "怀瑾", meaning: "寓意男子身怀美玉，品德高尚" },
+        { name: "浩然", meaning: "浩然正气，寓意男子胸怀坦荡，一身正气" },
+        { name: "宇辰", meaning: "气宇轩昂，寓意男子心胸开阔，前程远大" },
+        { name: "泽宇", meaning: "恩泽万物，寓意男子善良宽厚，风度翩翩" },
+        { name: "俊熙", meaning: "寓意男子相貌堂堂，前途光明" },
+        { name: "奕辰", meaning: "寓意男子精神饱满，光芒四射" }
+      ]
     };
 
-    // 2. 全局变量初始化
-    let selectedCount = 10;
-    let allGeneratedNames = [];
-    window.selectedSurname = '';
-    // 收藏数据（本地存储）
-    window.favorites = JSON.parse(localStorage.getItem('nameFavorites')) || [];
-
-    // 3. 内置名字数据库（无需外部name-db.js）
-    const nameDatabase = {
-      girl: {
-        classical: [
-          { name: "婉清", source: "《诗经·郑风》", meaning: "温婉清丽，如清风拂面，寓意女子温柔贤淑，容貌秀丽" },
-          { name: "静姝", source: "《诗经·邶风》", meaning: "静女其姝，寓意女子安静美好，品德端庄" },
-          { name: "采薇", source: "《诗经·小雅》", meaning: "采薇采薇，薇亦作止，寓意女子坚韧不拔，品性高洁" },
-          { name: "思悠", source: "《诗经·郑风》", meaning: "青青子衿，悠悠我思，寓意女子心思细腻，温婉悠长" },
-          { name: "清芷", source: "《楚辞·九歌》", meaning: "芷兰之香，清芬袭人，寓意女子品性高洁，气质如兰" }
-        ],
-        modern: [
-          { name: "一诺", source: "现代起名美学", meaning: "一诺千金，寓意女子诚实守信，言出必行" },
-          { name: "语桐", source: "现代起名美学", meaning: "语笑嫣然，桐木常青，寓意女子活泼开朗，生命力旺盛" },
-          { name: "梓萱", source: "现代起名美学", meaning: "梓木成材，萱草忘忧，寓意女子茁壮成长，快乐无忧" },
-          { name: "欣怡", source: "现代起名美学", meaning: "欣喜愉悦，寓意女子生活幸福，心情舒畅" },
-          { name: "若溪", source: "现代起名美学", meaning: "宛若溪流，清澈灵动，寓意女子纯净自然，活泼灵动" }
-        ],
-        poetic: [
-          { name: "诗涵", source: "唐诗宋词", meaning: "诗情画意，涵养深厚，寓意女子富有才情，气质优雅" },
-          { name: "梦蝶", source: "《庄子·齐物论》", meaning: "庄生晓梦迷蝴蝶，寓意女子梦幻美好，自由洒脱" },
-          { name: "落雁", source: "《汉书》", meaning: "沉鱼落雁，寓意女子容貌绝美，倾国倾城" },
-          { name: "江雪", source: "《江雪》柳宗元", meaning: "孤舟蓑笠翁，独钓寒江雪，寓意女子清冷孤傲，品性高洁" },
-          { name: "星垂", source: "《旅夜书怀》杜甫", meaning: "星垂平野阔，月涌大江流，寓意女子心胸开阔，前程似锦" }
-        ]
-      },
-      boy: {
-        classical: [
-          { name: "子谦", source: "《论语》", meaning: "君子谦谦，卑以自牧，寓意男子谦逊有礼，品德高尚" },
-          { name: "修远", source: "《楚辞·离骚》", meaning: "路漫漫其修远兮，吾将上下而求索，寓意男子追求远大，坚持不懈" },
-          { name: "景行", source: "《诗经·小雅》", meaning: "高山仰止，景行行止，寓意男子品行高尚，令人敬仰" },
-          { name: "博文", source: "《论语》", meaning: "博学于文，约之以礼，寓意男子学识渊博，知书达理" },
-          { name: "怀瑾", source: "《楚辞·九章》", meaning: "怀瑾握瑜兮，穷不知所示，寓意男子身怀美玉，品德高尚" }
-        ],
-        modern: [
-          { name: "浩然", source: "现代起名美学", meaning: "浩然正气，寓意男子胸怀坦荡，一身正气" },
-          { name: "宇辰", source: "现代起名美学", meaning: "气宇轩昂，星辰大海，寓意男子心胸开阔，前程远大" },
-          { name: "泽宇", source: "现代起名美学", meaning: "恩泽万物，气宇不凡，寓意男子善良宽厚，风度翩翩" },
-          { name: "俊熙", source: "现代起名美学", meaning: "英俊潇洒，熙光普照，寓意男子相貌堂堂，前途光明" },
-          { name: "奕辰", source: "现代起名美学", meaning: "神采奕奕，星辰闪耀，寓意男子精神饱满，光芒四射" }
-        ],
-        poetic: [
-          { name: "临风", source: "《滕王阁序》", meaning: "雄州雾列，俊采星驰，爽籁发而清风生，纤歌凝而白云遏，寓意男子风度翩翩，气宇轩昂" },
-          { name: "惊鸿", source: "《洛神赋》", meaning: "翩若惊鸿，婉若游龙，寓意男子身姿矫健，气质不凡" },
-          { name: "望舒", source: "《楚辞·离骚》", meaning: "前望舒使先驱兮，后飞廉使奔属，寓意男子如月光般温柔，前程光明" },
-          { name: "飞帆", source: "《行路难》李白", meaning: "长风破浪会有时，直挂云帆济沧海，寓意男子勇往直前，志向远大" },
-          { name: "松涛", source: "《山居秋暝》王维", meaning: "明月松间照，清泉石上流，寓意男子如青松般坚韧，气势如涛" }
-        ]
-      }
-    };
-
-    // 4. 辅助函数
-    // 更新风格描述
-    function updateStyleDescription() {
-      const style = document.getElementById('style').value;
-      const descMap = {
-        classical: '古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第',
-        modern: '简约现代：简洁明快，朗朗上口，符合现代审美，时尚大气',
-        poetic: '诗意文艺：充满诗意和文艺气息，优雅脱俗，富有浪漫情怀'
-      };
-      document.getElementById('styleDescription').textContent = descMap[style];
-    }
-
-    // 切换高级设置
-    function toggleAdvancedSettings() {
-      const settings = document.getElementById('advancedSettings');
-      const icon = document.getElementById('advancedIcon');
-      if (settings.style.display === 'none') {
-        settings.style.display = 'block';
-        icon.style.transform = 'rotate(180deg)';
-      } else {
-        settings.style.display = 'none';
-        icon.style.transform = 'rotate(0deg)';
-      }
-    }
-
-    // 更新权重显示
-    function updateWeightDisplay() {
-      document.getElementById('zodiacWeightValue').textContent = document.getElementById('zodiacWeight').value + '%';
-      document.getElementById('seasonWeightValue').textContent = document.getElementById('seasonWeight').value + '%';
-      document.getElementById('elementWeightValue').textContent = document.getElementById('elementWeight').value + '%';
-      document.getElementById('surnameWeightValue').textContent = document.getElementById('surnameWeight').value + '%';
-      document.getElementById('cultureWeightValue').textContent = document.getElementById('cultureWeight').value + '%';
-    }
-
-    // 重置权重
-    function resetWeights() {
-      document.getElementById('zodiacWeight').value = 70;
-      document.getElementById('seasonWeight').value = 50;
-      document.getElementById('elementWeight').value = 80;
-      document.getElementById('surnameWeight').value = 60;
-      document.getElementById('cultureWeight').value = 65;
-      updateWeightDisplay();
-    }
-
-    // 选择生成数量
-    function selectCount(count, btn) {
-      selectedCount = count;
-      document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    // 评分筛选
-    function filterByScore(range, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      let filtered = [];
-      if (range === 'all') {
-        filtered = allGeneratedNames;
-      } else {
-        const [min, max] = range.split('-').map(Number);
-        filtered = allGeneratedNames.filter(n => n.score >= min && n.score <= max);
-      }
-      
-      lazyUtils.renderVirtualList(document.getElementById('nameList'), filtered);
-    }
-
-    // 模态框操作
-    function showModal(modalId) {
-      document.getElementById(modalId).style.display = 'flex';
-    }
-    function hideModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
-
-    // 收藏功能
-    function collectName(btn, fullname, source, meaning, score) {
-      const isCollected = btn.classList.contains('collected');
-      if (isCollected) {
-        // 取消收藏
-        window.favorites = window.favorites.filter(f => f.fullname !== fullname);
-        btn.classList.remove('collected');
-        btn.innerHTML = '♡';
-      } else {
-        // 添加收藏
-        window.favorites.push({ fullname, source, meaning, score });
-        btn.classList.add('collected');
-        btn.innerHTML = '❤';
-      }
-      // 保存到本地存储
-      localStorage.setItem('nameFavorites', JSON.stringify(window.favorites));
-      updateFavoritesArea();
-    }
-
-    // 更新收藏区域
-    function updateFavoritesArea() {
-      const favArea = document.getElementById('favoritesArea');
-      const favCount = document.getElementById('favoritesCount');
-      const favList = document.getElementById('favoritesList');
-      
-      favArea.style.display = window.favorites.length > 0 ? 'block' : 'none';
-      favCount.textContent = `已收藏 ${window.favorites.length} 个名字`;
-      
-      favList.innerHTML = '';
-      if (window.favorites.length === 0) {
-        favList.innerHTML = '<div class="empty-favorites">暂无收藏的名字</div>';
-        return;
-      }
-      
-      window.favorites.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'name-card';
-        card.innerHTML = `
-          <div class="card-header">
-            <span class="name-text">${item.fullname}</span>
-            <span class="score-tag">${item.score}分</span>
-          </div>
-          <div class="source-tag">${item.source}</div>
-          <div class="meaning-area">
-            <div class="meaning-text">${item.meaning}</div>
-          </div>
-          <button class="delete-btn" onclick="deleteFavorite('${item.fullname}')">删除</button>
-        `;
-        favList.appendChild(card);
-      });
-    }
-
-    // 删除收藏
-    function deleteFavorite(fullname) {
-      window.favorites = window.favorites.filter(f => f.fullname !== fullname);
-      localStorage.setItem('nameFavorites', JSON.stringify(window.favorites));
-      updateFavoritesArea();
-      // 更新名字列表中的收藏按钮状态
-      document.querySelectorAll('.collect-btn').forEach(btn => {
-        if (btn.getAttribute('onclick').includes(fullname)) {
-          btn.classList.remove('collected');
-          btn.innerHTML = '♡';
-        }
-      });
-    }
-
-    // 5. 核心生成名字函数（无异步、无外部依赖）
+    // 核心生成函数（无任何复杂逻辑，确保不报错）
     function generateNames() {
-      // 获取输入值
+      // 1. 获取输入值
       const surname = document.getElementById('surname').value.trim();
       const gender = document.getElementById('gender').value;
-      const style = document.getElementById('style').value;
-      
-      // 校验姓氏
+
+      // 2. 校验姓氏
       if (!surname) {
         alert('请输入宝宝姓氏！');
         return;
       }
-      
-      // 初始化全局姓氏
-      window.selectedSurname = surname;
-      
-      // 显示加载动画
-      lazyUtils.showLoading();
-      
-      try {
-        // 从内置数据库获取名字
-        const rawNames = nameDatabase[gender][style];
-        // 生成随机评分 + 截取指定数量
-        allGeneratedNames = rawNames.slice(0, selectedCount).map(name => ({
-          ...name,
-          score: Math.floor(Math.random() * 9) + 90 // 90-98分随机
-        }));
-        
-        // 显示结果区域 + 渲染名字列表
-        const resultArea = document.getElementById('resultArea');
-        resultArea.style.display = 'block';
-        lazyUtils.renderVirtualList(document.getElementById('nameList'), allGeneratedNames);
-        
-        // 更新收藏区域
-        updateFavoritesArea();
-      } catch (e) {
-        console.error('生成名字失败：', e);
-        alert('生成名字失败，请重试！');
-      } finally {
-        // 隐藏加载动画
-        lazyUtils.hideLoading();
-      }
-    }
 
-    // 6. 页面初始化
-    window.onload = function() {
-      updateStyleDescription();
-      updateWeightDisplay();
-      updateFavoritesArea();
-      // 初始化加载动画为隐藏
-      document.getElementById('loadingOverlay').style.display = 'none';
-    };
+      // 3. 获取对应性别名字
+      const names = nameData[gender];
+      if (!names) {
+        alert('数据加载失败！');
+        return;
+      }
+
+      // 4. 渲染结果
+      const resultArea = document.getElementById('resultArea');
+      const nameList = document.getElementById('nameList');
+      
+      // 清空旧结果
+      nameList.innerHTML = '';
+      // 显示结果区域
+      resultArea.style.display = 'block';
+
+      // 5. 生成10个名字卡片
+      names.forEach(item => {
+        const fullName = surname + item.name;
+        const card = document.createElement('div');
+        card.className = 'name-card';
+        card.innerHTML = `
+          <div class="name-text">${fullName}（95分）</div>
+          <div class="meaning-text">寓意：${item.meaning}</div>
+        `;
+        nameList.appendChild(card);
+      });
+    }
   </script>
 </body>
 </html>
