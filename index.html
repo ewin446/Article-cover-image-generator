@@ -1081,6 +1081,19 @@
       return Math.floor(Math.random() * 9) + 90;
     }
 
+    // 数组洗牌函数（Fisher-Yates 算法）- 核心修改点
+    function shuffleArray(array) {
+      // 创建数组副本，避免修改原数组
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        // 生成0到i的随机索引
+        const j = Math.floor(Math.random() * (i + 1));
+        // 交换位置
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+
     // ============================================
     // 用户交互函数
     // ============================================
@@ -1464,16 +1477,18 @@
           }
         };
         
-        // 获取对应风格的名字库
-        let namePool = nameDatabase[gender][style];
-        // 补充更多名字（达到选择的生成数量）
+        // 获取对应风格的名字库并进行随机洗牌 - 核心修改点
+        let namePool = shuffleArray(nameDatabase[gender][style]);
+        
+        // 补充更多名字（达到选择的生成数量），每次补充都重新洗牌
         while (namePool.length < selectedCount) {
-          namePool = [...namePool, ...nameDatabase[gender][style]];
+          namePool = [...namePool, ...shuffleArray(nameDatabase[gender][style])];
         }
+        
         // 截取指定数量
         namePool = namePool.slice(0, selectedCount);
         
-        // 生成完整名字（拼接姓氏）并添加评分
+        // 生成完整名字（拼接姓氏）并添加随机评分
         allGeneratedNames = namePool.map(item => ({
           fullname: surname + item.name,
           source: item.source,
