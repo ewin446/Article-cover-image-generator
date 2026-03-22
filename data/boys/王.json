@@ -1,0 +1,2164 @@
+{
+  "classical": [
+    {
+      "name": "子谦",
+      "pinyin": "zǐ qiān",
+      "element": "土",
+      "source": "《论语》",
+      "meaning": "谦谦君子，温润如玉；谦虚谨慎，品德高尚。"
+    },
+    {
+      "name": "弘毅",
+      "pinyin": "hóng yì",
+      "element": "土",
+      "source": "《论语》",
+      "meaning": "弘大刚毅，志向远大；意志坚定，胸怀宽广。"
+    },
+    {
+      "name": "博文",
+      "pinyin": "bó wén",
+      "element": "水",
+      "source": "《论语》",
+      "meaning": "博文约礼，学识渊博；博览群书，学识丰富。"
+    },
+    {
+      "name": "子轩",
+      "pinyin": "zǐ xuān",
+      "element": "土",
+      "source": "《论语》",
+      "meaning": "气宇轩昂，才华横溢；气度不凡，才华出众。"
+    },
+    {
+      "name": "子睿",
+      "pinyin": "zǐ ruì",
+      "element": "金",
+      "source": "《论语》",
+      "meaning": "睿智聪慧，聪明过人；智慧超群，头脑敏捷。"
+    },
+    {
+      "name": "明哲",
+      "pinyin": "míng zhé",
+      "element": "火",
+      "source": "《论语》",
+      "meaning": "明哲保身，智慧通达；明智睿智，通达事理。"
+    },
+    {
+      "name": "思齐",
+      "pinyin": "sī qí",
+      "element": "金",
+      "source": "《论语》",
+      "meaning": "见贤思齐，追求卓越；向优秀的人学习，不断进步。"
+    },
+    {
+      "name": "泰然",
+      "pinyin": "tài rán",
+      "element": "水",
+      "source": "《论语》",
+      "meaning": "泰山崩于前而色不变；沉稳冷静，处变不惊。"
+    },
+    {
+      "name": "崇德",
+      "pinyin": "chóng dé",
+      "element": "火",
+      "source": "《论语》",
+      "meaning": "崇尚道德，品德高尚；以德为先，修身养性。"
+    },
+    {
+      "name": "致远",
+      "pinyin": "zhì yuǎn",
+      "element": "火",
+      "source": "《论语》",
+      "meaning": "宁静致远，志向高远；目标远大，坚持不懈。"
+    },
+    {
+      "name": "浩然",
+      "pinyin": "hào rán",
+      "element": "水",
+      "source": "《孟子》",
+      "meaning": "浩然正气，天地同在；正气凛然，胸怀坦荡。"
+    },
+    {
+      "name": "养气",
+      "pinyin": "yǎng qì",
+      "element": "木",
+      "source": "《孟子》",
+      "meaning": "养浩然之气；修养正气，提升品格。"
+    },
+    {
+      "name": "尽心",
+      "pinyin": "jìn xīn",
+      "element": "心",
+      "source": "《孟子》",
+      "meaning": "尽心知性知天；竭尽心力，探索真理。"
+    },
+    {
+      "name": "得道",
+      "pinyin": "dé dào",
+      "element": "金",
+      "source": "《孟子》",
+      "meaning": "得道多助；明德修身，得道多助。"
+    },
+    {
+      "name": "民本",
+      "pinyin": "mín běn",
+      "element": "水",
+      "source": "《孟子》",
+      "meaning": "民为邦本；以民为本，心系苍生。"
+    },
+    {
+      "name": "仁义",
+      "pinyin": "rén yì",
+      "element": "金",
+      "source": "《孟子》",
+      "meaning": "仁者爱人，义者宜也；仁爱正义，品德高尚。"
+    },
+    {
+      "name": "礼智",
+      "pinyin": "lǐ zhì",
+      "element": "火",
+      "source": "《孟子》",
+      "meaning": "礼义廉耻，智信仁勇；懂礼有智，品德兼修。"
+    },
+    {
+      "name": "信诚",
+      "pinyin": "xìn chéng",
+      "element": "金",
+      "source": "《孟子》",
+      "meaning": "诚实守信；言行一致，信守承诺。"
+    },
+    {
+      "name": "宽厚",
+      "pinyin": "kuān hòu",
+      "element": "土",
+      "source": "《孟子》",
+      "meaning": "宽厚待人；心胸宽广，待人宽容。"
+    },
+    {
+      "name": "持重",
+      "pinyin": "chí zhòng",
+      "element": "土",
+      "source": "《孟子》",
+      "meaning": "持重稳重；行为稳重，做事踏实。"
+    },
+    {
+      "name": "沐辰",
+      "pinyin": "mù chén",
+      "element": "水",
+      "source": "《诗经》",
+      "meaning": "沐浴晨光，朝气蓬勃；如朝阳般充满活力。"
+    },
+    {
+      "name": "子衿",
+      "pinyin": "zǐ jīn",
+      "element": "金",
+      "source": "《诗经》",
+      "meaning": "青青子衿，悠悠我心；才华出众，令人向往。"
+    },
+    {
+      "name": "清扬",
+      "pinyin": "qīng yáng",
+      "element": "水",
+      "source": "《诗经》",
+      "meaning": "清扬婉兮；清秀俊朗，气质出众。"
+    },
+    {
+      "name": "凯风",
+      "pinyin": "kǎi fēng",
+      "element": "木",
+      "source": "《诗经》",
+      "meaning": "凯风自南；如和煦的春风，温暖和煦。"
+    },
+    {
+      "name": "零露",
+      "pinyin": "líng lù",
+      "element": "水",
+      "source": "《诗经》",
+      "meaning": "零露漙兮；如晨露般清新纯净。"
+    },
+    {
+      "name": "景山",
+      "pinyin": "jǐng shān",
+      "element": "土",
+      "source": "《诗经》",
+      "meaning": "高山仰止；品德高尚，如高山般令人景仰。"
+    },
+    {
+      "name": "维哲",
+      "pinyin": "wéi zhé",
+      "element": "火",
+      "source": "《诗经》",
+      "meaning": "哲人其萎；智慧超群，见解独到。"
+    },
+    {
+      "name": "哲成",
+      "pinyin": "zhé chéng",
+      "element": "金",
+      "source": "《诗经》",
+      "meaning": "哲夫成城；智慧能够成就大业。"
+    },
+    {
+      "name": "嘉树",
+      "pinyin": "jiā shù",
+      "element": "木",
+      "source": "《诗经》",
+      "meaning": "南有嘉木；如良木般成长成才。"
+    },
+    {
+      "name": "思皇",
+      "pinyin": "sī huáng",
+      "element": "土",
+      "source": "《诗经》",
+      "meaning": "思皇多士；思念贤才，成就大事。"
+    },
+    {
+      "name": "云旗",
+      "pinyin": "yún qí",
+      "element": "木",
+      "source": "《楚辞》",
+      "meaning": "驾八龙之婉婉兮，载云旗之委蛇；志向高远，气势磅礴。"
+    },
+    {
+      "name": "云中",
+      "pinyin": "yún zhōng",
+      "element": "水",
+      "source": "《楚辞》",
+      "meaning": "云中君；如云中君般高洁不凡。"
+    },
+    {
+      "name": "湛露",
+      "pinyin": "zhàn lù",
+      "element": "水",
+      "source": "《楚辞》",
+      "meaning": "湛湛露斯；如浓露般纯净甘甜。"
+    },
+    {
+      "name": "齐光",
+      "pinyin": "qí guāng",
+      "element": "火",
+      "source": "《楚辞》",
+      "meaning": "与日月兮齐光；光辉灿烂，与日月同辉。"
+    },
+    {
+      "name": "良辰",
+      "pinyin": "liáng chén",
+      "element": "金",
+      "source": "《楚辞》",
+      "meaning": "良辰美景；美好时光，前途光明。"
+    },
+    {
+      "name": "远志",
+      "pinyin": "yuǎn zhì",
+      "element": "木",
+      "source": "《楚辞》",
+      "meaning": "路漫漫其修远兮；志向远大，坚持不懈。"
+    },
+    {
+      "name": "望舒",
+      "pinyin": "wàng shū",
+      "element": "金",
+      "source": "《楚辞》",
+      "meaning": "前望舒使先驱兮；如月神般高贵典雅。"
+    },
+    {
+      "name": "嘉名",
+      "pinyin": "jiā míng",
+      "element": "木",
+      "source": "《楚辞》",
+      "meaning": "肇锡余以嘉名；赐予美好的名字，品德高尚。"
+    },
+    {
+      "name": "正则",
+      "pinyin": "zhèng zé",
+      "element": "金",
+      "source": "《楚辞》",
+      "meaning": "名余曰正则兮；品行端正，遵循法则。"
+    },
+    {
+      "name": "灵均",
+      "pinyin": "líng jūn",
+      "element": "土",
+      "source": "《楚辞》",
+      "meaning": "字余曰灵均；才华出众，气质不凡。"
+    },
+    {
+      "name": "天行",
+      "pinyin": "tiān xíng",
+      "element": "金",
+      "source": "《易经》",
+      "meaning": "天行健，君子以自强不息；如天道般刚健有力。"
+    },
+    {
+      "name": "自强",
+      "pinyin": "zì qiáng",
+      "element": "金",
+      "source": "《易经》",
+      "meaning": "自强不息；自我奋发，永不放弃。"
+    },
+    {
+      "name": "厚德",
+      "pinyin": "hòu dé",
+      "element": "土",
+      "source": "《易经》",
+      "meaning": "厚德载物；德行深厚，能够承载重任。"
+    },
+    {
+      "name": "含章",
+      "pinyin": "hán zhāng",
+      "element": "土",
+      "source": "《易经》",
+      "meaning": "含章可贞；内藏才华，等待时机。"
+    },
+    {
+      "name": "坤元",
+      "pinyin": "kūn yuán",
+      "element": "土",
+      "source": "《易经》",
+      "meaning": "万物资生，乃顺承天；如大地般滋养万物。"
+    },
+    {
+      "name": "乾元",
+      "pinyin": "qián yuán",
+      "element": "金",
+      "source": "《易经》",
+      "meaning": "万物资始，乃统天；如天道般开创万物。"
+    },
+    {
+      "name": "中正",
+      "pinyin": "zhōng zhèng",
+      "element": "金",
+      "source": "《易经》",
+      "meaning": "中正之道；处事公正，品德端正。"
+    },
+    {
+      "name": "谦光",
+      "pinyin": "qiān guāng",
+      "element": "火",
+      "source": "《易经》",
+      "meaning": "谦尊而光；谦虚却能发出光芒。"
+    },
+    {
+      "name": "豫悦",
+      "pinyin": "yù yuè",
+      "element": "土",
+      "source": "《易经》",
+      "meaning": "豫悦之情；乐观向上，心情愉悦。"
+    },
+    {
+      "name": "恒久",
+      "pinyin": "héng jiǔ",
+      "element": "水",
+      "source": "《易经》",
+      "meaning": "恒，久也；持之以恒，坚持到底。"
+    },
+    {
+      "name": "鸿渐",
+      "pinyin": "hóng jiàn",
+      "element": "水",
+      "source": "《史记》",
+      "meaning": "鸿渐于陆，其羽可用为仪；循序渐进，成就大业。"
+    },
+    {
+      "name": "腾飞",
+      "pinyin": "téng fēi",
+      "element": "火",
+      "source": "《史记》",
+      "meaning": "飞龙在天；如龙腾飞，志向高远。"
+    },
+    {
+      "name": "博闻",
+      "pinyin": "bó wén",
+      "element": "水",
+      "source": "《史记》",
+      "meaning": "博闻强识；见多识广，学识渊博。"
+    },
+    {
+      "name": "修远",
+      "pinyin": "xiū yuǎn",
+      "element": "火",
+      "source": "《史记》",
+      "meaning": "路漫漫其修远兮；修身养性，志向远大。"
+    },
+    {
+      "name": "崇光",
+      "pinyin": "chóng guāng",
+      "element": "火",
+      "source": "《汉书》",
+      "meaning": "崇德广业，光耀门楣；品德高尚，光宗耀祖。"
+    },
+    {
+      "name": "嘉言",
+      "pinyin": "jiā yán",
+      "element": "木",
+      "source": "《汉书》",
+      "meaning": "嘉言懿行；言行美好，品德高尚。"
+    },
+    {
+      "name": "俊德",
+      "pinyin": "jùn dé",
+      "element": "火",
+      "source": "《汉书》",
+      "meaning": "俊德星辉；品德优秀，如星辰般闪耀。"
+    },
+    {
+      "name": "永康",
+      "pinyin": "yǒng kāng",
+      "element": "土",
+      "source": "《汉书》",
+      "meaning": "永享安康；永远健康平安。"
+    },
+    {
+      "name": "长乐",
+      "pinyin": "cháng lè",
+      "element": "火",
+      "source": "《汉书》",
+      "meaning": "长乐未央；永远快乐，没有尽头。"
+    },
+    {
+      "name": "万年",
+      "pinyin": "wàn nián",
+      "element": "木",
+      "source": "《汉书》",
+      "meaning": "万万年；长久永恒，生生不息。"
+    },
+    {
+      "name": "云帆",
+      "pinyin": "yún fān",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "长风破浪会有时，直挂云帆济沧海；勇敢向前，乘风破浪。"
+    },
+    {
+      "name": "明月",
+      "pinyin": "míng yuè",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "明月几时有；如明月般皎洁明亮。"
+    },
+    {
+      "name": "星河",
+      "pinyin": "xīng hé",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "星河欲转千帆舞；如星河般浩瀚壮丽。"
+    },
+    {
+      "name": "清辉",
+      "pinyin": "qīng huī",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "清辉玉臂，寒侵罗袜；清澈光辉，纯净美好。"
+    },
+    {
+      "name": "飞鸿",
+      "pinyin": "fēi hóng",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "飞鸿踏雪；志向高远，成就大业。"
+    },
+    {
+      "name": "凌云",
+      "pinyin": "líng yún",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "壮志凌云；志向高远，气冲云霄。"
+    },
+    {
+      "name": "傲骨",
+      "pinyin": "ào gǔ",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "傲骨铮铮；刚正不阿，品格坚韧。"
+    },
+    {
+      "name": "青云",
+      "pinyin": "qīng yún",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "青云直上；平步青云，步步高升。"
+    },
+    {
+      "name": "清风",
+      "pinyin": "qīng fēng",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "清风徐来；如清风般纯净自然。"
+    },
+    {
+      "name": "浩歌",
+      "pinyin": "hào gē",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "浩歌待明月；放声高歌，意气风发。"
+    },
+    {
+      "name": "东风",
+      "pinyin": "dōng fēng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "东风夜放花千树；如东风般生机勃勃。"
+    },
+    {
+      "name": "春雨",
+      "pinyin": "chūn yǔ",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "春雨贵如油；如春雨般滋润人心。"
+    },
+    {
+      "name": "寒江",
+      "pinyin": "hán jiāng",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "孤舟蓑笠翁，独钓寒江雪；宁静淡泊，独守清高。"
+    },
+    {
+      "name": "疏影",
+      "pinyin": "shū yǐng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "疏影横斜水清浅；清雅脱俗，气质高洁。"
+    },
+    {
+      "name": "暗香",
+      "pinyin": "àn xiāng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "暗香浮动月黄昏；清香淡雅，内敛含蓄。"
+    },
+    {
+      "name": "绿杨",
+      "pinyin": "lǜ yáng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "绿杨烟外晓寒轻；如绿杨般充满生机。"
+    },
+    {
+      "name": "红豆",
+      "pinyin": "hóng dòu",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "红豆生南国；深情厚意，相思之情。"
+    },
+    {
+      "name": "梅雪",
+      "pinyin": "méi xuě",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "梅雪争春；坚韧不拔，品格高洁。"
+    },
+    {
+      "name": "流水",
+      "pinyin": "liú shuǐ",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "流水落花春去也；如流水般自然流畅。"
+    },
+    {
+      "name": "落日",
+      "pinyin": "luò rì",
+      "element": "火",
+      "source": "《宋词》",
+      "meaning": "落日熔金；如落日般壮丽辉煌。"
+    },
+    {
+      "name": "鸿鹄",
+      "pinyin": "hóng hú",
+      "element": "水",
+      "source": "《史记》",
+      "meaning": "燕雀安知鸿鹄之志；志向高远，胸怀大志。"
+    },
+    {
+      "name": "凌霄",
+      "pinyin": "líng xiāo",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "凌霄之志；志向高远，直冲云霄。"
+    },
+    {
+      "name": "昭华",
+      "pinyin": "zhāo huá",
+      "element": "火",
+      "source": "《楚辞》",
+      "meaning": "昭华之玉；如美玉般光华灿烂。"
+    },
+    {
+      "name": "景行",
+      "pinyin": "jǐng xíng",
+      "element": "木",
+      "source": "《诗经》",
+      "meaning": "高山仰止，景行行止；品德高尚，受人景仰。"
+    },
+    {
+      "name": "怀瑾",
+      "pinyin": "huái jǐn",
+      "element": "火",
+      "source": "《楚辞》",
+      "meaning": "怀瑾握瑜；怀揣美德，品质高尚。"
+    },
+    {
+      "name": "握瑜",
+      "pinyin": "wò yú",
+      "element": "土",
+      "source": "《楚辞》",
+      "meaning": "怀瑾握瑜；握有美玉，品德高尚。"
+    },
+    {
+      "name": "致知",
+      "pinyin": "zhì zhī",
+      "element": "火",
+      "source": "《大学》",
+      "meaning": "格物致知；探求真理，获得知识。"
+    },
+    {
+      "name": "诚意",
+      "pinyin": "chéng yì",
+      "element": "金",
+      "source": "《大学》",
+      "meaning": "诚意正心；诚实守信，心胸坦荡。"
+    },
+    {
+      "name": "明德",
+      "pinyin": "míng dé",
+      "element": "火",
+      "source": "《大学》",
+      "meaning": "大学之道，在明明德；彰显美德，品德高尚。"
+    },
+    {
+      "name": "格物",
+      "pinyin": "gé wù",
+      "element": "木",
+      "source": "《大学》",
+      "meaning": "格物致知；探究事物的本质，获得真知。"
+    },
+    {
+      "name": "正心",
+      "pinyin": "zhèng xīn",
+      "element": "火",
+      "source": "《大学》",
+      "meaning": "正心修身；端正心态，修养品德。"
+    },
+    {
+      "name": "修身",
+      "pinyin": "xiū shēn",
+      "element": "金",
+      "source": "《大学》",
+      "meaning": "修身齐家；修养自身，提升品德。"
+    },
+    {
+      "name": "齐家",
+      "pinyin": "qí jiā",
+      "element": "木",
+      "source": "《大学》",
+      "meaning": "齐家治国；治理好家庭，成就大业。"
+    },
+    {
+      "name": "治国",
+      "pinyin": "zhì guó",
+      "element": "水",
+      "source": "《大学》",
+      "meaning": "治国平天下；治理国家，造福百姓。"
+    },
+    {
+      "name": "平天下",
+      "pinyin": "píng tiān xià",
+      "element": "水",
+      "source": "《大学》",
+      "meaning": "平天下；使天下太平，造福苍生。"
+    },
+    {
+      "name": "慎独",
+      "pinyin": "shèn dú",
+      "element": "金",
+      "source": "《中庸》",
+      "meaning": "君子慎其独也；在独处时也要严格要求自己。"
+    },
+    {
+      "name": "中庸",
+      "pinyin": "zhōng yōng",
+      "element": "土",
+      "source": "《中庸》",
+      "meaning": "中庸之道；不偏不倚，恰到好处。"
+    },
+    {
+      "name": "天命",
+      "pinyin": "tiān mìng",
+      "element": "金",
+      "source": "《中庸》",
+      "meaning": "天命之谓性；顺应天命，发挥本性。"
+    },
+    {
+      "name": "德辉",
+      "source": "《周易》",
+      "meaning": "君子之光，其辉德也",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "文彬",
+      "source": "《论语》",
+      "meaning": "文质彬彬，然后君子",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "天佑",
+      "source": "《易经》",
+      "meaning": "自天佑之，吉无不利",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "承宇",
+      "source": "楚辞",
+      "meaning": "云霏霏而承宇",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "冬豪",
+      "source": "现代文学",
+      "meaning": "冬豪，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "志智",
+      "source": "现代文学",
+      "meaning": "志智，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "华勇",
+      "source": "现代文学",
+      "meaning": "华勇，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "西杰",
+      "source": "现代文学",
+      "meaning": "西杰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "德湖",
+      "source": "现代文学",
+      "meaning": "德湖，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "德月",
+      "source": "现代文学",
+      "meaning": "德月，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "辉俊",
+      "source": "现代文学",
+      "meaning": "辉俊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "胜森",
+      "source": "现代文学",
+      "meaning": "胜森，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "西竹",
+      "source": "现代文学",
+      "meaning": "西竹，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "木杰",
+      "source": "现代文学",
+      "meaning": "木杰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "木海",
+      "source": "现代文学",
+      "meaning": "木海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "德江",
+      "source": "现代文学",
+      "meaning": "德江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "文花",
+      "source": "现代文学",
+      "meaning": "文花，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "地松",
+      "source": "现代文学",
+      "meaning": "地松，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "煌月",
+      "source": "现代文学",
+      "meaning": "煌月，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "久智",
+      "source": "现代文学",
+      "meaning": "久智，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大湖",
+      "source": "现代文学",
+      "meaning": "大湖，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "志伟",
+      "source": "现代文学",
+      "meaning": "志伟，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健强",
+      "source": "现代文学",
+      "meaning": "健强，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "德河",
+      "source": "现代文学",
+      "meaning": "德河，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "久风",
+      "source": "现代文学",
+      "meaning": "久风，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "煌鹰",
+      "source": "现代文学",
+      "meaning": "煌鹰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋伟",
+      "source": "现代文学",
+      "meaning": "秋伟，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大鹏",
+      "source": "现代文学",
+      "meaning": "大鹏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "南月",
+      "source": "现代文学",
+      "meaning": "南月，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "北豪",
+      "source": "现代文学",
+      "meaning": "北豪，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "康坚",
+      "source": "现代文学",
+      "meaning": "康坚，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "水麒",
+      "source": "现代文学",
+      "meaning": "水麒，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "地坚",
+      "source": "现代文学",
+      "meaning": "地坚，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "小坚",
+      "source": "现代文学",
+      "meaning": "小坚，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ],
+  "modern": [
+    {
+      "name": "俊杰",
+      "pinyin": "jùn jié",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "英俊杰出，人才出众；外表英俊，才能出众。"
+    },
+    {
+      "name": "浩宇",
+      "pinyin": "hào yǔ",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "浩瀚宇宙，胸怀宽广；心胸开阔，志向远大。"
+    },
+    {
+      "name": "泽凯",
+      "pinyin": "zé kǎi",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "恩泽如雨，凯旋而归；受人敬重，胜利归来。"
+    },
+    {
+      "name": "俊凯",
+      "pinyin": "jùn kǎi",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "英俊潇洒，凯歌高奏；外表英俊，充满胜利喜悦。"
+    },
+    {
+      "name": "浩辰",
+      "pinyin": "hào chén",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "浩瀚星辰，前程似锦；如星辰般闪耀，前途光明。"
+    },
+    {
+      "name": "梓睿",
+      "pinyin": "zǐ ruì",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "梓木成材，睿智过人；如良木般有用，智慧超群。"
+    },
+    {
+      "name": "文轩",
+      "pinyin": "wén xuān",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "文采飞扬，气宇轩昂；才华横溢，气质高雅。"
+    },
+    {
+      "name": "浩轩",
+      "pinyin": "hào xuān",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "浩瀚宇宙，气宇轩昂；心胸宽广，气质不凡。"
+    },
+    {
+      "name": "文凯",
+      "pinyin": "wén kǎi",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "文采飞扬，凯歌高奏；才华横溢，充满胜利喜悦。"
+    },
+    {
+      "name": "天宇",
+      "pinyin": "tiān yǔ",
+      "element": "土",
+      "source": "《当代诗歌》",
+      "meaning": "天宇广阔，志向高远；如天空般辽阔，胸怀宽广。"
+    },
+    {
+      "name": "泽宇",
+      "pinyin": "zé yǔ",
+      "element": "水",
+      "source": "《当代诗歌》",
+      "meaning": "泽被天下，宇宙宽广；心怀宇宙，恩泽众人。"
+    },
+    {
+      "name": "泽明",
+      "pinyin": "zé míng",
+      "element": "火",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽光明，前程似锦；受人爱戴，前途光明。"
+    },
+    {
+      "name": "泽睿",
+      "pinyin": "zé ruì",
+      "element": "金",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽睿智，智慧超群；受人敬重，智慧过人。"
+    },
+    {
+      "name": "泽文",
+      "pinyin": "zé wén",
+      "element": "水",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽文采，才华横溢；受人敬重，才华出众。"
+    },
+    {
+      "name": "泽浩",
+      "pinyin": "zé hào",
+      "element": "水",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽浩瀚，胸怀宽广；受人敬重，心胸开阔。"
+    },
+    {
+      "name": "泽博",
+      "pinyin": "zé bó",
+      "element": "水",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽博大，学识渊博；受人敬重，学识丰富。"
+    },
+    {
+      "name": "泽辉",
+      "pinyin": "zé huī",
+      "element": "火",
+      "source": "《当代诗歌》",
+      "meaning": "恩泽光辉，前程似锦；受人敬重，前途光明。"
+    },
+    {
+      "name": "浩明",
+      "pinyin": "hào míng",
+      "element": "火",
+      "source": "《现代散文》",
+      "meaning": "浩瀚光明，前程似锦；心胸开阔，前途光明。"
+    },
+    {
+      "name": "浩睿",
+      "pinyin": "hào ruì",
+      "element": "金",
+      "source": "《现代散文》",
+      "meaning": "浩瀚睿智，智慧超群；心胸开阔，智慧过人。"
+    },
+    {
+      "name": "浩文",
+      "pinyin": "hào wén",
+      "element": "水",
+      "source": "《现代散文》",
+      "meaning": "浩瀚文采，才华横溢；心胸开阔，才华出众。"
+    },
+    {
+      "name": "浩博",
+      "pinyin": "hào bó",
+      "element": "水",
+      "source": "《现代散文》",
+      "meaning": "浩瀚博大，学识渊博；心胸开阔，学识丰富。"
+    },
+    {
+      "name": "浩辉",
+      "pinyin": "hào huī",
+      "element": "火",
+      "source": "《现代散文》",
+      "meaning": "浩瀚光辉，前程似锦；心胸开阔，前途光明。"
+    },
+    {
+      "name": "浩凯",
+      "pinyin": "hào kǎi",
+      "element": "木",
+      "source": "《现代散文》",
+      "meaning": "浩瀚凯歌，胜利喜悦；心胸开阔，充满胜利喜悦。"
+    },
+    {
+      "name": "博宇",
+      "pinyin": "bó yǔ",
+      "element": "土",
+      "source": "《当代小说》",
+      "meaning": "博大宇宙，胸怀宽广；学识渊博，心胸开阔。"
+    },
+    {
+      "name": "博睿",
+      "pinyin": "bó ruì",
+      "element": "金",
+      "source": "《当代小说》",
+      "meaning": "博大睿智，智慧超群；学识渊博，智慧过人。"
+    },
+    {
+      "name": "博明",
+      "pinyin": "bó míng",
+      "element": "火",
+      "source": "《当代小说》",
+      "meaning": "博大光明，前程似锦；学识渊博，前途光明。"
+    },
+    {
+      "name": "博凯",
+      "pinyin": "bó kǎi",
+      "element": "木",
+      "source": "《当代小说》",
+      "meaning": "博大凯歌，胜利喜悦；学识渊博，充满胜利喜悦。"
+    },
+    {
+      "name": "博辉",
+      "pinyin": "bó huī",
+      "element": "火",
+      "source": "《当代小说》",
+      "meaning": "博大光辉，前程似锦；学识渊博，前途光明。"
+    },
+    {
+      "name": "博浩",
+      "pinyin": "bó hào",
+      "element": "水",
+      "source": "《当代小说》",
+      "meaning": "博大浩瀚，胸怀宽广；学识渊博，心胸开阔。"
+    },
+    {
+      "name": "博泽",
+      "pinyin": "bó zé",
+      "element": "水",
+      "source": "《当代小说》",
+      "meaning": "博大恩泽，受人敬重；学识渊博，受人爱戴。"
+    },
+    {
+      "name": "博杰",
+      "pinyin": "bó jié",
+      "element": "木",
+      "source": "《当代小说》",
+      "meaning": "博大杰出，人才出众；学识渊博，才能出众。"
+    },
+    {
+      "name": "宇航",
+      "pinyin": "yǔ háng",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "宇宙航行；探索宇宙，志向高远。"
+    },
+    {
+      "name": "宇航员",
+      "pinyin": "yǔ háng yuán",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "宇航英雄；如宇航员般勇敢探索。"
+    },
+    {
+      "name": "天道",
+      "pinyin": "tiān dào",
+      "element": "金",
+      "source": "《现代文学》",
+      "meaning": "天道酬勤；勤奋努力，必有回报。"
+    },
+    {
+      "name": "天瑞",
+      "pinyin": "tiān ruì",
+      "element": "金",
+      "source": "《现代文学》",
+      "meaning": "天降祥瑞；天赐吉祥，好运连连。"
+    },
+    {
+      "name": "伟业",
+      "pinyin": "wěi yè",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "伟大事业；成就大业，建功立业。"
+    },
+    {
+      "name": "伟志",
+      "pinyin": "wěi zhì",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "伟大志向；志向远大，成就伟业。"
+    },
+    {
+      "name": "伟才",
+      "pinyin": "wěi cái",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "伟大才华；才华出众，成就非凡。"
+    },
+    {
+      "name": "伟德",
+      "pinyin": "wěi dé",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "伟大品德；品德高尚，令人敬佩。"
+    },
+    {
+      "name": "伟量",
+      "pinyin": "wěi liàng",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "伟大气量；心胸宽广，气度不凡。"
+    },
+    {
+      "name": "宏图",
+      "pinyin": "hóng tú",
+      "element": "水",
+      "source": "《现代文学》",
+      "meaning": "宏伟蓝图；规划宏伟，前景广阔。"
+    },
+    {
+      "name": "宏志",
+      "pinyin": "hóng zhì",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "宏大志向；志向远大，胸怀宽广。"
+    },
+    {
+      "name": "宏才",
+      "pinyin": "hóng cái",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "宏大才华；才华横溢，能力出众。"
+    },
+    {
+      "name": "宏德",
+      "pinyin": "hóng dé",
+      "element": "水",
+      "source": "《现代文学》",
+      "meaning": "宏大品德；品德高尚，令人敬重。"
+    },
+    {
+      "name": "宏量",
+      "pinyin": "hóng liàng",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "宏大度量；心胸宽广，气度恢弘。"
+    },
+    {
+      "name": "卓越",
+      "pinyin": "zhuó yuè",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "出类拔萃；能力出众，超越常人。"
+    },
+    {
+      "name": "优异",
+      "pinyin": "yōu yì",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "优秀突出；表现优异，成绩斐然。"
+    },
+    {
+      "name": "优秀",
+      "pinyin": "yōu xiù",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "品德高尚；品质优秀，令人称赞。"
+    },
+    {
+      "name": "优才",
+      "pinyin": "yōu cái",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "优秀才华；才华出众，能力超群。"
+    },
+    {
+      "name": "优德",
+      "pinyin": "yōu dé",
+      "element": "土",
+      "source": "《现代文学》",
+      "meaning": "优秀品德；品德优秀，令人敬佩。"
+    },
+    {
+      "name": "创新",
+      "pinyin": "chuàng xīn",
+      "element": "金",
+      "source": "《现代文学》",
+      "meaning": "创造新意；勇于创新，开拓进取。"
+    },
+    {
+      "name": "创优",
+      "pinyin": "chuàng yōu",
+      "element": "金",
+      "source": "《现代文学》",
+      "meaning": "创造优秀；追求卓越，创造佳绩。"
+    },
+    {
+      "name": "创先",
+      "pinyin": "chuàng xiān",
+      "element": "金",
+      "source": "《现代文学》",
+      "meaning": "创造先进；勇于争先，走在前列。"
+    },
+    {
+      "name": "创奇",
+      "pinyin": "chuàng qí",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "创造奇迹；创造非凡，成就奇迹。"
+    },
+    {
+      "name": "创辉煌",
+      "pinyin": "chuàng huī huáng",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "创造辉煌；创造伟业，辉煌成就。"
+    },
+    {
+      "name": "智慧",
+      "pinyin": "zhì huì",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "智慧超群；聪明过人，智慧非凡。"
+    },
+    {
+      "name": "智勇",
+      "pinyin": "zhì yǒng",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "智勇双全；智慧过人，勇敢无畏。"
+    },
+    {
+      "name": "智谋",
+      "pinyin": "zhì móu",
+      "element": "水",
+      "source": "《现代文学》",
+      "meaning": "智谋过人；善于谋划，智慧超群。"
+    },
+    {
+      "name": "智才",
+      "pinyin": "zhì cái",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "智慧才华；智慧出众，才华横溢。"
+    },
+    {
+      "name": "智者",
+      "pinyin": "zhì zhě",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "智者千虑；智慧过人，深思熟虑。"
+    },
+    {
+      "name": "勇毅",
+      "pinyin": "yǒng yì",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "勇敢坚毅；勇敢无畏，意志坚定。"
+    },
+    {
+      "name": "勇猛",
+      "pinyin": "yǒng měng",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "勇猛精进；勇敢向前，不断进步。"
+    },
+    {
+      "name": "勇进",
+      "pinyin": "yǒng jìn",
+      "element": "水",
+      "source": "《现代文学》",
+      "meaning": "勇往直前；勇敢向前，不畏艰难。"
+    },
+    {
+      "name": "勇闯",
+      "pinyin": "yǒng chuǎng",
+      "element": "火",
+      "source": "《现代文学》",
+      "meaning": "勇敢闯荡；勇于尝试，开拓进取。"
+    },
+    {
+      "name": "勇攀",
+      "pinyin": "yǒng pān",
+      "element": "木",
+      "source": "《现代文学》",
+      "meaning": "勇攀高峰；勇于攀登，追求卓越。"
+    },
+    {
+      "name": "俊驰",
+      "source": "现代",
+      "meaning": "英俊潇洒，纵横驰骋",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "烨伟",
+      "source": "现代",
+      "meaning": "光辉灿烂，伟岸不凡",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "苑杰",
+      "source": "现代",
+      "meaning": "才华出众，人中龙凤",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "黎昕",
+      "source": "现代",
+      "meaning": "黎明之光，充满希望",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "鹏煊",
+      "source": "现代",
+      "meaning": "大鹏展翅，光彩照人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "昊强",
+      "source": "现代",
+      "meaning": "昊天罔极，自强不息",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "伟宸",
+      "source": "现代",
+      "meaning": "伟大成就，国之栋梁",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "博超",
+      "source": "现代",
+      "meaning": "博学多才，超越自我",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "君昊",
+      "source": "现代",
+      "meaning": "君临天下，昊天罔极",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "明轩",
+      "source": "现代",
+      "meaning": "光明磊落，气宇轩昂",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健柏",
+      "source": "现代",
+      "meaning": "健康挺拔，如松柏长青",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "烨霖",
+      "source": "现代",
+      "meaning": "光辉灿烂，泽被苍生",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "东勇",
+      "source": "现代文学",
+      "meaning": "东勇，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大梅",
+      "source": "现代文学",
+      "meaning": "大梅，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "天江",
+      "source": "现代文学",
+      "meaning": "天江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "火花",
+      "source": "现代文学",
+      "meaning": "火花，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "建雨",
+      "source": "现代文学",
+      "meaning": "建雨，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大强",
+      "source": "现代文学",
+      "meaning": "大强，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "中柏",
+      "source": "现代文学",
+      "meaning": "中柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "强智",
+      "source": "现代文学",
+      "meaning": "强智，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "永海",
+      "source": "现代文学",
+      "meaning": "永海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋熊",
+      "source": "现代文学",
+      "meaning": "秋熊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "永柏",
+      "source": "现代文学",
+      "meaning": "永柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "煌麒",
+      "source": "现代文学",
+      "meaning": "煌麒，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "建河",
+      "source": "现代文学",
+      "meaning": "建河，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "夏江",
+      "source": "现代文学",
+      "meaning": "夏江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "武菊",
+      "source": "现代文学",
+      "meaning": "武菊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "安江",
+      "source": "现代文学",
+      "meaning": "安江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "国鹤",
+      "source": "现代文学",
+      "meaning": "国鹤，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "土海",
+      "source": "现代文学",
+      "meaning": "土海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "土兰",
+      "source": "现代文学",
+      "meaning": "土兰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "久林",
+      "source": "现代文学",
+      "meaning": "久林，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "地柏",
+      "source": "现代文学",
+      "meaning": "地柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "强云",
+      "source": "现代文学",
+      "meaning": "强云，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "火豹",
+      "source": "现代文学",
+      "meaning": "火豹，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "家兰",
+      "source": "现代文学",
+      "meaning": "家兰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋树",
+      "source": "现代文学",
+      "meaning": "秋树，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "中海",
+      "source": "现代文学",
+      "meaning": "中海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健伟",
+      "source": "现代文学",
+      "meaning": "健伟，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "光鹤",
+      "source": "现代文学",
+      "meaning": "光鹤，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "文龙",
+      "source": "现代文学",
+      "meaning": "文龙，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "长松",
+      "source": "现代文学",
+      "meaning": "长松，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ],
+  "poetic": [
+    {
+      "name": "墨涵",
+      "pinyin": "mò hán",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "墨香四溢，涵养深厚；如书香般充满文化气息，内涵丰富。"
+    },
+    {
+      "name": "清辰",
+      "pinyin": "qīng chén",
+      "element": "金",
+      "source": "《唐诗》",
+      "meaning": "清晨时光，星辰璀璨；如清晨般美好，前程光明。"
+    },
+    {
+      "name": "云舒",
+      "pinyin": "yún shū",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "云卷云舒，自由自在；如云朵般自由自在，无拘无束。"
+    },
+    {
+      "name": "沐阳",
+      "pinyin": "mù yáng",
+      "element": "火",
+      "source": "《唐诗》",
+      "meaning": "沐浴阳光，温暖如春；如阳光般温暖，给人希望。"
+    },
+    {
+      "name": "书宇",
+      "pinyin": "shū yǔ",
+      "element": "金",
+      "source": "《唐诗》",
+      "meaning": "书香门第，宇宙无穷；既有文化修养，胸怀又很广阔。"
+    },
+    {
+      "name": "辰星",
+      "pinyin": "chén xīng",
+      "element": "金",
+      "source": "《唐诗》",
+      "meaning": "星辰璀璨，前程似锦；如星辰般闪耀，前程光明。"
+    },
+    {
+      "name": "沐恩",
+      "pinyin": "mù ēn",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "沐浴恩泽，感恩戴德；受恩泽庇佑，懂得感恩。"
+    },
+    {
+      "name": "书香",
+      "pinyin": "shū xiāng",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "书香门第，文采斐然；出身书香门第，才华出众。"
+    },
+    {
+      "name": "澹月",
+      "pinyin": "dàn yuè",
+      "element": "水",
+      "source": "《楚辞》",
+      "meaning": "澹泊宁静，月光如水；如月光般淡雅宁静，心境平和。"
+    },
+    {
+      "name": "海樱",
+      "pinyin": "hǎi yīng",
+      "element": "木",
+      "source": "《楚辞》",
+      "meaning": "海纳百川，樱花烂漫；既有大海般宽广胸怀，又似樱花般美丽。"
+    },
+    {
+      "name": "景玥",
+      "pinyin": "jǐng yuè",
+      "element": "金",
+      "source": "《诗经》",
+      "meaning": "景星庆云，美玉生辉；如景星瑞云般吉祥，如美玉般温润。"
+    },
+    {
+      "name": "云卷",
+      "pinyin": "yún juǎn",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "云卷云舒；如云朵般自由自在，无拘无束。"
+    },
+    {
+      "name": "云飞",
+      "pinyin": "yún fēi",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "云飞风起；如云朵般自由飞翔，志向高远。"
+    },
+    {
+      "name": "云扬",
+      "pinyin": "yún yáng",
+      "element": "土",
+      "source": "《唐诗》",
+      "meaning": "云蒸霞蔚；如云彩般绚烂多彩，前程似锦。"
+    },
+    {
+      "name": "云霄",
+      "pinyin": "yún xiāo",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "云霄飞车；直冲云霄，志向高远。"
+    },
+    {
+      "name": "风清",
+      "pinyin": "fēng qīng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "风清月朗；如清风般清爽自然，心境平和。"
+    },
+    {
+      "name": "风华",
+      "pinyin": "fēng huá",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "风华正茂；正值青春年华，才华横溢。"
+    },
+    {
+      "name": "风雅",
+      "pinyin": "fēng yǎ",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "风流儒雅；气质高雅，风度翩翩。"
+    },
+    {
+      "name": "风云",
+      "pinyin": "fēng yún",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "风云人物；如风云般叱咤风云，成就非凡。"
+    },
+    {
+      "name": "风行",
+      "pinyin": "fēng xíng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "风行天下；如风般行遍天下，影响力广泛。"
+    },
+    {
+      "name": "月明",
+      "pinyin": "yuè míng",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "月明天高；如明月般皎洁明亮，胸怀坦荡。"
+    },
+    {
+      "name": "月华",
+      "pinyin": "yuè huá",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "月华如练；如月光般皎洁美好，纯洁无瑕。"
+    },
+    {
+      "name": "月影",
+      "pinyin": "yuè yǐng",
+      "element": "木",
+      "source": "《唐诗》",
+      "meaning": "月影婆娑；如月光下树影摇曳，诗意盎然。"
+    },
+    {
+      "name": "月辉",
+      "pinyin": "yuè huī",
+      "element": "水",
+      "source": "《唐诗》",
+      "meaning": "月辉皎皎；如月光般光辉灿烂，前程光明。"
+    },
+    {
+      "name": "月朗",
+      "pinyin": "yuè lǎng",
+      "element": "火",
+      "source": "《唐诗》",
+      "meaning": "月朗星稀；如明月般明朗清澈，心胸开阔。"
+    },
+    {
+      "name": "星辰",
+      "pinyin": "xīng chén",
+      "element": "金",
+      "source": "《唐诗》",
+      "meaning": "星辰大海；如星辰般闪耀，探索无限可能。"
+    },
+    {
+      "name": "星光",
+      "pinyin": "xīng guāng",
+      "element": "火",
+      "source": "《唐诗》",
+      "meaning": "星光璀璨；如星光般闪耀，前程似锦。"
+    },
+    {
+      "name": "星辉",
+      "pinyin": "xīng huī",
+      "element": "火",
+      "source": "《唐诗》",
+      "meaning": "星辉斑斓；如星光般绚丽多彩，才华横溢。"
+    },
+    {
+      "name": "星斗",
+      "pinyin": "xīng dǒu",
+      "element": "金",
+      "source": "《唐诗》",
+      "meaning": "星罗棋布；如星辰般众多，才华出众。"
+    },
+    {
+      "name": "山水",
+      "pinyin": "shān shuǐ",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "山水画卷；如山水画般美丽，意境深远。"
+    },
+    {
+      "name": "山岚",
+      "pinyin": "shān lán",
+      "element": "土",
+      "source": "《宋词》",
+      "meaning": "山岚缭绕；如山间云雾缭绕，神秘朦胧。"
+    },
+    {
+      "name": "山泉",
+      "pinyin": "shān quán",
+      "element": "水",
+      "source": "《宋词》",
+      "meaning": "山泉清澈；如山泉水般清澈纯净，品质高尚。"
+    },
+    {
+      "name": "山风",
+      "pinyin": "shān fēng",
+      "element": "木",
+      "source": "《宋词》",
+      "meaning": "山风习习；如山间清风般清爽怡人。"
+    },
+    {
+      "name": "山月",
+      "pinyin": "shān yuè",
+      "element": "土",
+      "source": "《宋词》",
+      "meaning": "山月皎皎；如山间明月般皎洁明亮。"
+    },
+    {
+      "name": "星野",
+      "source": "诗词",
+      "meaning": "星垂平野阔，月涌大江流",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雨泽",
+      "source": "诗词",
+      "meaning": "春雨泽物，润物无声",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "思远",
+      "source": "诗词",
+      "meaning": "思君如满月，夜夜减清辉",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "沐风",
+      "source": "诗词",
+      "meaning": "如沐春风，心情舒畅",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "听雨",
+      "source": "诗词",
+      "meaning": "夜阑卧听风吹雨，铁马冰河入梦来",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "金江",
+      "source": "现代文学",
+      "meaning": "金江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "胜杰",
+      "source": "现代文学",
+      "meaning": "胜杰，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "永松",
+      "source": "现代文学",
+      "meaning": "永松，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "春湖",
+      "source": "现代文学",
+      "meaning": "春湖，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "强海",
+      "source": "现代文学",
+      "meaning": "强海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "天柏",
+      "source": "现代文学",
+      "meaning": "天柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健熊",
+      "source": "现代文学",
+      "meaning": "健熊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "武花",
+      "source": "现代文学",
+      "meaning": "武花，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "火龙",
+      "source": "现代文学",
+      "meaning": "火龙，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "强才",
+      "source": "现代文学",
+      "meaning": "强才，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "国坚",
+      "source": "现代文学",
+      "meaning": "国坚，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "天林",
+      "source": "现代文学",
+      "meaning": "天林，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "水柏",
+      "source": "现代文学",
+      "meaning": "水柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "强菊",
+      "source": "现代文学",
+      "meaning": "强菊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "中智",
+      "source": "现代文学",
+      "meaning": "中智，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "冬骏",
+      "source": "现代文学",
+      "meaning": "冬骏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "长虎",
+      "source": "现代文学",
+      "meaning": "长虎，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "天鹏",
+      "source": "现代文学",
+      "meaning": "天鹏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "东柏",
+      "source": "现代文学",
+      "meaning": "东柏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "中龙",
+      "source": "现代文学",
+      "meaning": "中龙，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "胜树",
+      "source": "现代文学",
+      "meaning": "胜树，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "永强",
+      "source": "现代文学",
+      "meaning": "永强，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "火海",
+      "source": "现代文学",
+      "meaning": "火海，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "金雨",
+      "source": "现代文学",
+      "meaning": "金雨，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "华龙",
+      "source": "现代文学",
+      "meaning": "华龙，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "建江",
+      "source": "现代文学",
+      "meaning": "建江，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "德坚",
+      "source": "现代文学",
+      "meaning": "德坚，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "中雪",
+      "source": "现代文学",
+      "meaning": "中雪，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "建俊",
+      "source": "现代文学",
+      "meaning": "建俊，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "火骏",
+      "source": "现代文学",
+      "meaning": "火骏，寓意美好",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ]
+}

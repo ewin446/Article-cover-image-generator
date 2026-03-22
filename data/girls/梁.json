@@ -1,0 +1,1352 @@
+{
+  "classical": [
+    {
+      "name": "静姝",
+      "source": "《尚书》",
+      "meaning": "文静美丽，温柔贤淑",
+      "pinyin": "jingshu",
+      "element": "金"
+    },
+    {
+      "name": "雅琳",
+      "source": "《庄子》",
+      "meaning": "高雅脱俗，珍贵美好",
+      "pinyin": "yalin",
+      "element": "木"
+    },
+    {
+      "name": "梦琪",
+      "source": "《楚辞》",
+      "meaning": "梦中佳人，如玉般美好",
+      "pinyin": "mengqi",
+      "element": "木"
+    },
+    {
+      "name": "晓涵",
+      "source": "《楚辞》",
+      "meaning": "聪慧通达，内涵丰富",
+      "pinyin": "xiaohan",
+      "element": "火"
+    },
+    {
+      "name": "诗涵",
+      "source": "《论语》",
+      "meaning": "富有诗意，内涵丰富",
+      "pinyin": "shihan",
+      "element": "水"
+    },
+    {
+      "name": "欣怡",
+      "source": "《论语》",
+      "meaning": "快乐怡然，心情舒畅",
+      "pinyin": "xinyi",
+      "element": "金"
+    },
+    {
+      "name": "雨欣",
+      "source": "《孟子》",
+      "meaning": "如雨后春笋，生机勃勃",
+      "pinyin": "yuxin",
+      "element": "水"
+    },
+    {
+      "name": "婉如",
+      "source": "《诗经》",
+      "meaning": "温婉美好，如水温柔",
+      "pinyin": "wanru",
+      "element": "土"
+    },
+    {
+      "name": "清婉",
+      "source": "《尚书》",
+      "meaning": "清雅温婉，气质高雅",
+      "pinyin": "qingwan",
+      "element": "水"
+    },
+    {
+      "name": "诗琪",
+      "source": "《论语》",
+      "meaning": "富有诗意，如玉般美好",
+      "pinyin": "shiqi",
+      "element": "木"
+    },
+    {
+      "name": "思婷",
+      "source": "《庄子》",
+      "meaning": "聪明智慧，亭亭玉立",
+      "pinyin": "siting",
+      "element": "金"
+    },
+    {
+      "name": "思涵",
+      "source": "《诗经》",
+      "meaning": "思维敏捷，内涵深厚",
+      "pinyin": "sihan",
+      "element": "金"
+    },
+    {
+      "name": "月华",
+      "source": "《论语》",
+      "meaning": "如月光般柔和美丽",
+      "pinyin": "yuehua",
+      "element": "木"
+    },
+    {
+      "name": "星语",
+      "source": "《庄子》",
+      "meaning": "如星星般闪耀美丽",
+      "pinyin": "xingyu",
+      "element": "金"
+    },
+    {
+      "name": "澹月",
+      "source": "《诗经》",
+      "meaning": "淡雅如月，宁静美好",
+      "pinyin": "danyue",
+      "element": "水"
+    },
+    {
+      "name": "云舒",
+      "source": "《左传》",
+      "meaning": "如云般自由舒展",
+      "pinyin": "yunshu",
+      "element": "金"
+    },
+    {
+      "name": "沐阳",
+      "source": "《楚辞》",
+      "meaning": "如阳光般温暖明亮",
+      "pinyin": "muyang",
+      "element": "水"
+    },
+    {
+      "name": "月影",
+      "source": "《论语》",
+      "meaning": "如月影般婀娜多姿",
+      "pinyin": "yueying",
+      "element": "木"
+    },
+    {
+      "name": "月明",
+      "source": "《左传》",
+      "meaning": "如明月般光明纯洁",
+      "pinyin": "yueming",
+      "element": "木"
+    },
+    {
+      "name": "星辰",
+      "source": "《左传》",
+      "meaning": "如星辰般闪耀美丽",
+      "pinyin": "xingchen",
+      "element": "金"
+    },
+    {
+      "name": "景玥",
+      "source": "《庄子》",
+      "meaning": "如美景玥玉般珍贵",
+      "pinyin": "jingyue",
+      "element": "木"
+    },
+    {
+      "name": "海樱",
+      "source": "《诗经》",
+      "meaning": "如海樱般美丽动人",
+      "pinyin": "haiying",
+      "element": "水"
+    },
+    {
+      "name": "诗语",
+      "source": "《孟子》",
+      "meaning": "富有诗意，言语动人",
+      "pinyin": "shiyu",
+      "element": "木"
+    },
+    {
+      "name": "婉清",
+      "source": "诗经",
+      "meaning": "有美一人，清扬婉兮",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "如雪",
+      "source": "诗经",
+      "meaning": "手如柔荑，肤如凝脂",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "巧倩",
+      "source": "诗经",
+      "meaning": "巧笑倩兮，美目盼兮",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "佩玖",
+      "source": "诗经",
+      "meaning": "彼留之子，诒我佩玖",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "琼琚",
+      "source": "诗经",
+      "meaning": "报之以琼琚",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "美盼",
+      "source": "诗经",
+      "meaning": "巧笑倩兮，美目盼兮",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "柔惠",
+      "source": "诗经",
+      "meaning": "申伯之德，柔惠且直",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "和铃",
+      "source": "诗经",
+      "meaning": "龙旗扬扬，和铃央央",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "思柔",
+      "source": "诗经",
+      "meaning": "兕觥其觩，旨酒思柔",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "夏婷",
+      "source": "现代文学",
+      "meaning": "夏婷，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "美竹",
+      "source": "现代文学",
+      "meaning": "美竹，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秀若",
+      "source": "现代文学",
+      "meaning": "秀若，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "云花",
+      "source": "现代文学",
+      "meaning": "云花，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玉娟",
+      "source": "现代文学",
+      "meaning": "玉娟，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "宝娜",
+      "source": "现代文学",
+      "meaning": "宝娜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "小瑾",
+      "source": "现代文学",
+      "meaning": "小瑾，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "久悦",
+      "source": "现代文学",
+      "meaning": "久悦，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "草淑",
+      "source": "现代文学",
+      "meaning": "草淑，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "淑媛",
+      "source": "现代文学",
+      "meaning": "淑媛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珑雅",
+      "source": "现代文学",
+      "meaning": "珑雅，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "淑薇",
+      "source": "现代文学",
+      "meaning": "淑薇，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健萱",
+      "source": "现代文学",
+      "meaning": "健萱，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "小兰",
+      "source": "现代文学",
+      "meaning": "小兰，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "菲若",
+      "source": "现代文学",
+      "meaning": "菲若，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "欢雅",
+      "source": "现代文学",
+      "meaning": "欢雅，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "惠淑",
+      "source": "现代文学",
+      "meaning": "惠淑，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秀瑰",
+      "source": "现代文学",
+      "meaning": "秀瑰，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雪琼",
+      "source": "现代文学",
+      "meaning": "雪琼，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "菲琼",
+      "source": "现代文学",
+      "meaning": "菲琼，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "健琪",
+      "source": "现代文学",
+      "meaning": "健琪，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "春芳",
+      "source": "现代文学",
+      "meaning": "春芳，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋霞",
+      "source": "现代文学",
+      "meaning": "秋霞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "安瑾",
+      "source": "现代文学",
+      "meaning": "安瑾，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "小媛",
+      "source": "现代文学",
+      "meaning": "小媛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "乐芳",
+      "source": "现代文学",
+      "meaning": "乐芳，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大玲",
+      "source": "现代文学",
+      "meaning": "大玲，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玲琅",
+      "source": "现代文学",
+      "meaning": "玲琅，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "小琼",
+      "source": "现代文学",
+      "meaning": "小琼，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "欢琪",
+      "source": "现代文学",
+      "meaning": "欢琪，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ],
+  "modern": [
+    {
+      "name": "诗涵",
+      "source": "新文化运动",
+      "meaning": "富有诗意，内涵丰富",
+      "pinyin": "shihan",
+      "element": "水"
+    },
+    {
+      "name": "诗琪",
+      "source": "现代散文",
+      "meaning": "富有诗意，如玉般美好",
+      "pinyin": "shiqi",
+      "element": "木"
+    },
+    {
+      "name": "诗语",
+      "source": "现代散文",
+      "meaning": "富有诗意，言语动人",
+      "pinyin": "shiyu",
+      "element": "木"
+    },
+    {
+      "name": "诗妍",
+      "source": "新文化运动",
+      "meaning": "富有诗意，容貌美丽",
+      "pinyin": "shiyan",
+      "element": "水"
+    },
+    {
+      "name": "诗怡",
+      "source": "当代诗歌",
+      "meaning": "富有诗意，心情愉悦",
+      "pinyin": "shiyi",
+      "element": "土"
+    },
+    {
+      "name": "思涵",
+      "source": "新文化运动",
+      "meaning": "聪明智慧，内涵丰富",
+      "pinyin": "sihan",
+      "element": "金"
+    },
+    {
+      "name": "思婷",
+      "source": "现代文学",
+      "meaning": "聪明智慧，身姿优美",
+      "pinyin": "siting",
+      "element": "金"
+    },
+    {
+      "name": "思琪",
+      "source": "新文化运动",
+      "meaning": "聪明智慧，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "思妍",
+      "source": "新文化运动",
+      "meaning": "聪明智慧，容颜美丽",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "思怡",
+      "source": "现代散文",
+      "meaning": "聪明智慧，心情舒畅",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雨欣",
+      "source": "现代散文",
+      "meaning": "如春雨般滋润人心",
+      "pinyin": "yuxin",
+      "element": "水"
+    },
+    {
+      "name": "雨婷",
+      "source": "现代文学",
+      "meaning": "如春雨般温柔美丽",
+      "pinyin": "yuting",
+      "element": "水"
+    },
+    {
+      "name": "雨琪",
+      "source": "现代散文",
+      "meaning": "如春雨般纯净美好",
+      "pinyin": "yuqi",
+      "element": "水"
+    },
+    {
+      "name": "雨妍",
+      "source": "新文化运动",
+      "meaning": "如春雨般滋润美丽",
+      "pinyin": "yuyan",
+      "element": "水"
+    },
+    {
+      "name": "雨怡",
+      "source": "现代散文",
+      "meaning": "如春雨般带来喜悦",
+      "pinyin": "yuyi",
+      "element": "水"
+    },
+    {
+      "name": "欣怡",
+      "source": "当代诗歌",
+      "meaning": "快乐成长，心情舒畅",
+      "pinyin": "xinyi",
+      "element": "金"
+    },
+    {
+      "name": "欣妍",
+      "source": "现代散文",
+      "meaning": "快乐成长，容颜美丽",
+      "pinyin": "xinyan",
+      "element": "金"
+    },
+    {
+      "name": "欣婷",
+      "source": "现代文学",
+      "meaning": "快乐成长，身姿优美",
+      "pinyin": "xinting",
+      "element": "金"
+    },
+    {
+      "name": "欣琪",
+      "source": "现代散文",
+      "meaning": "快乐成长，如玉般纯净",
+      "pinyin": "xinqi",
+      "element": "金"
+    },
+    {
+      "name": "欣语",
+      "source": "新文化运动",
+      "meaning": "快乐成长，言语动人",
+      "pinyin": "xinyu",
+      "element": "金"
+    },
+    {
+      "name": "雅琳",
+      "source": "新文化运动",
+      "meaning": "气质高雅，珍贵美好",
+      "pinyin": "yalin",
+      "element": "木"
+    },
+    {
+      "name": "雅婷",
+      "source": "现代散文",
+      "meaning": "气质高雅，身姿优美",
+      "pinyin": "yating",
+      "element": "木"
+    },
+    {
+      "name": "雅琪",
+      "source": "当代诗歌",
+      "meaning": "气质高雅，如玉般纯净",
+      "pinyin": "yaqi",
+      "element": "木"
+    },
+    {
+      "name": "雅妍",
+      "source": "当代诗歌",
+      "meaning": "气质高雅，容颜美丽",
+      "pinyin": "yayan",
+      "element": "木"
+    },
+    {
+      "name": "雅怡",
+      "source": "现代文学",
+      "meaning": "气质高雅，心情舒畅",
+      "pinyin": "yayi",
+      "element": "木"
+    },
+    {
+      "name": "欣悦",
+      "source": "现代",
+      "meaning": "欣然自得，悦目赏心",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雅静",
+      "source": "现代",
+      "meaning": "高雅脱俗，宁静致远",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秀英",
+      "source": "现代",
+      "meaning": "秀外慧中，英姿飒爽",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "娟妍",
+      "source": "现代",
+      "meaning": "娟秀美丽，妍姿艳质",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "淑惠",
+      "source": "现代",
+      "meaning": "贤淑温和，惠质兰心",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "婉仪",
+      "source": "现代",
+      "meaning": "温婉可人，仪态万方",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "瑞霞",
+      "source": "现代",
+      "meaning": "祥瑞之兆，霞光万道",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "芳菲",
+      "source": "现代",
+      "meaning": "芳香四溢，菲菲如云",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "若雪",
+      "source": "现代",
+      "meaning": "洁白如雪，纯真无瑕",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "映萱",
+      "source": "现代",
+      "meaning": "光彩照人，萱草忘忧",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "乐婷",
+      "source": "现代文学",
+      "meaning": "乐婷，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "夏瑞",
+      "source": "现代文学",
+      "meaning": "夏瑞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玲琪",
+      "source": "现代文学",
+      "meaning": "玲琪，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大悦",
+      "source": "现代文学",
+      "meaning": "大悦，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "静怡",
+      "source": "现代文学",
+      "meaning": "静怡，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雅菊",
+      "source": "现代文学",
+      "meaning": "雅菊，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珠若",
+      "source": "现代文学",
+      "meaning": "珠若，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "惠然",
+      "source": "现代文学",
+      "meaning": "惠然，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "乐妍",
+      "source": "现代文学",
+      "meaning": "乐妍，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雨芳",
+      "source": "现代文学",
+      "meaning": "雨芳，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珑梅",
+      "source": "现代文学",
+      "meaning": "珑梅，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "康琼",
+      "source": "现代文学",
+      "meaning": "康琼，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "花然",
+      "source": "现代文学",
+      "meaning": "花然，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "淑瑶",
+      "source": "现代文学",
+      "meaning": "淑瑶，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "夏瑾",
+      "source": "现代文学",
+      "meaning": "夏瑾，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月茜",
+      "source": "现代文学",
+      "meaning": "月茜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "环玲",
+      "source": "现代文学",
+      "meaning": "环玲，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "大嫣",
+      "source": "现代文学",
+      "meaning": "大嫣，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "惠霞",
+      "source": "现代文学",
+      "meaning": "惠霞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "春玲",
+      "source": "现代文学",
+      "meaning": "春玲，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月瑜",
+      "source": "现代文学",
+      "meaning": "月瑜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月婷",
+      "source": "现代文学",
+      "meaning": "月婷，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "云娜",
+      "source": "现代文学",
+      "meaning": "云娜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "环嫣",
+      "source": "现代文学",
+      "meaning": "环嫣，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "菲玲",
+      "source": "现代文学",
+      "meaning": "菲玲，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "久嫣",
+      "source": "现代文学",
+      "meaning": "久嫣，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珑琅",
+      "source": "现代文学",
+      "meaning": "珑琅，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "银瑜",
+      "source": "现代文学",
+      "meaning": "银瑜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玉菊",
+      "source": "现代文学",
+      "meaning": "玉菊，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月瑞",
+      "source": "现代文学",
+      "meaning": "月瑞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ],
+  "poetic": [
+    {
+      "name": "月华",
+      "source": "宋词",
+      "meaning": "如月光般柔和美丽",
+      "pinyin": "yuehua",
+      "element": "木"
+    },
+    {
+      "name": "月影",
+      "source": "古诗十九首",
+      "meaning": "如月影般婀娜多姿",
+      "pinyin": "yueying",
+      "element": "木"
+    },
+    {
+      "name": "月明",
+      "source": "诗经",
+      "meaning": "如明月般光明纯洁",
+      "pinyin": "yueming",
+      "element": "木"
+    },
+    {
+      "name": "星语",
+      "source": "唐诗",
+      "meaning": "如星星般闪耀美丽",
+      "pinyin": "xingyu",
+      "element": "金"
+    },
+    {
+      "name": "星辰",
+      "source": "古诗十九首",
+      "meaning": "如星辰般闪耀美丽",
+      "pinyin": "xingchen",
+      "element": "金"
+    },
+    {
+      "name": "云舒",
+      "source": "古诗十九首",
+      "meaning": "如云般自由舒展",
+      "pinyin": "yunshu",
+      "element": "金"
+    },
+    {
+      "name": "澹月",
+      "source": "楚辞",
+      "meaning": "淡雅如月，宁静美好",
+      "pinyin": "danyue",
+      "element": "水"
+    },
+    {
+      "name": "沐阳",
+      "source": "宋词",
+      "meaning": "如阳光般温暖明亮",
+      "pinyin": "muyang",
+      "element": "水"
+    },
+    {
+      "name": "景玥",
+      "source": "楚辞",
+      "meaning": "如美景玥玉般珍贵",
+      "pinyin": "jingyue",
+      "element": "木"
+    },
+    {
+      "name": "海樱",
+      "source": "宋词",
+      "meaning": "如海樱般美丽动人",
+      "pinyin": "haiying",
+      "element": "水"
+    },
+    {
+      "name": "清风",
+      "source": "楚辞",
+      "meaning": "如清风般清爽自然",
+      "pinyin": "qingfeng",
+      "element": "水"
+    },
+    {
+      "name": "清辉",
+      "source": "古诗十九首",
+      "meaning": "清雅高洁，光芒四射",
+      "pinyin": "qinghui",
+      "element": "水"
+    },
+    {
+      "name": "流水",
+      "source": "楚辞",
+      "meaning": "如流水般清澈不息",
+      "pinyin": "liushui",
+      "element": "水"
+    },
+    {
+      "name": "落日",
+      "source": "唐诗",
+      "meaning": "如落日般壮丽辉煌",
+      "pinyin": "luori",
+      "element": "木"
+    },
+    {
+      "name": "暗香",
+      "source": "楚辞",
+      "meaning": "幽香淡淡，品格高洁",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "疏影",
+      "source": "唐诗",
+      "meaning": "清雅脱俗，品格高洁",
+      "pinyin": "shuying",
+      "element": "木"
+    },
+    {
+      "name": "望舒",
+      "source": "唐诗",
+      "meaning": "先驱引领，开路先锋",
+      "pinyin": "wangshu",
+      "element": "水"
+    },
+    {
+      "name": "灵均",
+      "source": "诗经",
+      "meaning": "灵秀均等，才华出众",
+      "pinyin": "lingjun",
+      "element": "火"
+    },
+    {
+      "name": "维哲",
+      "source": "楚辞",
+      "meaning": "明智通达，能够解纷",
+      "pinyin": "weizhe",
+      "element": "土"
+    },
+    {
+      "name": "远志",
+      "source": "楚辞",
+      "meaning": "志向远大，目光长远",
+      "pinyin": "yuanzhi",
+      "element": "土"
+    },
+    {
+      "name": "零露",
+      "source": "古诗十九首",
+      "meaning": "清新自然，纯真无瑕",
+      "pinyin": "linglu",
+      "element": "水"
+    },
+    {
+      "name": "飞鸿",
+      "source": "唐诗",
+      "meaning": "志向远大，前程似锦",
+      "pinyin": "feihong",
+      "element": "水"
+    },
+    {
+      "name": "齐光",
+      "source": "古诗十九首",
+      "meaning": "与日月同辉，光辉灿烂",
+      "pinyin": "qiguang",
+      "element": "金"
+    },
+    {
+      "name": "良辰",
+      "source": "古诗十九首",
+      "meaning": "美好时光，珍贵时刻",
+      "pinyin": "liangchen",
+      "element": "火"
+    },
+    {
+      "name": "诗涵",
+      "source": "古诗十九首",
+      "meaning": "富有诗意，内涵丰富",
+      "pinyin": "shihan",
+      "element": "水"
+    },
+    {
+      "name": "雨桐",
+      "source": "诗词",
+      "meaning": "梧桐更兼细雨，到黄昏点点滴滴",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "梦洁",
+      "source": "诗词",
+      "meaning": "梦如白雪，洁白无瑕",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月婵",
+      "source": "诗词",
+      "meaning": "但愿人长久，千里共婵娟",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "馨悦",
+      "source": "诗词",
+      "meaning": "馨香祷祝，悦目赏心",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "舒云",
+      "source": "诗词",
+      "meaning": "云卷云舒，悠然自得",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "依云",
+      "source": "诗词",
+      "meaning": "白云深处，依稀可见",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "雨萱",
+      "source": "诗词",
+      "meaning": "萱草忘忧，春雨润物",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "诗茵",
+      "source": "诗词",
+      "meaning": "诗意盎然，绿草如茵",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "灵芸",
+      "source": "诗词",
+      "meaning": "灵秀动人，芸香满室",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "夏菡",
+      "source": "诗词",
+      "meaning": "夏日荷花，菡萏香销",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "静婷",
+      "source": "现代文学",
+      "meaning": "静婷，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玉云",
+      "source": "现代文学",
+      "meaning": "玉云，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "美云",
+      "source": "现代文学",
+      "meaning": "美云，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珑媛",
+      "source": "现代文学",
+      "meaning": "珑媛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋兰",
+      "source": "现代文学",
+      "meaning": "秋兰，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "长瑛",
+      "source": "现代文学",
+      "meaning": "长瑛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "花琼",
+      "source": "现代文学",
+      "meaning": "花琼，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "丽霞",
+      "source": "现代文学",
+      "meaning": "丽霞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "金淑",
+      "source": "现代文学",
+      "meaning": "金淑，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "康妍",
+      "source": "现代文学",
+      "meaning": "康妍，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "芳瑜",
+      "source": "现代文学",
+      "meaning": "芳瑜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月悦",
+      "source": "现代文学",
+      "meaning": "月悦，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "宝竹",
+      "source": "现代文学",
+      "meaning": "宝竹，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "长媛",
+      "source": "现代文学",
+      "meaning": "长媛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "银瑶",
+      "source": "现代文学",
+      "meaning": "银瑶，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "冬静",
+      "source": "现代文学",
+      "meaning": "冬静，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "花茜",
+      "source": "现代文学",
+      "meaning": "花茜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "静瑛",
+      "source": "现代文学",
+      "meaning": "静瑛，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "金菊",
+      "source": "现代文学",
+      "meaning": "金菊，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋薇",
+      "source": "现代文学",
+      "meaning": "秋薇，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "珑瑞",
+      "source": "现代文学",
+      "meaning": "珑瑞，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "永若",
+      "source": "现代文学",
+      "meaning": "永若，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "琳然",
+      "source": "现代文学",
+      "meaning": "琳然，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "春瑜",
+      "source": "现代文学",
+      "meaning": "春瑜，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "草萱",
+      "source": "现代文学",
+      "meaning": "草萱，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "月云",
+      "source": "现代文学",
+      "meaning": "月云，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "秋婷",
+      "source": "现代文学",
+      "meaning": "秋婷，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "玉妍",
+      "source": "现代文学",
+      "meaning": "玉妍，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "云玲",
+      "source": "现代文学",
+      "meaning": "云玲，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    },
+    {
+      "name": "冬琳",
+      "source": "现代文学",
+      "meaning": "冬琳，美丽动人",
+      "pinyin": "pinyin",
+      "element": "金"
+    }
+  ]
+}
