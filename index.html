@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宝宝取名测试版（评分+收藏）</title>
+  <title>宝宝取名测试版（数量+评分+收藏）</title>
   <style>
     body { padding: 20px; font-family: Arial; }
-    .box { max-width: 500px; margin: 0 auto; }
+    .box { max-width: 600px; margin: 0 auto; }
     input, select { width: 100%; padding: 8px; margin: 10px 0; box-sizing: border-box; }
     button { padding: 10px; border: none; cursor: pointer; color: white; border-radius: 4px; }
     .generate-btn { width: 100%; background: green; margin: 10px 0; }
-    .filter-btn { 
+    .count-btn, .filter-btn { 
       width: 31%; 
       margin: 10px 1%; 
       background: #666; 
     }
-    .filter-btn.active { background: #007bff; } /* 激活状态样式 */
+    .count-btn.active, .filter-btn.active { background: #007bff; } /* 激活状态样式 */
     .collect-btn { 
       background: #ffc107; 
       padding: 4px 8px; 
@@ -29,6 +29,8 @@
       padding: 10px; 
       border: 1px solid #ccc; 
       display: none;
+      max-height: 400px;
+      overflow-y: auto; /* 100个名字时滚动 */
     }
     #collectArea { border-color: #ffc107; margin-top: 15px; }
     .name-item { 
@@ -38,7 +40,12 @@
       justify-content: space-between; 
       align-items: center;
     }
-    .collect-title { color: #ffc107; margin-bottom: 8px; font-weight: bold; }
+    .collect-title, .count-title, .filter-title { 
+      color: #666; 
+      margin-bottom: 8px; 
+      font-weight: bold; 
+      margin-top: 10px;
+    }
     .delete-collect {
       background: #ccc;
       padding: 2px 6px;
@@ -49,17 +56,26 @@
 </head>
 <body>
   <div class="box">
-    <h2>宝宝取名测试（评分+收藏）</h2>
+    <h2>宝宝取名测试（数量+评分+收藏）</h2>
     姓氏：<input type="text" id="surname" placeholder="输入李/王等">
     性别：<select id="gender">
       <option value="girl">女宝</option>
       <option value="boy">男宝</option>
     </select>
+
+    <!-- 新增：生成数量选择区域 -->
+    <div class="count-area">
+      <span class="count-title">生成数量：</span>
+      <button class="count-btn active" onclick="selectGenerateCount(10, this)">10个</button>
+      <button class="count-btn" onclick="selectGenerateCount(30, this)">30个</button>
+      <button class="count-btn" onclick="selectGenerateCount(100, this)">100个</button>
+    </div>
+
     <button class="generate-btn" onclick="testAndGenerate()">点击生成名字</button>
 
     <!-- 评分筛选按钮区域 -->
     <div class="filter-area" id="filterArea" style="display: none;">
-      <span>评分筛选：</span>
+      <span class="filter-title">评分筛选：</span>
       <button class="filter-btn active" onclick="filterByNameScore('all', this)">全部</button>
       <button class="filter-btn" onclick="filterByNameScore('95-99', this)">95-99分</button>
       <button class="filter-btn" onclick="filterByNameScore('90-94', this)">90-94分</button>
@@ -68,7 +84,7 @@
     <!-- 生成结果区域 -->
     <div id="result"></div>
 
-    <!-- 新增：我的收藏区域 -->
+    <!-- 我的收藏区域 -->
     <div id="collectArea">
       <div class="collect-title">✨ 我的收藏</div>
       <div id="collectList"></div>
@@ -76,68 +92,90 @@
   </div>
 
   <script>
-    // 全局变量：保存所有生成的名字（含评分），用于筛选
-    let allGeneratedNames = [];
-    // 全局变量：保存收藏的名字（从本地存储读取）
-    let collectNames = JSON.parse(localStorage.getItem('babyNameCollect')) || [];
+    // 全局变量
+    let allGeneratedNames = []; // 所有生成的名字
+    let collectNames = JSON.parse(localStorage.getItem('babyNameCollect')) || []; // 收藏的名字
+    let selectedCount = 10; // 默认生成10个（新增：选中的数量）
 
-    // 页面加载时初始化收藏区域
-    window.onload = function() {
-      renderCollectList(); // 显示已收藏的名字
+    // 基础名字库（用于动态生成足够数量的名字）
+    const baseNameData = {
+      girl: {
+        prefix: ['婉', '静', '思', '清', '语', '梓', '欣', '若', '诗', '梦'],
+        suffix: ['清', '姝', '悠', '芷', '桐', '萱', '怡', '溪', '涵', '蝶']
+      },
+      boy: {
+        prefix: ['子', '修', '景', '博', '怀', '浩', '宇', '泽', '俊', '奕'],
+        suffix: ['谦', '远', '行', '文', '瑾', '然', '辰', '宇', '熙', '辰']
+      }
     };
 
-    // 核心：生成名字函数
+    // 页面加载初始化
+    window.onload = function() {
+      renderCollectList();
+    };
+
+    // 新增：选择生成数量
+    function selectGenerateCount(count, btn) {
+      // 更新选中数量
+      selectedCount = count;
+      // 切换按钮激活状态
+      document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      alert(`已选择生成${count}个名字`);
+    }
+
+    // 核心：生成名字函数（适配数量选择）
     function testAndGenerate() {
-      alert('按钮点击生效！开始生成名字...');
-      
       const surname = document.getElementById('surname').value.trim();
       if (!surname) {
         alert('请输入姓氏！');
         return;
       }
 
-      // 名字数据（含评分）
-      let rawNames = [];
-      if (document.getElementById('gender').value === 'girl') {
-        rawNames = [
-          { name: '婉清', score: 98 },
-          { name: '静姝', score: 97 },
-          { name: '一诺', score: 93 },
-          { name: '语桐', score: 92 },
-          { name: '梓萱', score: 96 }
-        ];
-      } else {
-        rawNames = [
-          { name: '子谦', score: 99 },
-          { name: '修远', score: 94 },
-          { name: '浩然', score: 95 },
-          { name: '宇辰', score: 91 },
-          { name: '泽宇', score: 97 }
-        ];
-      }
+      // 根据选中的数量生成对应个数的名字
+      const gender = document.getElementById('gender').value;
+      allGeneratedNames = generateNamesByCount(surname, gender, selectedCount);
 
-      // 拼接姓氏，保存到全局变量
-      allGeneratedNames = rawNames.map(item => ({
-        fullName: surname + item.name,
-        score: item.score
-      }));
-
-      // 显示筛选区域 + 渲染全部名字
+      // 显示筛选区域 + 渲染名字
       document.getElementById('filterArea').style.display = 'block';
       renderNameList(allGeneratedNames);
       // 显示收藏区域
       document.getElementById('collectArea').style.display = 'block';
-      alert('名字生成完成！可筛选/收藏');
+      alert(`成功生成${selectedCount}个名字！可筛选/收藏`);
     }
 
-    // 渲染名字列表（新增收藏按钮）
+    // 新增：根据数量动态生成名字（避免手动写100个）
+    function generateNamesByCount(surname, gender, count) {
+      const nameConfig = baseNameData[gender];
+      const generated = [];
+      let index = 0;
+
+      while (generated.length < count) {
+        // 循环组合前缀+后缀，确保名字不重复（基础库不够时重复组合）
+        const prefix = nameConfig.prefix[index % nameConfig.prefix.length];
+        const suffix = nameConfig.suffix[index % nameConfig.suffix.length];
+        const name = prefix + suffix;
+        const fullName = surname + name;
+        // 随机生成90-99分的评分
+        const score = Math.floor(Math.random() * 10) + 90;
+
+        // 避免重复添加（可选，也可以允许重复）
+        if (!generated.some(item => item.fullName === fullName)) {
+          generated.push({ fullName, score });
+        }
+        index++;
+      }
+
+      return generated;
+    }
+
+    // 渲染名字列表（兼容收藏状态）
     function renderNameList(nameList) {
       const resultDiv = document.getElementById('result');
       resultDiv.style.display = 'block';
       
       let html = '';
       nameList.forEach(item => {
-        // 判断是否已收藏
         const isCollected = collectNames.some(c => c.fullName === item.fullName);
         const btnClass = isCollected ? 'collect-btn collected' : 'collect-btn';
         const btnText = isCollected ? '取消收藏' : '收藏';
@@ -152,13 +190,11 @@
       resultDiv.innerHTML = html;
     }
 
-    // 评分筛选逻辑
+    // 评分筛选逻辑（无修改，兼容数量选择）
     function filterByNameScore(range, btn) {
-      // 切换按钮激活状态
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // 筛选名字
       let filteredNames = [];
       if (range === 'all') {
         filteredNames = allGeneratedNames;
@@ -168,36 +204,30 @@
         filteredNames = allGeneratedNames.filter(item => item.score >= 90 && item.score <= 94);
       }
 
-      // 重新渲染
       renderNameList(filteredNames);
     }
 
-    // 新增：收藏/取消收藏核心逻辑
+    // 收藏/取消收藏逻辑（无修改）
     function toggleCollect(fullName, score, btn) {
-      // 查找是否已收藏
       const index = collectNames.findIndex(c => c.fullName === fullName);
       
       if (index > -1) {
-        // 取消收藏：从数组删除 + 更新样式 + 提示
         collectNames.splice(index, 1);
         btn.classList.remove('collected');
         btn.innerText = '收藏';
         alert(`已取消收藏【${fullName}】`);
       } else {
-        // 添加收藏：加入数组 + 更新样式 + 提示
         collectNames.push({ fullName, score });
         btn.classList.add('collected');
         btn.innerText = '取消收藏';
         alert(`已收藏【${fullName}】`);
       }
 
-      // 保存到本地存储（刷新页面不丢失）
       localStorage.setItem('babyNameCollect', JSON.stringify(collectNames));
-      // 重新渲染收藏列表
       renderCollectList();
     }
 
-    // 新增：渲染收藏列表
+    // 渲染收藏列表（无修改）
     function renderCollectList() {
       const collectList = document.getElementById('collectList');
       
@@ -218,14 +248,11 @@
       collectList.innerHTML = html;
     }
 
-    // 新增：删除收藏的名字
+    // 删除收藏逻辑（无修改）
     function deleteCollect(fullName) {
       if (confirm(`确定删除收藏的【${fullName}】吗？`)) {
-        // 从收藏数组删除
         collectNames = collectNames.filter(c => c.fullName !== fullName);
-        // 保存到本地存储
         localStorage.setItem('babyNameCollect', JSON.stringify(collectNames));
-        // 重新渲染收藏列表 + 生成结果列表（更新收藏按钮状态）
         renderCollectList();
         renderNameList(allGeneratedNames);
       }
