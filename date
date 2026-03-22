@@ -1,0 +1,54 @@
+data/
+├── boys/                           # 男孩姓氏数据（24个JSON文件）
+│   ├── 李.json
+│   ├── 王.json
+│   ├── 张.json
+│   ├── 刘.json
+│   ├── 陈.json
+│   ├── 杨.json
+│   ├── 赵.json
+│   ├── 黄.json
+│   ├── 周.json
+│   ├── 吴.json
+│   ├── 徐.json
+│   ├── 孙.json
+│   ├── 胡.json
+│   ├── 朱.json
+│   ├── 高.json
+│   ├── 林.json
+│   ├── 何.json
+│   ├── 郭.json
+│   ├── 马.json
+│   ├── 罗.json
+│   ├── 梁.json
+│   ├── 宋.json
+│   ├── 郑.json
+│   ├── 谢.json
+│
+├── girls/                          # 女孩姓氏数据（24个JSON文件）
+│   ├── 李.json
+│   ├── 王.json
+│   ├── 张.json
+│   ├── 刘.json
+│   ├── 陈.json
+│   ├── 杨.json
+│   ├── 赵.json
+│   ├── 黄.json
+│   ├── 周.json
+│   ├── 吴.json
+│   ├── 徐.json
+│   ├── 孙.json
+│   ├── 胡.json
+│   ├── 朱.json
+│   ├── 高.json
+│   ├── 林.json
+│   ├── 何.json
+│   ├── 郭.json
+│   ├── 马.json
+│   ├── 罗.json
+│   ├── 梁.json
+│   ├── 宋.json
+│   ├── 郑.json
+│   ├── 谢.json
+│
+└── rotation_pools.json             # 轮询池配置文件
