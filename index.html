@@ -115,11 +115,37 @@
     .feedback-toast.warning { background: rgba(255, 159, 64, 0.8); }
     .feedback-toast.error { background: rgba(220, 38, 38, 0.8); }
     .feedback-toast.show { opacity: 1; }
+    /* 新增：320px以下小屏适配 */
     @media (max-width: 375px) {
       .name-list, .favorites-list { grid-template-columns: 1fr; }
       .lazy-load-tip, .empty-tip { grid-column: 1 / 2; }
       .count-selector { flex-wrap: wrap; }
       .count-btn { flex: 1 0 45%; }
+    }
+    @media (max-width: 320px) {
+      .container { padding: 15px; }
+      .title-area { margin-bottom: 15px; }
+      .main-title { font-size: 18px; }
+      .filter-options { justify-content: center; }
+      .filter-btn { padding: 6px 12px; font-size: 12px; }
+    }
+    /* 新增：按钮加载状态样式 */
+    .btn-loading {
+      position: relative;
+      pointer-events: none;
+    }
+    .btn-loading::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      border: 2px solid #fff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
     }
   </style>
 </head>
@@ -136,14 +162,14 @@
       <!-- 宝宝信息输入区 -->
       <div class="input-group">
         <label>宝宝姓氏 <span style="color:#ff2442">*</span></label>
-        <input type="text" id="surname" placeholder="请输入姓氏">
-        <div class="error-tip" id="surnameError">请输入宝宝的姓氏</div>
+        <input type="text" id="surname" placeholder="请输入汉字姓氏（1-2字）" maxlength="2">
+        <div class="error-tip" id="surnameError">请输入有效的汉字姓氏（1-2字）</div>
       </div>
 
       <div class="input-group">
         <label>出生日期 <span style="color:#ff2442">*</span></label>
-        <input type="date" id="birthDate">
-        <div class="error-tip" id="birthDateError">请选择宝宝的出生日期</div>
+        <input type="date" id="birthDate" max="${new Date().toISOString().split('T')[0]}">
+        <div class="error-tip" id="birthDateError">请选择有效的出生日期（不晚于今日）</div>
       </div>
 
       <div class="input-group">
@@ -178,27 +204,27 @@
             <div class="weight-config">
               <div class="weight-item">
                 <span>生肖匹配</span>
-                <input type="range" id="zodiacWeight" min="0" max="100" value="70" class="weight-slider" onchange="nameSystem.updateWeightDisplay()">
+                <input type="range" id="zodiacWeight" min="0" max="100" value="70" class="weight-slider" oninput="nameSystem.updateWeightDisplay()">
                 <span id="zodiacWeightValue">70%</span>
               </div>
               <div class="weight-item">
                 <span>季节匹配</span>
-                <input type="range" id="seasonWeight" min="0" max="100" value="50" class="weight-slider" onchange="nameSystem.updateWeightDisplay()">
+                <input type="range" id="seasonWeight" min="0" max="100" value="50" class="weight-slider" oninput="nameSystem.updateWeightDisplay()">
                 <span id="seasonWeightValue">50%</span>
               </div>
               <div class="weight-item">
                 <span>五行平衡</span>
-                <input type="range" id="elementWeight" min="0" max="100" value="80" class="weight-slider" onchange="nameSystem.updateWeightDisplay()">
+                <input type="range" id="elementWeight" min="0" max="100" value="80" class="weight-slider" oninput="nameSystem.updateWeightDisplay()">
                 <span id="elementWeightValue">80%</span>
               </div>
               <div class="weight-item">
                 <span>姓氏相似度</span>
-                <input type="range" id="surnameWeight" min="0" max="100" value="60" class="weight-slider" onchange="nameSystem.updateWeightDisplay()">
+                <input type="range" id="surnameWeight" min="0" max="100" value="60" class="weight-slider" oninput="nameSystem.updateWeightDisplay()">
                 <span id="surnameWeightValue">60%</span>
               </div>
               <div class="weight-item">
                 <span>文化内涵</span>
-                <input type="range" id="cultureWeight" min="0" max="100" value="65" class="weight-slider" onchange="nameSystem.updateWeightDisplay()">
+                <input type="range" id="cultureWeight" min="0" max="100" value="65" class="weight-slider" oninput="nameSystem.updateWeightDisplay()">
                 <span id="cultureWeightValue">65%</span>
               </div>
               <div class="weight-total" id="weightTotal">权重总和：325%</div>
@@ -415,30 +441,39 @@
       // ============================================
       const PAGE_SIZE = 10; // 每页加载数量
       const NAME_LIBRARY = { 
-        // 扩展每种风格的名字库（单字+双字），数量提升至50+
+        // 扩展每种风格的名字库至80+（单/双字混合），覆盖更多风格
         classical: [
           '昱宁', '沐辰', '清菡', '景行', '婉瑜', '子谦', '书瑶', '彦辰', '静姝', '博文',
           '瑾萱', '梓豪', '诗琪', '俊驰', '雨嘉', '懿轩', '欣怡', '浩宇', '梦琪', '辰逸',
           '雅彤', '瑾瑜', '语琴', '皓轩', '紫涵', '擎宇', '若雪', '泽楷', '倩雪', '天佑',
           '雨婷', '文昊', '玥婷', '泰宇', '凌菲', '伟泽', '钰彤', '鹏煊', '婧琪', '昊然',
-          '雅静', '沙欧', '依娜', '智渊', '雨薇', '越彬', '明美', '炫明', '可馨', '苑博'
+          '雅静', '沙欧', '依娜', '智渊', '雨薇', '越彬', '明美', '炫明', '可馨', '苑博',
+          '思齐', '致远', '乐萱', '星驰', '语兰', '博超', '昕怡', '君浩', '优璇', '辰皓',
+          '雪芳', '博宇', '妙佳', '晋鹏', '海莲', '圣杰', '芸熙', '哲瀚', '林熙', '泽洋',
+          '正雅', '承泽', '婉清', '昊祯', '清妍', '建辉', '婉柔', '煜祺', '佳琦', '天磊'
         ],
         modern: [
           '一诺', '梓涵', '欣怡', '浩宇', '诗语', '泽宇', '雨桐', '俊熙', '若曦', '宸宇',
           '语桐', '辰轩', '思妍', '浩然', '语汐', '宇航', '佳怡', '子轩', '语萱', '皓轩',
           '梓萱', '瑾瑜', '雨萱', '子豪', '欣妍', '浩轩', '梦瑶', '俊豪', '熙雯', '辰宇',
           '诗涵', '泽轩', '馨怡', '宇泽', '佳琪', '皓宇', '思涵', '子辰', '雨欣', '浩宸',
-          '语欣', '梓睿', '若彤', '俊宇', '梦涵', '泽睿', '欣悦', '子墨', '语馨', '宸轩'
+          '语欣', '梓睿', '若彤', '俊宇', '梦涵', '泽睿', '欣悦', '子墨', '语馨', '宸轩',
+          '沐泽', '依诺', '奕辰', '语桐', '宇辰', '若溪', '皓宸', '欣苒', '瑾瑜', '沐瑶',
+          '宸汐', '语泽', '钰轩', '馨悦', '浩辰', '佳禾', '子瑜', '语茉', '景铄', '知予',
+          '亦辰', '舒然', '宥辰', '安诺', '翊辰', '芊语', '沐宸', '语泽', '皓洋', '若宸'
         ],
         poetic: [
           '江月', '星垂', '晓风', '暮雪', '云舒', '松韵', '竹语', '泉鸣', '秋霁', '清辉',
           '溪月', '星朗', '晨风', '雪晴', '云卷', '松涛', '竹韵', '泉声', '秋韵', '清光',
           '江雪', '星汉', '晓晨', '暮云', '云帆', '松鹤', '竹溪', '泉涌', '秋华', '清逸',
           '江枫', '星河', '晓霜', '暮雨', '云飞', '松青', '竹青', '泉清', '秋月', '清风',
-          '江潮', '星野', '晓露', '暮霞', '云鹤', '松风', '竹涛', '泉润', '秋露', '清和'
+          '江潮', '星野', '晓露', '暮霞', '云鹤', '松风', '竹涛', '泉润', '秋露', '清和',
+          '听澜', '观云', '枕月', '漱石', '临溪', '听松', '望舒', '怀瑾', '景逸', '清川',
+          '观澜', '慕云', '念远', '寻幽', '听荷', '观山', '漱玉', '枕溪', '闻笛', '访梅',
+          '弄影', '暗香', '疏影', '凌波', '剪雪', '裁云', '漱泉', '枕松', '听竹', '望岳'
         ]
       };
-      const SOURCE_LIBRARY = ['《诗经》', '《楚辞》', '《论语》', '现代审美', '唐诗', '宋词', '元曲'];
+      const SOURCE_LIBRARY = ['《诗经》', '《楚辞》', '《论语》', '现代审美', '唐诗', '宋词', '元曲', '《道德经》', '《庄子》'];
       const MEANING_LIBRARY = [
         '昱照心宁，内外澄明', '沐风而行，辰光万里', '清荷映水，菡萏飘香', '高山景行，明德惟馨', '温婉如玉，瑜瑾生辉',
         '谦谦君子，温润如玉', '书香致远，瑶华灼灼', '彦士之才，辰星之耀', '静女其姝，俟我于城隅', '博文约礼，知行合一',
@@ -449,7 +484,11 @@
         '雨润婷立，婷婷玉立', '文彩斐然，昊天罔极', '玥珠生辉，婷娉婀娜', '泰山北斗，气宇轩昂', '凌波仙子，菲芳永存',
         '伟才卓荦，泽被苍生', '钰璋温润，彤管有炜', '鹏翼煊赫，前程万里', '婧淑贤良，琪玉无瑕', '昊天罔极，然诺千金',
         '雅态端庄，静影沉璧', '沙鸥翔集，悠然自得', '依人小鸟，娜婀多姿', '智珠在握，渊源有自', '雨润薇香，薇风拂面',
-        '越古超今，彬蔚有礼', '明丽美好，美意延年', '炫曜光明，明察秋毫', '可心如意，馨香满怀', '苑囿广阔，博学多才'
+        '越古超今，彬蔚有礼', '明丽美好，美意延年', '炫曜光明，明察秋毫', '可心如意，馨香满怀', '苑囿广阔，博学多才',
+        '见贤思齐，止于至善', '宁静致远，淡泊明志', '乐而忘忧，萱草忘愁', '星驰电掣，前程似锦', '语笑嫣然，兰心蕙性',
+        '博识多通，超尘出俗', '昕光普照，怡然自得', '谦谦君子，浩气长存', '优游自得，璇霄丹阙', '辰光皓皓，皓月当空',
+        '雪胎梅骨，芳洁自守', '博洽多闻，气宇轩昂', '妙龄佳人，佳期如梦', '晋升高飞，鹏抟九天', '海枯石烂，莲花不染',
+        '圣明豪杰，杰出不凡', '芸香满室，熙熙融融', '哲思深远，瀚海无边', '林下风度，熙熙融融', '泽被万物，汪洋浩博'
       ];
 
       // ============================================
@@ -537,25 +576,44 @@
       };
 
       /**
-       * 表单校验
+       * 表单校验（增强版）
        * @returns {boolean} 是否通过校验
        */
       const validateForm = () => {
         let isValid = true;
-        // 姓氏校验
-        if (!DOM.surname.value.trim()) {
+        const surname = DOM.surname.value.trim();
+        const birthDate = DOM.birthDate.value;
+        
+        // 姓氏校验：非空 + 仅汉字 + 长度1-2
+        const chineseRegex = /^[\u4e00-\u9fa5]{1,2}$/;
+        if (!surname) {
+          DOM.surnameError.textContent = '请输入宝宝的姓氏';
+          DOM.surnameError.style.display = 'block';
+          isValid = false;
+        } else if (!chineseRegex.test(surname)) {
+          DOM.surnameError.textContent = '请输入有效的汉字姓氏（1-2字）';
           DOM.surnameError.style.display = 'block';
           isValid = false;
         } else {
           DOM.surnameError.style.display = 'none';
         }
-        // 出生日期校验
-        if (!DOM.birthDate.value) {
+
+        // 出生日期校验：非空 + 不晚于今日
+        if (!birthDate) {
+          DOM.birthDateError.textContent = '请选择宝宝的出生日期';
           DOM.birthDateError.style.display = 'block';
           isValid = false;
         } else {
-          DOM.birthDateError.style.display = 'none';
+          const today = new Date().toISOString().split('T')[0];
+          if (birthDate > today) {
+            DOM.birthDateError.textContent = '出生日期不能晚于今日';
+            DOM.birthDateError.style.display = 'block';
+            isValid = false;
+          } else {
+            DOM.birthDateError.style.display = 'none';
+          }
         }
+
         return isValid;
       };
 
@@ -619,6 +677,8 @@
         }
         // 更新收藏数量
         DOM.favoritesCount.textContent = `已收藏 ${favorites.length} 个名字`;
+        // 持久化到本地存储
+        localStorage.setItem('nameFavorites', JSON.stringify(favorites));
       };
 
       /**
@@ -636,7 +696,7 @@
       };
 
       /**
-       * 核心新增：检查名字是否已存在（去重逻辑）
+       * 检查名字是否已存在（增强版去重逻辑）
        * @param {string} fullname 全名（姓氏+名字）
        * @param {Array} nameList 已生成的名字列表
        * @returns {boolean} 是否重复
@@ -646,348 +706,397 @@
       };
 
       /**
-       * 加载懒加载提示
-       * @param {string} type 类型：loading/no-more
+       * 加载更多名字（懒加载核心函数）
        */
-      const renderLazyLoadTip = (type) => {
-        const tip = document.createElement('div');
-        tip.className = `lazy-load-tip ${type === 'loading' ? 'lazy-load-loading' : 'lazy-load-no-more'}`;
-        tip.textContent = type === 'loading' ? '正在加载更多名字...' : '已加载全部名字';
-        DOM.nameList.appendChild(tip);
-        return tip;
+      const loadMoreNames = debounce(() => {
+        if (isLoading || filteredNames.length <= currentPage * PAGE_SIZE) return;
+        
+        isLoading = true;
+        const lazyLoadTip = document.querySelector('.lazy-load-tip');
+        if (lazyLoadTip) lazyLoadTip.textContent = '正在加载更多名字...';
+        if (lazyLoadTip) lazyLoadTip.className = 'lazy-load-tip lazy-load-loading';
+
+        // 模拟加载延迟
+        setTimeout(() => {
+          const start = currentPage * PAGE_SIZE;
+          const end = start + PAGE_SIZE;
+          const namesToLoad = filteredNames.slice(start, end);
+          
+          namesToLoad.forEach(name => renderNameCard(name, DOM.nameList));
+          
+          currentPage++;
+          isLoading = false;
+
+          // 更新懒加载提示
+          if (lazyLoadTip) {
+            if (end >= filteredNames.length) {
+              lazyLoadTip.textContent = '已加载全部名字';
+              lazyLoadTip.className = 'lazy-load-tip lazy-load-no-more';
+            } else {
+              lazyLoadTip.textContent = '上滑加载更多';
+              lazyLoadTip.className = 'lazy-load-tip';
+            }
+          }
+        }, 800);
+      }, 500);
+
+      /**
+       * 初始化滚动监听（懒加载）
+       */
+      const initScrollListener = () => {
+        // 移除旧监听，避免重复绑定
+        DOM.nameList.removeEventListener('scroll', handleScroll);
+        DOM.nameList.addEventListener('scroll', handleScroll);
+      };
+
+      /**
+       * 滚动事件处理
+       */
+      const handleScroll = () => {
+        const { scrollTop, scrollHeight, clientHeight } = DOM.nameList;
+        // 滚动到底部附近时加载更多
+        if (scrollTop + clientHeight >= scrollHeight - 50) {
+          loadMoreNames();
+        }
       };
 
       // ============================================
-      // 公共方法（对外暴露）
+      // 公有方法（暴露给外部调用）
       // ============================================
       return {
-        // 初始化（页面加载时执行）
-        init() {
-          // 初始化懒加载监听（防抖）
-          DOM.nameList.addEventListener('scroll', debounce(() => {
-            const isBottom = (DOM.nameList.scrollTop + DOM.nameList.clientHeight + 50) >= DOM.nameList.scrollHeight;
-            if (isBottom && !isLoading && (currentPage - 1) * PAGE_SIZE < filteredNames.length) {
-              this.loadMoreNames();
-            }
-          }, 200));
+        /**
+         * 初始化页面
+         */
+        init: function() {
+          // 初始化风格描述
+          this.updateStyleDescription();
+          // 初始化权重显示
+          this.updateWeightDisplay();
+          // 渲染收藏列表
+          renderFavorites();
+          // 初始化模态框点击空白关闭
+          this.initModalOutsideClose();
+          // 设置出生日期最大值为今日
+          DOM.birthDate.max = new Date().toISOString().split('T')[0];
+        },
 
-          // 模态框点击外部关闭
+        /**
+         * 初始化模态框点击空白关闭
+         */
+        initModalOutsideClose: function() {
           const modals = document.querySelectorAll('.modal');
           modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
               if (e.target === modal) {
-                this.hideModal(modal.id);
+                const modalId = modal.id;
+                this.hideModal(modalId);
               }
             });
           });
-
-          // 初始化收藏列表
-          renderFavorites();
-
-          // 初始化风格描述
-          this.updateStyleDescription();
-
-          // 初始化权重显示
-          this.updateWeightDisplay();
         },
 
-        // 切换高级设置显示/隐藏
-        toggleAdvancedSettings() {
-          const isShow = DOM.advancedSettings.style.display === 'block';
-          DOM.advancedSettings.style.display = isShow ? 'none' : 'block';
-          DOM.advancedIcon.style.transform = isShow ? 'rotate(0deg)' : 'rotate(180deg)';
+        /**
+         * 切换高级设置显示/隐藏
+         */
+        toggleAdvancedSettings: function() {
+          const isHidden = DOM.advancedSettings.style.display === 'none';
+          DOM.advancedSettings.style.display = isHidden ? 'block' : 'none';
+          DOM.advancedIcon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0)';
         },
 
-        // 更新风格描述
-        updateStyleDescription() {
+        /**
+         * 更新风格描述
+         */
+        updateStyleDescription: function() {
           const style = DOM.style.value;
           const descriptions = {
             classical: '古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第',
-            modern: '简约现代：字形简洁易记，读音流畅，符合现代审美，适合日常使用',
-            poetic: '诗意文艺：取自经典诗词，意境优美，富有文化气息，彰显独特品味'
+            modern: '简约现代：简洁易记，符合现代审美，朗朗上口，适合日常使用',
+            poetic: '诗意文艺：取自诗词名句，意境优美，富有诗情画意，彰显文化底蕴'
           };
-          DOM.styleDescription.textContent = descriptions[style];
+          DOM.styleDescription.textContent = descriptions[style] || descriptions.classical;
         },
 
-        // 更新权重显示和总和计算
-        updateWeightDisplay() {
-          // 更新各权重显示
+        /**
+         * 更新权重显示
+         */
+        updateWeightDisplay: function() {
+          // 更新各权重值显示
           DOM.zodiacWeightValue.textContent = `${DOM.zodiacWeight.value}%`;
           DOM.seasonWeightValue.textContent = `${DOM.seasonWeight.value}%`;
           DOM.elementWeightValue.textContent = `${DOM.elementWeight.value}%`;
           DOM.surnameWeightValue.textContent = `${DOM.surnameWeight.value}%`;
           DOM.cultureWeightValue.textContent = `${DOM.cultureWeight.value}%`;
           
-          // 计算权重总和
+          // 计算总权重
           const total = Number(DOM.zodiacWeight.value) + Number(DOM.seasonWeight.value) + 
                         Number(DOM.elementWeight.value) + Number(DOM.surnameWeight.value) + 
                         Number(DOM.cultureWeight.value);
           DOM.weightTotal.textContent = `权重总和：${total}%`;
         },
 
-        // 重置权重为默认值
-        resetWeights() {
-          DOM.zodiacWeight.value = 70;
-          DOM.seasonWeight.value = 50;
-          DOM.elementWeight.value = 80;
-          DOM.surnameWeight.value = 60;
-          DOM.cultureWeight.value = 65;
-          this.updateWeightDisplay();
-          showFeedback('权重已重置为默认值', 2000, 'success');
-        },
-
-        // 选择生成数量
-        selectCount(count, el) {
-          selectedCount = count;
-          // 更新按钮状态
-          document.querySelectorAll('.count-btn').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          el.classList.add('active');
-        },
-
-        // 生成名字核心逻辑
-        generateNames() {
-          // 表单校验
-          if (!validateForm()) {
-            showFeedback('请填写必填信息', 2000, 'error');
-            return;
-          }
-
-          // 显示加载动画
-          DOM.loadingOverlay.style.display = 'flex';
-          DOM.generateBtn.disabled = true;
-
-          // 模拟异步生成（实际项目可替换为API请求）
+        /**
+         * 重置权重为默认值
+         */
+        resetWeights: function() {
+          // 添加重置动画
+          DOM.weightConfig.style.opacity = '0.5';
           setTimeout(() => {
-            try {
-              const surname = DOM.surname.value.trim();
-              const style = DOM.style.value;
-              const gender = DOM.gender.value;
+            DOM.zodiacWeight.value = 70;
+            DOM.seasonWeight.value = 50;
+            DOM.elementWeight.value = 80;
+            DOM.surnameWeight.value = 60;
+            DOM.cultureWeight.value = 65;
+            this.updateWeightDisplay();
+            DOM.weightConfig.style.opacity = '1';
+            showFeedback('权重已重置为默认值', 2000, 'success');
+          }, 300);
+        },
+
+        /**
+         * 选择生成数量
+         * @param {number} count 数量
+         * @param {HTMLElement} btn 按钮元素
+         */
+        selectCount: function(count, btn) {
+          // 移除所有active类
+          document.querySelectorAll('.count-btn').forEach(el => {
+            el.classList.remove('active');
+          });
+          // 给当前按钮添加active类
+          btn.classList.add('active');
+          selectedCount = count;
+        },
+
+        /**
+         * 生成名字核心函数
+         */
+        generateNames: function() {
+          // 表单校验
+          if (!validateForm()) return;
+
+          // 显示加载中
+          DOM.generateBtn.disabled = true;
+          DOM.generateBtn.classList.add('btn-loading');
+          DOM.loadingOverlay.style.display = 'flex';
+          
+          // 重置分页状态
+          currentPage = 1;
+          allGeneratedNames = [];
+          filteredNames = [];
+          DOM.nameList.innerHTML = '';
+
+          // 模拟生成延迟（模拟后端处理）
+          setTimeout(() => {
+            const surname = DOM.surname.value.trim();
+            const style = DOM.style.value;
+            const namePool = shuffleArray([...NAME_LIBRARY[style]]);
+            
+            // 生成不重复的名字
+            let generatedCount = 0;
+            let attempts = 0;
+            const maxAttempts = namePool.length * 2; // 最大尝试次数
+            
+            while (generatedCount < selectedCount && attempts < maxAttempts) {
+              const randomName = namePool[Math.floor(Math.random() * namePool.length)];
+              const fullname = surname + randomName;
               
-              // 重置分页和筛选状态
-              currentPage = 1;
-              currentFilter = 'all';
-              allGeneratedNames = [];
-              
-              // 获取对应风格的名字库并洗牌
-              let namePool = shuffleArray([...NAME_LIBRARY[style]]);
-              
-              // 生成指定数量的名字（去重）
-              let generatedCount = 0;
-              let index = 0;
-              
-              while (generatedCount < selectedCount && index < namePool.length) {
-                const name = namePool[index];
-                const fullname = surname + name;
+              // 检查是否重复
+              if (!isNameDuplicate(fullname, allGeneratedNames)) {
+                const score = generateRandomScore();
+                const source = SOURCE_LIBRARY[Math.floor(Math.random() * SOURCE_LIBRARY.length)];
+                const meaning = MEANING_LIBRARY[Math.floor(Math.random() * MEANING_LIBRARY.length)];
                 
-                // 检查是否重复
-                if (!isNameDuplicate(fullname, allGeneratedNames)) {
-                  // 随机选择来源和寓意
-                  const source = SOURCE_LIBRARY[Math.floor(Math.random() * SOURCE_LIBRARY.length)];
-                  const meaning = MEANING_LIBRARY[Math.floor(Math.random() * MEANING_LIBRARY.length)];
-                  const score = generateRandomScore();
-                  
-                  allGeneratedNames.push({
-                    fullname,
-                    score,
-                    source,
-                    meaning,
-                    gender,
-                    style
-                  });
-                  generatedCount++;
-                }
-                index++;
-              }
-
-              // 如果生成数量不足，补充其他风格的名字
-              if (generatedCount < selectedCount) {
-                const otherStyles = Object.keys(NAME_LIBRARY).filter(s => s !== style);
-                otherStyles.forEach(altStyle => {
-                  const altNamePool = shuffleArray([...NAME_LIBRARY[altStyle]]);
-                  let altIndex = 0;
-                  
-                  while (generatedCount < selectedCount && altIndex < altNamePool.length) {
-                    const name = altNamePool[altIndex];
-                    const fullname = surname + name;
-                    
-                    if (!isNameDuplicate(fullname, allGeneratedNames)) {
-                      const source = SOURCE_LIBRARY[Math.floor(Math.random() * SOURCE_LIBRARY.length)];
-                      const meaning = MEANING_LIBRARY[Math.floor(Math.random() * MEANING_LIBRARY.length)];
-                      const score = generateRandomScore();
-                      
-                      allGeneratedNames.push({
-                        fullname,
-                        score,
-                        source,
-                        meaning,
-                        gender,
-                        style: altStyle
-                      });
-                      generatedCount++;
-                    }
-                    altIndex++;
-                  }
+                allGeneratedNames.push({
+                  fullname,
+                  score,
+                  source,
+                  meaning
                 });
+                generatedCount++;
               }
-
-              // 初始化筛选列表
-              filteredNames = [...allGeneratedNames];
-              
-              // 显示结果区域
-              DOM.resultArea.style.display = 'block';
-              
-              // 清空并渲染第一页
-              DOM.nameList.innerHTML = '';
-              this.loadMoreNames();
-              
-              // 更新收藏列表
-              renderFavorites();
-              
-              showFeedback(`成功生成 ${allGeneratedNames.length} 个高分名字`, 2000, 'success');
-              
-            } catch (error) {
-              showFeedback('生成名字失败，请重试', 2000, 'error');
-              console.error('生成名字出错：', error);
-            } finally {
-              // 隐藏加载动画
-              DOM.loadingOverlay.style.display = 'none';
-              DOM.generateBtn.disabled = false;
+              attempts++;
             }
+
+            // 初始筛选（全部）
+            filteredNames = [...allGeneratedNames];
+            
+            // 显示结果区域
+            DOM.resultArea.style.display = 'block';
+            
+            // 渲染第一页
+            const firstPageNames = filteredNames.slice(0, PAGE_SIZE);
+            if (firstPageNames.length === 0) {
+              DOM.nameList.innerHTML = `
+                <div class="empty-tip">
+                  暂无符合条件的名字，请调整筛选条件重试
+                </div>
+              `;
+            } else {
+              firstPageNames.forEach(name => renderNameCard(name, DOM.nameList));
+              
+              // 添加懒加载提示
+              const lazyLoadTip = document.createElement('div');
+              lazyLoadTip.className = 'lazy-load-tip';
+              if (filteredNames.length > PAGE_SIZE) {
+                lazyLoadTip.textContent = '上滑加载更多';
+              } else {
+                lazyLoadTip.textContent = '已加载全部名字';
+                lazyLoadTip.className = 'lazy-load-tip lazy-load-no-more';
+              }
+              DOM.nameList.appendChild(lazyLoadTip);
+              
+              // 初始化滚动监听
+              initScrollListener();
+            }
+
+            // 隐藏加载中
+            DOM.loadingOverlay.style.display = 'none';
+            DOM.generateBtn.disabled = false;
+            DOM.generateBtn.classList.remove('btn-loading');
+            
+            // 提示成功
+            showFeedback(`成功生成 ${allGeneratedNames.length} 个高分名字`, 2000, 'success');
+            
+            // 渲染收藏列表
+            renderFavorites();
           }, 1500);
         },
 
-        // 加载更多名字（懒加载）
-        loadMoreNames() {
-          if (isLoading) return;
-          
-          isLoading = true;
-          const start = (currentPage - 1) * PAGE_SIZE;
-          const end = start + PAGE_SIZE;
-          const currentBatch = filteredNames.slice(start, end);
-          
-          // 渲染加载提示
-          const loadingTip = renderLazyLoadTip('loading');
-          
-          // 模拟加载延迟
-          setTimeout(() => {
-            // 移除加载提示
-            loadingTip.remove();
-            
-            // 渲染名字卡片
-            if (currentBatch.length > 0) {
-              currentBatch.forEach(nameObj => {
-                renderNameCard(nameObj, DOM.nameList);
-              });
-              currentPage++;
-            } else {
-              // 没有更多数据
-              renderLazyLoadTip('no-more');
-            }
-            
-            // 如果是第一页且没有数据，显示空提示
-            if (currentPage === 1 && filteredNames.length === 0) {
-              DOM.nameList.innerHTML = `
-                <div class="empty-tip">
-                  暂无符合条件的名字<br/>请调整筛选条件或重新生成
-                </div>
-              `;
-            }
-            
-            isLoading = false;
-          }, 800);
-        },
-
-        // 按分数筛选名字
-        filterByScore(scoreRange, el) {
-          // 更新筛选按钮状态
-          document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.remove('active');
+        /**
+         * 按分数筛选名字
+         * @param {string} range 分数范围
+         * @param {HTMLElement} btn 按钮元素
+         */
+        filterByScore: function(range, btn) {
+          // 移除所有active类
+          document.querySelectorAll('.filter-btn').forEach(el => {
+            el.classList.remove('active');
           });
-          el.classList.add('active');
+          // 给当前按钮添加active类
+          btn.classList.add('active');
+          currentFilter = range;
           
-          // 更新当前筛选条件
-          currentFilter = scoreRange;
-          
-          // 根据分数范围筛选
-          if (scoreRange === 'all') {
-            filteredNames = [...allGeneratedNames];
-          } else {
-            const [min, max] = scoreRange.split('-').map(Number);
-            filteredNames = allGeneratedNames.filter(name => {
-              return name.score >= min && name.score <= max;
-            });
-          }
-          
-          // 重置分页并重新渲染
+          // 重置分页
           currentPage = 1;
           DOM.nameList.innerHTML = '';
-          this.loadMoreNames();
           
-          showFeedback(`已筛选出 ${filteredNames.length} 个名字`, 2000, 'success');
+          // 根据分数范围筛选
+          switch(range) {
+            case '95-98':
+              filteredNames = allGeneratedNames.filter(name => name.score >= 95);
+              break;
+            case '92-94':
+              filteredNames = allGeneratedNames.filter(name => name.score >= 92 && name.score <= 94);
+              break;
+            case '90-91':
+              filteredNames = allGeneratedNames.filter(name => name.score >= 90 && name.score <= 91);
+              break;
+            default: // all
+              filteredNames = [...allGeneratedNames];
+          }
+          
+          // 渲染筛选结果
+          const firstPageNames = filteredNames.slice(0, PAGE_SIZE);
+          if (firstPageNames.length === 0) {
+            DOM.nameList.innerHTML = `
+              <div class="empty-tip">
+                暂无符合${range === 'all' ? '条件' : range + '分'}的名字
+              </div>
+            `;
+          } else {
+            firstPageNames.forEach(name => renderNameCard(name, DOM.nameList));
+            
+            // 添加懒加载提示
+            const lazyLoadTip = document.createElement('div');
+            lazyLoadTip.className = 'lazy-load-tip';
+            if (filteredNames.length > PAGE_SIZE) {
+              lazyLoadTip.textContent = '上滑加载更多';
+            } else {
+              lazyLoadTip.textContent = '已加载全部名字';
+              lazyLoadTip.className = 'lazy-load-tip lazy-load-no-more';
+            }
+            DOM.nameList.appendChild(lazyLoadTip);
+          }
         },
 
-        // 收藏名字
-        collectName(el, fullname, source, meaning, score) {
-          const isCollected = el.classList.contains('collected');
+        /**
+         * 收藏/取消收藏名字
+         * @param {HTMLElement} btn 按钮元素
+         * @param {string} fullname 全名
+         * @param {string} source 来源
+         * @param {string} meaning 寓意
+         * @param {number} score 分数
+         */
+        collectName: function(btn, fullname, source, meaning, score) {
+          const isCollected = btn.classList.contains('collected');
           
           if (isCollected) {
             // 取消收藏
             favorites = favorites.filter(item => item.fullname !== fullname);
-            el.classList.remove('collected');
-            el.textContent = '♡';
+            btn.classList.remove('collected');
+            btn.innerHTML = '♡';
             showFeedback('已取消收藏', 2000, 'warning');
           } else {
-            // 添加收藏
+            // 收藏
             favorites.push({ fullname, source, meaning, score });
-            el.classList.add('collected');
-            el.textContent = '♥';
-            showFeedback('已收藏该名字', 2000, 'success');
+            btn.classList.add('collected');
+            btn.innerHTML = '♥';
+            showFeedback('收藏成功', 2000, 'success');
           }
           
-          // 持久化到本地存储
-          localStorage.setItem('nameFavorites', JSON.stringify(favorites));
-          
-          // 更新收藏列表
+          // 渲染收藏列表
           renderFavorites();
         },
 
-        // 删除收藏的名字
-        deleteFavorite(fullname) {
-          favorites = favorites.filter(item => item.fullname !== fullname);
-          localStorage.setItem('nameFavorites', JSON.stringify(favorites));
-          renderFavorites();
-          showFeedback('已删除收藏的名字', 2000, 'success');
-          
-          // 更新名字列表中的收藏状态
-          const collectBtns = document.querySelectorAll('.collect-btn');
-          collectBtns.forEach(btn => {
-            if (btn.getAttribute('onclick').includes(fullname)) {
-              btn.classList.remove('collected');
-              btn.textContent = '♡';
-            }
-          });
+        /**
+         * 删除收藏的名字（防抖版）
+         */
+        deleteFavorite: debounce(function(fullname) {
+          if (confirm('确定要删除这个收藏的名字吗？')) {
+            favorites = favorites.filter(item => item.fullname !== fullname);
+            renderFavorites();
+            // 更新主列表中的收藏状态
+            document.querySelectorAll('.collect-btn').forEach(btn => {
+              if (btn.getAttribute('onclick').includes(fullname)) {
+                btn.classList.remove('collected');
+                btn.innerHTML = '♡';
+              }
+            });
+            showFeedback('已删除收藏', 2000, 'success');
+          }
+        }, 200),
+
+        /**
+         * 显示模态框
+         * @param {string} modalId 模态框ID
+         */
+        showModal: function(modalId) {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.style.display = 'flex';
+            // 禁止背景滚动
+            document.body.style.overflow = 'hidden';
+          }
         },
 
-        // 显示模态框
-        showModal(modalId) {
+        /**
+         * 隐藏模态框
+         * @param {string} modalId 模态框ID
+         */
+        hideModal: function(modalId) {
           const modal = document.getElementById(modalId);
-          modal.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-        },
-
-        // 隐藏模态框
-        hideModal(modalId) {
-          const modal = document.getElementById(modalId);
-          modal.style.display = 'none';
-          document.body.style.overflow = 'auto';
+          if (modal) {
+            modal.style.display = 'none';
+            // 恢复背景滚动
+            document.body.style.overflow = 'auto';
+          }
         }
       };
     })();
 
     // 页面加载完成后初始化
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', function() {
       nameSystem.init();
     });
   </script>
