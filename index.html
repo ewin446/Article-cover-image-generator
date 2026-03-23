@@ -137,24 +137,26 @@
       max-height: 600px;
       overflow-y: auto;
       padding-right: 5px;
-      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #ffd1dc #fcf0f3;
     }
 
-    /* 懒加载加载提示 */
-    .lazy-load-tip {
-      text-align: center;
-      padding: 15px;
-      color: #999;
-      font-size: 13px;
-      grid-column: 1 / 3;
+    .name-list::-webkit-scrollbar {
+      width: 6px;
     }
 
-    .lazy-load-loading {
-      color: #ff2442;
+    .name-list::-webkit-scrollbar-track {
+      background: #fcf0f3;
+      border-radius: 3px;
     }
 
-    .lazy-load-no-more {
-      color: #ccc;
+    .name-list::-webkit-scrollbar-thumb {
+      background: #ffd1dc;
+      border-radius: 3px;
+    }
+
+    .name-list::-webkit-scrollbar-thumb:hover {
+      background: #ff2442;
     }
 
     /* 名字卡片样式 */
@@ -165,16 +167,6 @@
       padding: 12px;
       transition: all 0.3s ease;
       position: relative;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .name-card:hover {
@@ -309,6 +301,26 @@
       gap: 12px;
       max-height: 400px;
       overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ffd1dc #fcf0f3;
+    }
+
+    .favorites-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .favorites-list::-webkit-scrollbar-track {
+      background: #fcf0f3;
+      border-radius: 3px;
+    }
+
+    .favorites-list::-webkit-scrollbar-thumb {
+      background: #ffd1dc;
+      border-radius: 3px;
+    }
+
+    .favorites-list::-webkit-scrollbar-thumb:hover {
+      background: #ff2442;
     }
 
     .empty-favorites {
@@ -344,26 +356,6 @@
     .delete-btn:hover {
       background: #ff2442;
       color: #fff;
-    }
-
-    /* 收藏按钮（列表视图用） */
-    .collect-btn {
-      font-size: 12px;
-      color: #ff2442;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-
-    .collect-btn::before {
-      content: "♡";
-      margin-right: 4px;
-    }
-
-    .collected::before {
-      content: "♥";
     }
 
     /* 售后提示区：还原原商品的版权/售后 */
@@ -747,26 +739,6 @@
       font-weight: 600;
       color: #ff2442;
     }
-
-    /* 操作反馈提示 */
-    .feedback-toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.8);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .feedback-toast.show {
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
@@ -782,17 +754,17 @@
       <!-- 宝宝信息输入区 -->
       <div class="input-group">
         <label>宝宝姓氏</label>
-        <input type="text" id="surname" placeholder="请输入姓氏">
+        <input type="text" id="surname" placeholder="请输入姓氏" required>
       </div>
 
       <div class="input-group">
         <label>出生日期</label>
-        <input type="date" id="birthDate">
+        <input type="date" id="birthDate" required>
       </div>
 
       <div class="input-group">
         <label>宝宝性别</label>
-        <select id="gender">
+        <select id="gender" required>
           <option value="girl">女宝</option>
           <option value="boy">男宝</option>
         </select>
@@ -800,7 +772,7 @@
 
       <div class="input-group">
         <label>名字风格</label>
-        <select id="style" onchange="updateStyleDescription()">
+        <select id="style" onchange="updateStyleDescription()" required>
           <option value="classical">古典文雅</option>
           <option value="modern">简约现代</option>
           <option value="poetic">诗意文艺</option>
@@ -1047,86 +1019,20 @@
     </div>
   </div>
 
-  <!-- 操作反馈提示 -->
-  <div class="feedback-toast" id="feedbackToast"></div>
-
   <script>
     // ============================================
     // 全局变量和初始化
     // ============================================
     let selectedCount = 10;
-    let allGeneratedNames = []; // 所有生成的名字数据
-    let filteredNames = [];     // 筛选后的名字数据
-    let currentPage = 1;        // 当前页码
-    const pageSize = 10;        // 每页加载数量
-    let isLoading = false;      // 是否正在加载
-    let currentFilter = 'all';  // 当前筛选条件
-    let favorites = [];         // 收藏列表
-    let shuffledNameDatabase = null; // 优化点1：预洗牌的名字库缓存
+    let allGeneratedNames = [];
+    let favorites = []; // 收藏列表
     
-    // 优化点2：缓存所有常用DOM元素，不用反复查询
-    const DOM = {
-      surname: document.getElementById('surname'),
-      birthDate: document.getElementById('birthDate'),
-      gender: document.getElementById('gender'),
-      style: document.getElementById('style'),
-      styleDescription: document.getElementById('styleDescription'),
-      advancedIcon: document.getElementById('advancedIcon'),
-      advancedSettings: document.getElementById('advancedSettings'),
-      zodiacWeight: document.getElementById('zodiacWeight'),
-      seasonWeight: document.getElementById('seasonWeight'),
-      elementWeight: document.getElementById('elementWeight'),
-      surnameWeight: document.getElementById('surnameWeight'),
-      cultureWeight: document.getElementById('cultureWeight'),
-      zodiacWeightValue: document.getElementById('zodiacWeightValue'),
-      seasonWeightValue: document.getElementById('seasonWeightValue'),
-      elementWeightValue: document.getElementById('elementWeightValue'),
-      surnameWeightValue: document.getElementById('surnameWeightValue'),
-      cultureWeightValue: document.getElementById('cultureWeightValue'),
-      resultArea: document.getElementById('resultArea'),
-      nameList: document.getElementById('nameList'),
-      favoritesArea: document.getElementById('favoritesArea'),
-      favoritesCount: document.getElementById('favoritesCount'),
-      favoritesList: document.getElementById('favoritesList'),
-      loadingOverlay: document.getElementById('loadingOverlay'),
-      feedbackToast: document.getElementById('feedbackToast'),
-      privacyModal: document.getElementById('privacyModal'),
-      termsModal: document.getElementById('termsModal'),
-      aboutModal: document.getElementById('aboutModal')
-    };
-
-    // ============================================
-    // 工具函数
-    // ============================================
-    // 显示操作反馈
-    function showFeedback(message, duration = 2000) {
-      DOM.feedbackToast.textContent = message;
-      DOM.feedbackToast.classList.add('show');
-      setTimeout(() => {
-        DOM.feedbackToast.classList.remove('show');
-      }, duration);
-    }
-
-    // 生成随机评分（90-98）
-    function generateRandomScore() {
-      return Math.floor(Math.random() * 9) + 90;
-    }
-
-    // 数组洗牌函数（Fisher-Yates 算法）
-    function shuffleArray(array) {
-      const newArray = [...array];
-      for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-      }
-      return newArray;
-    }
-
-    // 优化点3：预洗牌名字库，页面加载时只执行一次
-    function preShuffleNameDatabase() {
-      // 原始名字库
-      const nameDatabase = {
-        girl: {
+    // 完整的名字数据库
+    const nameDatabase = {
+      // 女孩名字库
+      girl: {
+        // 通用姓氏（默认）
+        default: {
           classical: [
             { name: "沛恩", source: "《诗经·大雅》", meaning: "沛雨甘霖，恩泽绵长；如春雨般滋润人心，充满仁爱与慈悲。" },
             { name: "诗宜", source: "《楚辞·九歌》", meaning: "诗情画意，宜室宜家；如诗般温婉动人，适合宜室宜家的女子。" },
@@ -1137,17 +1043,7 @@
             { name: "雅琳", source: "《诗经》", meaning: "雅致高贵，琳琅满目；优雅高贵，如美玉般珍贵。" },
             { name: "语嫣", source: "《诗经》", meaning: "温言软语，嫣然一笑；说话温柔动人，笑容美好。" },
             { name: "梦琪", source: "《楚辞》", meaning: "梦境美好，琪玉无瑕；如美玉般美好珍贵。" },
-            { name: "婉清", source: "《诗经·郑风》", meaning: "温婉可人，清雅脱俗；性格温柔，气质清雅。" },
-            { name: "雪妍", source: "《诗经》", meaning: "雪中美人，妍丽动人；如雪中美人般纯洁美丽。" },
-            { name: "诗涵", source: "《诗经》", meaning: "诗情画意，涵养深厚；既有诗情，又有涵养。" },
-            { name: "晓琪", source: "《楚辞》", meaning: "晨曦初照，琪玉生辉；如晨曦中的美玉般明亮。" },
-            { name: "雨涵", source: "《诗经》", meaning: "雨露滋润，涵养深厚；如雨露般滋润，内涵丰富。" },
-            { name: "沐瑶", source: "《诗经》", meaning: "沐浴恩泽，美玉无瑕；受恩泽庇佑，如美玉般纯洁。" },
-            { name: "芷萱", source: "《楚辞》", meaning: "芷草清香，萱草忘忧；清香淡雅，无忧无虑。" },
-            { name: "诗琪", source: "《诗经》", meaning: "诗意人生，琪玉无瑕；生活如诗，品质如玉。" },
-            { name: "雨薇", source: "《楚辞》", meaning: "雨中蔷薇，美丽动人；如雨中蔷薇般美丽动人。" },
-            { name: "思琪", source: "《楚辞》", meaning: "思绪深远，琪玉生辉；心思细腻，如美玉般珍贵。" },
-            { name: "晓涵", source: "《诗经》", meaning: "晨曦初照，涵养深厚；如朝阳般明亮，内涵丰富。" }
+            { name: "婉清", source: "《诗经·郑风》", meaning: "温婉可人，清雅脱俗；性格温柔，气质清雅。" }
           ],
           modern: [
             { name: "艺霖", source: "《唐诗选》", meaning: "艺术天成，如霖润泽；多才多艺，如甘霖般滋润他人。" },
@@ -1159,261 +1055,308 @@
             { name: "筱涵", source: "《现代诗歌》", meaning: "小家碧玉，涵养深厚；温柔可爱，内涵丰富。" },
             { name: "雨萱", source: "《现代诗歌》", meaning: "雨中萱草，忘忧无愁；如雨中萱草般无忧无虑。" },
             { name: "梦洁", source: "《现代文学》", meaning: "梦中纯洁，洁白无瑕；如梦境般美好，内心纯洁。" },
-            { name: "欣妍", source: "《现代诗歌》", meaning: "欣喜美好，妍丽动人；充满喜悦，美丽动人。" },
-            { name: "诗涵", source: "《现代诗歌》", meaning: "诗意人生，涵养深厚；生活如诗，内涵丰富。" },
-            { name: "雨婷", source: "《现代文学》", meaning: "雨露滋润，婷婷玉立；如雨后般清新，身姿优美。" },
-            { name: "雪怡", source: "《现代诗歌》", meaning: "雪中怡然，快乐无忧；如雪中般纯净，心境怡然。" },
-            { name: "思涵", source: "《现代文学》", meaning: "心思细腻，涵养深厚；思考深入，内涵丰富。" },
-            { name: "雨欣", source: "《现代诗歌》", meaning: "雨露滋润，欣喜美好；如雨露般滋润，充满喜悦。" }
+            { name: "欣妍", source: "《现代诗歌》", meaning: "欣喜美好，妍丽动人；充满喜悦，美丽动人。" }
           ],
           poetic: [
-            { name: "落雁", source: "《汉乐府》", meaning: "沉鱼落雁，闭月羞花；容貌绝美，气质出众。" },
-            { name: "惊鸿", source: "《洛神赋》", meaning: "翩若惊鸿，婉若游龙；身姿轻盈，气质优雅。" },
-            { name: "疏影", source: "《山园小梅》", meaning: "疏影横斜水清浅，暗香浮动月黄昏；清雅脱俗，暗香盈袖。" },
-            { name: "暗香", source: "《山园小梅》", meaning: "暗香浮动月黄昏；如梅花般暗香盈袖，气质高雅。" },
-            { name: "凌波", source: "《洛神赋》", meaning: "凌波微步，罗袜生尘；身姿轻盈，如踏浪而行。" },
-            { name: "清欢", source: "《浣溪沙》", meaning: "人间有味是清欢；简单纯粹，享受生活本真。" },
-            { name: "初静", source: "《山居秋暝》", meaning: "空山新雨后，天气晚来秋；初心不改，宁静致远。" },
-            { name: "晚晴", source: "《晚晴》", meaning: "天意怜幽草，人间重晚晴；历经风雨，终见美好。" },
-            { name: "知意", source: "《饮湖上初晴后雨》", meaning: "欲把西湖比西子，淡妆浓抹总相宜；知书达理，善解人意。" },
-            { name: "云舒", source: "《菜根谭》", meaning: "看庭前花开花落，望天上云卷云舒；心境淡然，随遇而安。" }
+            { name: "溪月", source: "《唐诗》", meaning: "清溪映月，诗意盎然；如溪水映月般清新脱俗，富有诗意。" },
+            { name: "星落", source: "《宋词》", meaning: "星落平湖，静谧美好；如星光落入平湖，宁静而美好。" },
+            { name: "云舒", source: "《宋词》", meaning: "云卷云舒，自在从容；如云朵般自在，心态从容。" },
+            { name: "晚晴", source: "《唐诗》", meaning: "雨后晚晴，豁然开朗；如雨后晴天，心境开阔。" },
+            { name: "知意", source: "《诗经》", meaning: "知书达理，心意相通；既有学识，又善解人意。" },
+            { name: "清欢", source: "《宋词》", meaning: "人间清欢，简单美好；享受简单纯粹的快乐。" },
+            { name: "语茉", source: "《现代诗歌》", meaning: "语如茉莉，清香淡雅；言语温柔，如茉莉花香。" },
+            { name: "笙歌", source: "《唐诗》", meaning: "笙歌婉转，美好动听；如乐曲般美好，生活充满欢乐。" },
+            { name: "汀兰", source: "《楚辞》", meaning: "汀上兰草，清新脱俗；如水边兰草，清新自然。" },
+            { name: "南絮", source: "《宋词》", meaning: "南风絮语，温柔缠绵；如南风般温柔，情意绵长。" }
           ]
         },
-        boy: {
+        // 李姓专属
+        李: {
           classical: [
-            { name: "瑾瑜", source: "《楚辞·九章》", meaning: "怀瑾握瑜，品德高尚；如美玉般纯洁，品德高尚。" },
-            { name: "子轩", source: "《诗经》", meaning: "气宇轩昂，风度翩翩；如君子般气度不凡，才华出众。" },
-            { name: "浩然", source: "《孟子》", meaning: "浩然之气，至大至刚；胸怀宽广，正气凛然。" },
-            { name: "博睿", source: "《论语》", meaning: "博学多才，睿智过人；学识渊博，聪明睿智。" },
-            { name: "承泽", source: "《诗经》", meaning: "承天之泽，福泽绵长；受上天庇佑，福气满满。" },
-            { name: "景行", source: "《诗经》", meaning: "高山仰止，景行行止；品德高尚，值得敬仰。" },
-            { name: "彦辰", source: "《楚辞》", meaning: "彦士之才，辰光万里；才华出众，前途光明。" },
-            { name: "修远", source: "《离骚》", meaning: "路漫漫其修远兮，吾将上下而求索；追求远大，坚持不懈。" },
-            { name: "崇安", source: "《诗经》", meaning: "崇德尚礼，平安顺遂；品德高尚，一生平安。" },
-            { name: "君浩", source: "《孟子》", meaning: "君子之德，浩然正气；如君子般品德高尚，胸怀宽广。" }
+            { name: "李沛恩", source: "《诗经·大雅》", meaning: "沛雨甘霖，恩泽绵长；如春雨般滋润人心，充满仁爱与慈悲。" },
+            { name: "李诗宜", source: "《楚辞·九歌》", meaning: "诗情画意，宜室宜家；如诗般温婉动人，适合宜室宜家的女子。" },
+            { name: "李书瑶", source: "《楚辞》", meaning: "书香门第，瑶台仙宫；既有书香气质，又如美玉般珍贵。" },
+            { name: "李清然", source: "《诗经》", meaning: "清雅脱俗，淡然处世；如清泉般纯洁，态度淡然从容。" },
+            { name: "李念希", source: "《诗经》", meaning: "念念不忘，希望永存；心中怀揣希望，永不放弃美好念想。" },
+            { name: "李芷若", source: "《楚辞·九歌》", meaning: "芷草清香，若即若离；清香淡雅，气质如兰。" },
+            { name: "李雅琳", source: "《诗经》", meaning: "雅致高贵，琳琅满目；优雅高贵，如美玉般珍贵。" },
+            { name: "李语嫣", source: "《诗经》", meaning: "温言软语，嫣然一笑；说话温柔动人，笑容美好。" },
+            { name: "李梦琪", source: "《楚辞》", meaning: "梦境美好，琪玉无瑕；如美玉般美好珍贵。" },
+            { name: "李婉清", source: "《诗经·郑风》", meaning: "温婉可人，清雅脱俗；性格温柔，气质清雅。" }
           ],
           modern: [
-            { name: "亦辰", source: "《现代文学》", meaning: "亦刚亦柔，辰光璀璨；性格刚柔并济，前途光明。" },
-            { name: "一诺", source: "《现代散文》", meaning: "一诺千金，诚实守信；信守承诺，品德高尚。" },
-            { name: "沐辰", source: "《现代诗歌》", meaning: "沐浴晨光，辰星闪耀；如晨光般温暖，如星辰般耀眼。" },
-            { name: "泽宇", source: "《现代文学》", meaning: "福泽深厚，气宇轩昂；福气满满，气度不凡。" },
-            { name: "嘉佑", source: "《现代散文》", meaning: "嘉言善行，上天庇佑；言行美好，受上天保佑。" },
-            { name: "睿泽", source: "《现代诗歌》", meaning: "睿智聪慧，福泽绵长；聪明过人，福气满满。" },
-            { name: "奕辰", source: "《现代文学》", meaning: "神采奕奕，辰光万里；精神饱满，前途光明。" },
-            { name: "皓宇", source: "《现代散文》", meaning: "皓白如玉，气宇轩昂；如美玉般纯洁，气度不凡。" },
-            { name: "梓轩", source: "《现代诗歌》", meaning: "桑梓情深，气宇轩昂；不忘根本，气度不凡。" },
-            { name: "辰逸", source: "《现代文学》", meaning: "辰光璀璨，潇洒飘逸；前途光明，性格洒脱。" }
+            { name: "李艺霖", source: "《唐诗选》", meaning: "艺术天成，如霖润泽；多才多艺，如甘霖般滋润他人。" },
+            { name: "李文昕", source: "《论语》", meaning: "文质彬彬，昕光初照；既有文化修养，又如朝阳般充满希望。" },
+            { name: "李忆", source: "《诗经》", meaning: "追忆美好，念念不忘；如美好回忆般令人难以忘怀。" },
+            { name: "李浔", source: "《诗经》", meaning: "浔江悠远，深藏不露；如江水般深沉悠远，内涵丰富。" },
+            { name: "李时", source: "《论语》", meaning: "天时地利，时机恰好；如恰逢其时，万事顺遂。" },
+            { name: "李怡然", source: "《现代文学》", meaning: "怡然自得，快乐无忧；心境平和，生活快乐。" },
+            { name: "李晓涵", source: "《现代诗歌》", meaning: "小家碧玉，涵养深厚；温柔可爱，内涵丰富。" },
+            { name: "李雨萱", source: "《现代诗歌》", meaning: "雨中萱草，忘忧无愁；如雨中萱草般无忧无虑。" },
+            { name: "李梦洁", source: "《现代文学》", meaning: "梦中纯洁，洁白无瑕；如梦境般美好，内心纯洁。" },
+            { name: "李欣妍", source: "《现代诗歌》", meaning: "欣喜美好，妍丽动人；充满喜悦，美丽动人。" }
           ],
           poetic: [
-            { name: "星垂", source: "《旅夜书怀》", meaning: "星垂平野阔，月涌大江流；心胸开阔，志向远大。" },
-            { name: "江阔", source: "《旅夜书怀》", meaning: "星垂平野阔，月涌大江流；如大江般宽广，胸怀天下。" },
-            { name: "临风", source: "《滕王阁序》", meaning: "爽籁发而清风生，纤歌凝而白云遏；临风而立，风度翩翩。" },
-            { name: "观澜", source: "《孟子》", meaning: "观水有术，必观其澜；洞察事物本质，有远见卓识。" },
-            { name: "听松", source: "《山居秋暝》", meaning: "明月松间照，清泉石上流；如松般坚韧，心境淡然。" },
-            { name: "望舒", source: "《楚辞》", meaning: "前望舒使先驱兮；如月亮般温柔，如星辰般明亮。" },
-            { name: "怀瑾", source: "《楚辞》", meaning: "怀瑾握瑜兮，穷不知所示；如美玉般纯洁，品德高尚。" },
-            { name: "慕云", source: "《终南别业》", meaning: "行到水穷处，坐看云起时；心境淡然，随遇而安。" },
-            { name: "寻幽", source: "《题破山寺后禅院》", meaning: "曲径通幽处，禅房花木深；探寻真理，内心宁静。" },
-            { name: "致远", source: "《诫子书》", meaning: "非淡泊无以明志，非宁静无以致远；志向远大，追求卓越。" }
+            { name: "李溪月", source: "《唐诗》", meaning: "清溪映月，诗意盎然；如溪水映月般清新脱俗，富有诗意。" },
+            { name: "李星落", source: "《宋词》", meaning: "星落平湖，静谧美好；如星光落入平湖，宁静而美好。" },
+            { name: "李云舒", source: "《宋词》", meaning: "云卷云舒，自在从容；如云朵般自在，心态从容。" },
+            { name: "李晚晴", source: "《唐诗》", meaning: "雨后晚晴，豁然开朗；如雨后晴天，心境开阔。" },
+            { name: "李知意", source: "《诗经》", meaning: "知书达理，心意相通；既有学识，又善解人意。" },
+            { name: "李清欢", source: "《宋词》", meaning: "人间清欢，简单美好；享受简单纯粹的快乐。" },
+            { name: "李语茉", source: "《现代诗歌》", meaning: "语如茉莉，清香淡雅；言语温柔，如茉莉花香。" },
+            { name: "李笙歌", source: "《唐诗》", meaning: "笙歌婉转，美好动听；如乐曲般美好，生活充满欢乐。" },
+            { name: "李汀兰", source: "《楚辞》", meaning: "汀上兰草，清新脱俗；如水边兰草，清新自然。" },
+            { name: "李南絮", source: "《宋词》", meaning: "南风絮语，温柔缠绵；如南风般温柔，情意绵长。" }
           ]
         }
-      };
-      
-      // 一次性洗牌所有名字库并缓存
-      shuffledNameDatabase = {};
-      for (const gender in nameDatabase) {
-        shuffledNameDatabase[gender] = {};
-        for (const style in nameDatabase[gender]) {
-          shuffledNameDatabase[gender][style] = shuffleArray(nameDatabase[gender][style]);
+      },
+      // 男孩名字库
+      boy: {
+        // 通用姓氏（默认）
+        default: {
+          classical: [
+            { name: "瑾辰", source: "《楚辞》", meaning: "怀瑾握瑜，良辰美景；如美玉般珍贵，前程似锦。" },
+            { name: "景行", source: "《诗经·小雅》", meaning: "高山景行，德行高尚；品德如高山般崇高，行为光明磊落。" },
+            { name: "承宇", source: "《楚辞·九章》", meaning: "承天之佑，气宇轩昂；有上天庇佑，气度不凡。" },
+            { name: "修远", source: "《楚辞·离骚》", meaning: "路漫漫其修远兮，吾将上下而求索；有追求，有毅力。" },
+            { name: "博文", source: "《论语》", meaning: "博文约礼，学识渊博；学识广博，守礼有度。" },
+            { name: "思齐", source: "《论语》", meaning: "见贤思齐，不断进步；向优秀的人学习，不断提升自己。" },
+            { name: "浩然", source: "《孟子》", meaning: "浩然之气，正大光明；胸怀坦荡，正气凛然。" },
+            { name: "子谦", source: "《论语》", meaning: "谦谦君子，温润如玉；谦虚有礼，气质温润。" },
+            { name: "彦辰", source: "《诗经》", meaning: "彦士之才，辰光万里；有才华，前途光明。" },
+            { name: "崇安", source: "《尚书》", meaning: "崇德尚礼，平安顺遂；品德高尚，一生平安。" }
+          ],
+          modern: [
+            { name: "亦辰", source: "《现代文学》", meaning: "亦刚亦柔，辰光璀璨；性格刚柔并济，人生光彩夺目。" },
+            { name: "泽宇", source: "《现代诗歌》", meaning: "泽被四方，气宇轩昂；有仁爱之心，气度不凡。" },
+            { name: "嘉树", source: "《现代散文》", meaning: "嘉木成林，茁壮成长；如大树般挺拔，健康成长。" },
+            { name: "沐辰", source: "《现代文学》", meaning: "沐浴春晖，辰星闪耀；如沐春风，前途光明。" },
+            { name: "奕恒", source: "《现代诗歌》", meaning: "神采奕奕，持之以恒；精神饱满，有毅力。" },
+            { name: "睿泽", source: "《现代散文》", meaning: "睿智聪慧，泽被万物；聪明过人，有仁爱之心。" },
+            { name: "星驰", source: "《现代文学》", meaning: "星奔川鹜，风驰电掣；如星光般闪耀，行动迅速。" },
+            { name: "俊彦", source: "《现代诗歌》", meaning: "英俊潇洒，彦士之才；相貌英俊，有才华。" },
+            { name: "逸辰", source: "《现代散文》", meaning: "潇洒飘逸，辰光万里；性格洒脱，前途光明。" },
+            { name: "明轩", source: "《现代文学》", meaning: "光明磊落，气宇轩昂；性格正直，气度不凡。" }
+          ],
+          poetic: [
+            { name: "江枫", source: "《唐诗》", meaning: "江枫渔火，诗意人生；如江边枫叶，富有诗意，人生美好。" },
+            { name: "松月", source: "《唐诗》", meaning: "松间明月，清雅脱俗；如松间明月，清新高雅。" },
+            { name: "鹤鸣", source: "《诗经》", meaning: "鹤鸣九皋，声闻于天；如仙鹤般高洁，声名远扬。" },
+            { name: "清风", source: "《宋词》", meaning: "清风徐来，心旷神怡；如清风般爽朗，心境开阔。" },
+            { name: "观澜", source: "《孟子》", meaning: "观水有术，必观其澜；有远见，有智慧。" },
+            { name: "秋白", source: "《现代诗歌》", meaning: "秋高气爽，清白做人；性格爽朗，为人正直。" },
+            { name: "书翰", source: "《唐诗》", meaning: "书香翰墨，文采斐然；有文化底蕴，文采出众。" },
+            { name: "云帆", source: "《唐诗》", meaning: "直挂云帆，乘风破浪；有远大志向，勇往直前。" },
+            { name: "疏桐", source: "《宋词》", meaning: "缺月挂疏桐，意境高远；如疏桐般挺拔，意境高远。" },
+            { name: "清川", source: "《唐诗》", meaning: "清川带长薄，自然洒脱；如清澈河流，自然洒脱。" }
+          ]
+        },
+        // 李姓专属
+        李: {
+          classical: [
+            { name: "李瑾辰", source: "《楚辞》", meaning: "怀瑾握瑜，良辰美景；如美玉般珍贵，前程似锦。" },
+            { name: "李景行", source: "《诗经·小雅》", meaning: "高山景行，德行高尚；品德如高山般崇高，行为光明磊落。" },
+            { name: "李承宇", source: "《楚辞·九章》", meaning: "承天之佑，气宇轩昂；有上天庇佑，气度不凡。" },
+            { name: "李修远", source: "《楚辞·离骚》", meaning: "路漫漫其修远兮，吾将上下而求索；有追求，有毅力。" },
+            { name: "李文博", source: "《论语》", meaning: "博文约礼，学识渊博；学识广博，守礼有度。" },
+            { name: "李思齐", source: "《论语》", meaning: "见贤思齐，不断进步；向优秀的人学习，不断提升自己。" },
+            { name: "李浩然", source: "《孟子》", meaning: "浩然之气，正大光明；胸怀坦荡，正气凛然。" },
+            { name: "李子谦", source: "《论语》", meaning: "谦谦君子，温润如玉；谦虚有礼，气质温润。" },
+            { name: "李彦辰", source: "《诗经》", meaning: "彦士之才，辰光万里；有才华，前途光明。" },
+            { name: "李崇安", source: "《尚书》", meaning: "崇德尚礼，平安顺遂；品德高尚，一生平安。" }
+          ],
+          modern: [
+            { name: "李亦辰", source: "《现代文学》", meaning: "亦刚亦柔，辰光璀璨；性格刚柔并济，人生光彩夺目。" },
+            { name: "李泽宇", source: "《现代诗歌》", meaning: "泽被四方，气宇轩昂；有仁爱之心，气度不凡。" },
+            { name: "李嘉树", source: "《现代散文》", meaning: "嘉木成林，茁壮成长；如大树般挺拔，健康成长。" },
+            { name: "李沐辰", source: "《现代文学》", meaning: "沐浴春晖，辰星闪耀；如沐春风，前途光明。" },
+            { name: "李奕恒", source: "《现代诗歌》", meaning: "神采奕奕，持之以恒；精神饱满，有毅力。" },
+            { name: "李睿泽", source: "《现代散文》", meaning: "睿智聪慧，泽被万物；聪明过人，有仁爱之心。" },
+            { name: "李星驰", source: "《现代文学》", meaning: "星奔川鹜，风驰电掣；如星光般闪耀，行动迅速。" },
+            { name: "李俊彦", source: "《现代诗歌》", meaning: "英俊潇洒，彦士之才；相貌英俊，有才华。" },
+            { name: "李逸辰", source: "《现代散文》", meaning: "潇洒飘逸，辰光万里；性格洒脱，前途光明。" },
+            { name: "李明轩", source: "《现代文学》", meaning: "光明磊落，气宇轩昂；性格正直，气度不凡。" }
+          ],
+          poetic: [
+            { name: "李江枫", source: "《唐诗》", meaning: "江枫渔火，诗意人生；如江边枫叶，富有诗意，人生美好。" },
+            { name: "李松月", source: "《唐诗》", meaning: "松间明月，清雅脱俗；如松间明月，清新高雅。" },
+            { name: "李鹤鸣", source: "《诗经》", meaning: "鹤鸣九皋，声闻于天；如仙鹤般高洁，声名远扬。" },
+            { name: "李清风", source: "《宋词》", meaning: "清风徐来，心旷神怡；如清风般爽朗，心境开阔。" },
+            { name: "李观澜", source: "《孟子》", meaning: "观水有术，必观其澜；有远见，有智慧。" },
+            { name: "李秋白", source: "《现代诗歌》", meaning: "秋高气爽，清白做人；性格爽朗，为人正直。" },
+            { name: "李书翰", source: "《唐诗》", meaning: "书香翰墨，文采斐然；有文化底蕴，文采出众。" },
+            { name: "李云帆", source: "《唐诗》", meaning: "直挂云帆，乘风破浪；有远大志向，勇往直前。" },
+            { name: "李疏桐", source: "《宋词》", meaning: "缺月挂疏桐，意境高远；如疏桐般挺拔，意境高远。" },
+            { name: "李清川", source: "《唐诗》", meaning: "清川带长薄，自然洒脱；如清澈河流，自然洒脱。" }
+          ]
         }
       }
+    };
+
+    // ============================================
+    // 工具函数
+    // ============================================
+    // 数组随机打乱（Fisher-Yates 洗牌算法）
+    function shuffleArray(array) {
+      const newArray = [...array]; // 复制原数组，避免修改原数据
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
     }
 
     // ============================================
     // 用户交互函数
     // ============================================
+    
     // 选择生成数量
     function selectCount(count, btn) {
       selectedCount = count;
       document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      showFeedback(`已选择生成${count}个名字`);
     }
-
+    
     // 更新风格说明
     function updateStyleDescription() {
-      const style = DOM.style.value;
+      const style = document.getElementById('style').value;
+      const descElement = document.getElementById('styleDescription');
       const descriptions = {
         classical: '古典文雅：源自诗词典籍，如《诗经》《楚辞》，典雅高贵，适合书香门第',
         modern: '简约现代：简洁明快，朗朗上口，符合现代审美，时尚大气',
         poetic: '诗意文艺：充满诗意和文艺气息，优雅脱俗，富有浪漫情怀'
       };
-      DOM.styleDescription.textContent = descriptions[style];
+      descElement.textContent = descriptions[style];
     }
 
     // 切换高级设置显示
     function toggleAdvancedSettings() {
-      if (DOM.advancedSettings.style.display === 'none') {
-        DOM.advancedSettings.style.display = 'block';
-        DOM.advancedIcon.style.transform = 'rotate(180deg)';
-        showFeedback('已展开高级设置');
+      const settings = document.getElementById('advancedSettings');
+      const icon = document.getElementById('advancedIcon');
+      if (settings.style.display === 'none') {
+        settings.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
       } else {
-        DOM.advancedSettings.style.display = 'none';
-        DOM.advancedIcon.style.transform = 'rotate(0deg)';
-        showFeedback('已收起高级设置');
+        settings.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
       }
     }
 
     // 更新权重显示
     function updateWeightDisplay() {
-      DOM.zodiacWeightValue.textContent = DOM.zodiacWeight.value + '%';
-      DOM.seasonWeightValue.textContent = DOM.seasonWeight.value + '%';
-      DOM.elementWeightValue.textContent = DOM.elementWeight.value + '%';
-      DOM.surnameWeightValue.textContent = DOM.surnameWeight.value + '%';
-      DOM.cultureWeightValue.textContent = DOM.cultureWeight.value + '%';
+      document.getElementById('zodiacWeightValue').textContent = document.getElementById('zodiacWeight').value + '%';
+      document.getElementById('seasonWeightValue').textContent = document.getElementById('seasonWeight').value + '%';
+      document.getElementById('elementWeightValue').textContent = document.getElementById('elementWeight').value + '%';
+      document.getElementById('surnameWeightValue').textContent = document.getElementById('surnameWeight').value + '%';
+      document.getElementById('cultureWeightValue').textContent = document.getElementById('cultureWeight').value + '%';
     }
 
     // 重置权重
     function resetWeights() {
-      DOM.zodiacWeight.value = 70;
-      DOM.seasonWeight.value = 50;
-      DOM.elementWeight.value = 80;
-      DOM.surnameWeight.value = 60;
-      DOM.cultureWeight.value = 65;
+      document.getElementById('zodiacWeight').value = 70;
+      document.getElementById('seasonWeight').value = 50;
+      document.getElementById('elementWeight').value = 80;
+      document.getElementById('surnameWeight').value = 60;
+      document.getElementById('cultureWeight').value = 65;
       updateWeightDisplay();
-      showFeedback('权重已重置为默认值');
     }
-
+    
     // 筛选功能
     function filterByScore(range, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      currentFilter = range;
-      currentPage = 1;
       
-      // 优化点4：评分已是数字，无需重复转换
+      const nameList = document.getElementById('nameList');
+      nameList.innerHTML = '';
+      
+      let filteredNames = [];
       if (range === 'all') {
-        filteredNames = [...allGeneratedNames];
+        filteredNames = allGeneratedNames;
       } else {
         const [min, max] = range.split('-').map(Number);
         filteredNames = allGeneratedNames.filter(name => {
-          return name.score >= min && name.score <= max;
+          let score = name.score;
+          if (typeof score === 'string') {
+            score = parseInt(score.replace(/[^0-9]/g, ''));
+          }
+          return score >= min && score <= max;
         });
       }
       
-      DOM.nameList.innerHTML = '';
-      loadMoreNames();
-      showFeedback(`已筛选${range === 'all' ? '全部' : range}分的名字`);
+      filteredNames.forEach(nameObj => {
+        renderNameCard(nameObj, nameList);
+      });
     }
-
+    
     // 模态框控制
     function showModal(modalId) {
-      DOM[modalId].style.display = 'flex';
+      document.getElementById(modalId).style.display = 'flex';
     }
-
+    
     function hideModal(modalId) {
-      DOM[modalId].style.display = 'none';
+      document.getElementById(modalId).style.display = 'none';
     }
-
+    
     // 显示/隐藏加载动画
     function showLoading() {
-      DOM.loadingOverlay.style.display = 'flex';
+      document.getElementById('loadingOverlay').style.display = 'flex';
     }
-
+    
     function hideLoading() {
-      DOM.loadingOverlay.style.display = 'none';
+      document.getElementById('loadingOverlay').style.display = 'none';
     }
 
-    // ============================================
-    // 懒加载核心逻辑（优化点5：批量渲染+只绑定一次事件）
-    // ============================================
-    // 加载更多名字（批量渲染，无延迟）
-    function loadMoreNames() {
-      if (isLoading || filteredNames.length === 0) return;
-      
-      isLoading = true;
-      // 优化点6：使用文档片段批量渲染，更快
-      const fragment = document.createDocumentFragment();
-      
-      const start = (currentPage - 1) * pageSize;
-      const end = Math.min(start + pageSize, filteredNames.length);
-      const pageData = filteredNames.slice(start, end);
-      
-      // 批量创建卡片
-      pageData.forEach(nameObj => {
-        const card = createNameCardElement(nameObj);
-        fragment.appendChild(card);
-      });
-      
-      // 一次性添加到页面，减少卡顿
-      DOM.nameList.appendChild(fragment);
-      
-      // 无更多数据提示
-      if (end >= filteredNames.length) {
-        const noMoreTip = document.createElement('div');
-        noMoreTip.className = 'lazy-load-tip lazy-load-no-more';
-        noMoreTip.textContent = '已加载全部名字';
-        DOM.nameList.appendChild(noMoreTip);
-      }
-      
-      currentPage++;
-      isLoading = false;
-    }
-
-    // 滚动事件处理（只绑定一次）
-    function handleScroll() {
-      const isBottom = (DOM.nameList.scrollTop + DOM.nameList.clientHeight + 50) >= DOM.nameList.scrollHeight;
-      if (isBottom && !isLoading && (currentPage - 1) * pageSize < filteredNames.length) {
-        loadMoreNames();
-      }
-    }
-
-    // 初始化懒加载监听（只执行一次）
-    function initLazyLoadListener() {
-      DOM.nameList.removeEventListener('scroll', handleScroll);
-      DOM.nameList.addEventListener('scroll', handleScroll);
-    }
-
-    // ============================================
     // 收藏功能
-    // ============================================
     function collectName(btn, fullname, source, meaning, score) {
       const isCollected = btn.classList.contains('collected');
       
       if (isCollected) {
+        // 取消收藏
         favorites = favorites.filter(item => item.fullname !== fullname);
         btn.classList.remove('collected');
         btn.innerHTML = '♡';
-        showFeedback(`已取消收藏【${fullname}】`);
       } else {
-        const collectObj = { fullname, source, meaning, score };
-        favorites.push(collectObj);
+        // 添加收藏
+        favorites.push({ fullname, source, meaning, score });
         btn.classList.add('collected');
-        btn.innerHTML = '♥';
-        showFeedback(`已收藏【${fullname}】`);
+        btn.innerHTML = '❤';
       }
       
+      // 更新收藏列表
       renderFavoritesList();
     }
 
     // 渲染收藏列表
     function renderFavoritesList() {
-      DOM.favoritesArea.style.display = 'block';
-      DOM.favoritesCount.textContent = `已收藏 ${favorites.length} 个名字`;
-      DOM.favoritesList.innerHTML = '';
+      const favoritesList = document.getElementById('favoritesList');
+      const favoritesCount = document.getElementById('favoritesCount');
+      const favoritesArea = document.getElementById('favoritesArea');
+      
+      // 显示收藏区域
+      favoritesArea.classList.add('show');
+      
+      // 更新收藏数量
+      favoritesCount.textContent = `已收藏 ${favorites.length} 个名字`;
+      
+      // 清空列表
+      favoritesList.innerHTML = '';
       
       if (favorites.length === 0) {
-        const emptyDiv = document.createElement('div');
-        emptyDiv.className = 'empty-favorites';
-        emptyDiv.innerHTML = '暂无收藏的名字<br>点击名字卡片上的♥收藏喜欢的名字';
-        DOM.favoritesList.appendChild(emptyDiv);
+        // 空收藏提示
+        favoritesList.innerHTML = `
+          <div class="empty-favorites">
+            暂无收藏的名字<br>
+            点击名字卡片上的♡收藏喜欢的名字吧
+          </div>
+        `;
         return;
       }
       
-      favorites.forEach(item => {
-        const nameCard = document.createElement('div');
-        nameCard.className = 'name-card';
-        nameCard.innerHTML = `
+      // 渲染收藏的名字
+      favorites.forEach((item, index) => {
+        const favCard = document.createElement('div');
+        favCard.className = 'name-card';
+        favCard.innerHTML = `
           <div class="card-header">
             <span class="name-text">${item.fullname}</span>
             <span class="score-tag">${item.score}分</span>
@@ -1422,31 +1365,47 @@
           <div class="meaning-area">
             <div class="meaning-text">${item.meaning}</div>
           </div>
-          <button class="delete-btn" onclick="deleteFavorite('${item.fullname}')">删除</button>
+          <button class="delete-btn" onclick="deleteFavorite(${index})">删除</button>
         `;
-        DOM.favoritesList.appendChild(nameCard);
+        favoritesList.appendChild(favCard);
       });
     }
 
     // 删除收藏
-    function deleteFavorite(fullname) {
-      favorites = favorites.filter(item => item.fullname !== fullname);
-      renderFavoritesList();
-      document.querySelectorAll('.collect-btn').forEach(btn => {
-        if (btn.getAttribute('onclick').includes(fullname)) {
-          btn.classList.remove('collected');
-          btn.innerHTML = '♡';
-        }
-      });
-      showFeedback(`已删除收藏【${fullname}】`);
+    function deleteFavorite(index) {
+      if (confirm('确定要删除这个收藏的名字吗？')) {
+        favorites.splice(index, 1);
+        renderFavoritesList();
+        
+        // 更新名字列表中的收藏状态
+        const allCollectBtns = document.querySelectorAll('.collect-btn');
+        allCollectBtns.forEach(btn => {
+          const name = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+          const isCollected = favorites.some(item => item.fullname === name);
+          if (isCollected) {
+            btn.classList.add('collected');
+            btn.innerHTML = '❤';
+          } else {
+            btn.classList.remove('collected');
+            btn.innerHTML = '♡';
+          }
+        });
+      }
     }
-
+    
     // ============================================
     // 核心业务逻辑
     // ============================================
-    // 创建名字卡片元素（复用）
-    function createNameCardElement(nameObj) {
+    
+    // 生成随机评分（90-98）
+    function generateRandomScore() {
+      return Math.floor(Math.random() * 9) + 90;
+    }
+
+    // 渲染名字卡片
+    function renderNameCard(nameObj, container) {
       const isCollected = favorites.some(f => f.fullname === nameObj.fullname);
+      
       const nameCard = document.createElement('div');
       nameCard.className = 'name-card';
       nameCard.innerHTML = `
@@ -1462,77 +1421,108 @@
         </div>
         <button class="collect-btn ${isCollected ? 'collected' : ''}" 
                 onclick="collectName(this, '${nameObj.fullname}', '${nameObj.source}', '${nameObj.meaning}', ${nameObj.score})">
-          ${isCollected ? '♥' : '♡'}
+          ${isCollected ? '❤' : '♡'}
         </button>
       `;
-      return nameCard;
+      container.appendChild(nameCard);
     }
 
-    // 生成名字数据（优化点7：缩短延迟，用预洗牌数据）
+    // 生成名字主函数
     function generateNames() {
-      const surname = DOM.surname.value.trim();
-      const birthDate = DOM.birthDate.value;
+      // 获取输入值
+      const surname = document.getElementById('surname').value.trim();
+      const birthDate = document.getElementById('birthDate').value;
+      const gender = document.getElementById('gender').value;
+      const style = document.getElementById('style').value;
+      
+      // 验证输入
       if (!surname) {
-        showFeedback('请输入宝宝姓氏');
+        alert('请输入宝宝姓氏');
+        return;
+      }
+      if (!birthDate) {
+        alert('请选择宝宝出生日期');
         return;
       }
       
+      // 显示加载动画
       showLoading();
       
-      // 优化点8：缩短模拟延迟（从1秒→200毫秒），更快出结果
+      // 模拟生成延迟
       setTimeout(() => {
-        const gender = DOM.gender.value;
-        const style = DOM.style.value;
-        allGeneratedNames = [];
+        // 获取对应名字库
+        let namePool = [];
+        const genderDb = nameDatabase[gender];
         
-        // 直接用预洗牌的名字库，不用重复洗牌
-        let namePool = [...shuffledNameDatabase[gender][style]];
-        
-        while (namePool.length < selectedCount) {
-          namePool = [...namePool, ...shuffledNameDatabase[gender][style]];
+        // 优先使用姓氏专属库，否则使用通用库
+        if (genderDb[surname]) {
+          namePool = genderDb[surname][style];
+        } else {
+          // 通用库需要拼接姓氏
+          namePool = genderDb.default[style].map(item => ({
+            ...item,
+            name: surname + item.name,
+            fullname: surname + item.name
+          }));
         }
         
-        namePool = namePool.slice(0, selectedCount);
+        // 关键修改：先打乱名字库，再选取指定数量
+        const shuffledPool = shuffleArray(namePool);
+        const maxCount = Math.min(selectedCount, shuffledPool.length);
         
-        // 生成完整名字，评分存数字类型
-        allGeneratedNames = namePool.map(item => ({
-          fullname: surname + item.name,
-          source: item.source,
-          meaning: item.meaning,
-          score: generateRandomScore()
-        }));
+        // 生成指定数量的名字（带评分）
+        allGeneratedNames = [];
+        for (let i = 0; i < maxCount; i++) {
+          const nameItem = {
+            fullname: shuffledPool[i].fullname || (surname + shuffledPool[i].name),
+            source: shuffledPool[i].source,
+            meaning: shuffledPool[i].meaning,
+            score: generateRandomScore()
+          };
+          allGeneratedNames.push(nameItem);
+        }
         
-        filteredNames = [...allGeneratedNames];
-        currentPage = 1;
+        // 渲染名字列表
+        const nameList = document.getElementById('nameList');
+        nameList.innerHTML = '';
+        allGeneratedNames.forEach(nameObj => {
+          renderNameCard(nameObj, nameList);
+        });
         
-        DOM.resultArea.style.display = 'block';
-        DOM.nameList.innerHTML = '';
-        loadMoreNames();
+        // 显示结果区域
+        document.getElementById('resultArea').style.display = 'block';
         
+        // 更新收藏列表
         renderFavoritesList();
         
+        // 隐藏加载动画
         hideLoading();
-        showFeedback(`成功生成${selectedCount}个${gender === 'girl' ? '女宝' : '男宝'}名字`);
-      }, 200); // 大幅缩短等待时间
+      }, 1500);
     }
-
+    
     // ============================================
-    // 页面加载完成（只执行一次初始化）
+    // 页面加载完成
     // ============================================
     window.addEventListener('DOMContentLoaded', function() {
+      // 初始化权重显示
       updateWeightDisplay();
+      // 初始化风格说明
       updateStyleDescription();
-      preShuffleNameDatabase(); // 预洗牌名字库
-      initLazyLoadListener();   // 只绑定一次滚动事件
+      
+      // 设置默认日期为今天
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const formattedDate = `${yyyy}-${mm}-${dd}`;
+      document.getElementById('birthDate').value = formattedDate;
       
       // 点击模态框外部关闭
-      [DOM.privacyModal, DOM.termsModal, DOM.aboutModal].forEach(modal => {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            hideModal(modal.id);
-          }
-        });
-      });
+      window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+          event.target.style.display = 'none';
+        }
+      };
     });
   </script>
 </body>
